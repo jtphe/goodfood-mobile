@@ -1,0 +1,9 @@
+/node_modules/*
+android/*
+.vscode/*
+assets/*
+ios/*
+__tests__/*
+appcenter-post-clone.sh
+README.md
+
