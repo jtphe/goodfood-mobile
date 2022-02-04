@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "target": "es2017",
+      "baseUrl": "./",
+      "module": "commonjs",
+      "paths": {
+        "@api/*": ["src/api/*"],
+        "@components/*": ["src/components/*"],
+        "@config/*": ["src/config/*"],  
+        "@i18n/*": ["src/i18n/*"],
+        "@images/*": ["src/images/*"],
+        "@shared/*": ["src/shared/*"],
+        "@store/*": ["src/store/*"],
+        "@utils/*": ["src/utils/*"],
+      }
+    },
+    "exclude": ["nodes_modules", "assets"]
+  }
