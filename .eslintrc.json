@@ -1,33 +1,17 @@
 {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
     "parser": "babel-eslint",
     "extends": [
-      "airbnb-base",
+      "airbnb",
       "plugin:prettier/recommended",
       "plugin:react/recommended",
-      "@react-native-community"
+      "@react-native-community",
+      "plugin:jsx-a11y/recommended"
     ],
-    "plugins": ["react", "react-hooks"],
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "extensions": [".js", ".jsx", ".ts", ".tsx"]
-        }
-      }
-    },
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "sourceType": "module"
-    },
-    "env": {
-      "es6": true,
-      "node": true,
-      "browser": true
-    },
-    "globals": {
-      "__DEV__": true
-    },
+    "plugins": ["prettier", "react", "react-hooks", "sx-a11y"],
     "rules": {
       "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       "no-underscore-dangle": "off",
@@ -41,6 +25,19 @@
       "import/no-extraneous-dependencies": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn"
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
     }
-  }
-  
+}
