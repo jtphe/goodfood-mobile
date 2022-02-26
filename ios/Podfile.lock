@@ -339,6 +339,8 @@ PODS:
     - React-jsi (= 0.67.1)
     - React-logger (= 0.67.1)
     - React-perflogger (= 0.67.1)
+  - RNBootSplash (4.1.3):
+    - React-Core
   - RNLocalize (2.1.9):
     - React-Core
   - RNScreens (3.11.1):
@@ -403,6 +405,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -485,6 +488,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNBootSplash:
+    :path: "../node_modules/react-native-bootsplash"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNScreens:
@@ -536,6 +541,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 19c012d1202df46bafbe49268a346f6b3edadfdd
   React-runtimeexecutor: 2c92a8bddd1a3e72c7513d1e74235c2d9c84875c
   ReactCommon: 2e816fad39f65f2a94a5999d5be463a6b620dcf6
+  RNBootSplash: 4f34ccf1a0c2573cb4ba918ab7f69d51d610827f
   RNLocalize: 291e5e21b53cd30b5205c10ed95d31b0dc9b8d63
   RNScreens: 4d83613b50b74ed277026375dc0810893b0c347f
   Yoga: 5cbf25add73edb290e1067017690f7ebf56c5468
