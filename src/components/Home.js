@@ -1,13 +1,14 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 /**
  * Home component
  * @param {Object} navigation - Props used to navigate between screens
  */
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   console.log('navigation', navigation);
+
   return (
     <View style={styles.container}>
       <Text>Hello world</Text>
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
+  }
 });
 
 Home.propTypes = {

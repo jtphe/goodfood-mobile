@@ -1,36 +1,37 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
     "parser": "babel-eslint",
     "extends": [
       "airbnb",
       "plugin:prettier/recommended",
       "plugin:react/recommended",
-      "@react-native-community",
-      "plugin:jsx-a11y/recommended"
+      "@react-native-community"
     ],
-    "plugins": ["prettier", "react", "react-hooks", "sx-a11y"],
+    "plugins": ["prettier", "react", "react-hooks"],
     "rules": {
       "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       "no-underscore-dangle": "off",
       "no-use-before-define": "off",
-      "react/prop-types": "off",
+      "react/forbid-prop-types": "off",
+      "react/require-default-props": "off",
       "comma-dangle": "off",
       "import/no-unresolved": "off",
       "react/jsx-filename-extension": ["off", { "extensions": [".js", ".jsx"] }],
-      "prettier/prettier": ["error", { "singleQuote": true }],
+      "prettier/prettier": ["error", { "singleQuote": true, "trailingComma": "none" }],
       "import/order": "off",
       "import/no-extraneous-dependencies": "off",
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn"
+      "react-hooks/exhaustive-deps": "warn",
+      "react/function-component-definition": [
+        2,
+        {
+          "namedComponents": "arrow-function"
+        }
+      ]
     },
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true
       },
-      "ecmaVersion": 12,
       "sourceType": "module"
     },
     "settings": {
@@ -40,4 +41,4 @@
         }
       }
     }
-}
+  }
