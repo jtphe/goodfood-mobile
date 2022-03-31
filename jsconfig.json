@@ -13,6 +13,7 @@
         "@shared/*": ["src/shared/*"],
         "@store/*": ["src/store/*"],
         "@utils/*": ["src/utils/*"],
+        "@navigation/*": ["src/navigation/*"]
       }
     },
     "exclude": ["nodes_modules", "assets"]
