@@ -14,6 +14,7 @@
 		22F31FEA9BAF2F05056F203D /* libPods-goodfood-goodfoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F111B61C1BB3732A999A1F64 /* libPods-goodfood-goodfoodTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E54558DDD0900F5754D60823 /* libPods-goodfood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 364EE35799ACB17ED0E1A14D /* libPods-goodfood.a */; };
+		F07BA7A027F622DB00B7130E /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = F07BA79F27F622DB00B7130E /* fonts */; };
 		F0D3239D27CA889400AEA82B /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D3239C27CA889400AEA82B /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = goodfood/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8362FC9F75FA0078F37BED78 /* Pods-goodfood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goodfood.debug.xcconfig"; path = "Target Support Files/Pods-goodfood/Pods-goodfood.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F07BA79F27F622DB00B7130E /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		F0D3239C27CA889400AEA82B /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = goodfood/BootSplash.storyboard; sourceTree = "<group>"; };
 		F111B61C1BB3732A999A1F64 /* libPods-goodfood-goodfoodTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goodfood-goodfoodTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				F07BA79F27F622DB00B7130E /* fonts */,
 				13B07FAE1A68108700A75B9A /* goodfood */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* goodfoodTests */,
@@ -248,6 +251,7 @@
 				F0D3239D27CA889400AEA82B /* BootSplash.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F07BA7A027F622DB00B7130E /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
