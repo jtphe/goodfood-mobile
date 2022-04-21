@@ -16,6 +16,7 @@ import {
   checkPasswordSame
 } from '@helpers/passwordManager';
 import { showToast } from '@helpers/showToast';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RegisterField from '@components/Register/registerField';
 import i18n from '@i18n/i18n';
 import colors from '@config/';
@@ -72,38 +73,43 @@ const Register = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.goBackRow}
-        onPress={() => _returnToLoginScreen()}
-      >
-        <Icon name="arrow-back-ios" size={25} style={styles.iconArrow} />
-        <Text style={styles.textGoBack}>{i18n.t('login.screenTitle')}</Text>
-      </TouchableOpacity>
-      <Image
-        source={require('@images/goodfood_logo_G.png')}
-        style={styles.logo}
-      />
-      <View style={styles.wrapperRegisterZone}>
-        <Text style={styles.registerText}>
-          {i18n.t('register.screenTitle')}
-        </Text>
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <RegisterField
-            setEmail={(e) => setEmail(e)}
-            setPassword={(pwd) => setPassword(pwd)}
-            setConfirmPassword={(pwd) => setConfirmPassword(pwd)}
-            errorEmail={errorEmail}
-            errorPassword={errorPassword}
-            createAccount={() => _createAccount()}
-          />
-        </TouchableWithoutFeedback>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.keyboardAwareScrollView}
+    >
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.goBackRow}
+          onPress={() => _returnToLoginScreen()}
+        >
+          <Icon name="arrow-back-ios" size={25} style={styles.iconArrow} />
+          <Text style={styles.textGoBack}>{i18n.t('login.screenTitle')}</Text>
+        </TouchableOpacity>
+        <Image
+          source={require('@images/goodfood_logo_G.png')}
+          style={styles.logo}
+        />
+        <View style={styles.wrapperRegisterZone}>
+          <Text style={styles.registerText}>
+            {i18n.t('register.screenTitle')}
+          </Text>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <RegisterField
+              setEmail={(e) => setEmail(e)}
+              setPassword={(pwd) => setPassword(pwd)}
+              setConfirmPassword={(pwd) => setConfirmPassword(pwd)}
+              errorEmail={errorEmail}
+              errorPassword={errorPassword}
+              createAccount={() => _createAccount()}
+            />
+          </TouchableWithoutFeedback>
+        </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardAwareScrollView: { flex: 1 },
   container: {
     flex: 1,
     ...ifIphoneX({ paddingTop: 40 }),
@@ -114,9 +120,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     paddingTop: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    ...ifIphoneX({}, { paddingTop: 32 })
   },
-  iconArrow: { paddingLeft: 30, color: colors.YELLOW },
+  iconArrow: {
+    paddingLeft: 30,
+    color: colors.YELLOW
+  },
   textGoBack: { fontWeight: 'bold', fontSize: 16, color: colors.YELLOW },
   logo: {
     width: 200,
