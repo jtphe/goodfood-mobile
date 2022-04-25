@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import i18n from '@i18n/i18n';
-import colors from '@config/';
+import { colors } from '@config/';
 
 const RegisterField = ({
   setEmail,

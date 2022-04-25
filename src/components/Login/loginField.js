@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
+import { colors } from '@config/';
 import i18n from '@i18n/i18n';
 import PropTypes from 'prop-types';
-import colors from '@config/';
 
 /**
  * LoginField component
@@ -23,7 +23,6 @@ const LoginField = ({
   const [showPassword, setShowPassword] = useState(true);
 
   const _returnRightIcon = () => {
-    console.log('oui');
     if (showPassword) {
       return 'eye-off';
     }

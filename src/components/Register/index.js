@@ -19,8 +19,9 @@ import { showToast } from '@helpers/showToast';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RegisterField from '@components/Register/registerField';
 import i18n from '@i18n/i18n';
-import colors from '@config/';
+import { colors } from '@config/';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import vibrate from '@helpers/vibrate';
 
 const Register = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -30,6 +31,7 @@ const Register = ({ navigation }) => {
   const [errorPassword, setErrorPassword] = useState(false);
 
   const _createAccount = () => {
+    vibrate();
     if (_checkUserInfos()) {
       const payload = {
         email,
