@@ -6,7 +6,8 @@ import {
   Image,
   StyleSheet,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { emailChecker } from '@helpers/emailChecker';
@@ -15,11 +16,12 @@ import { showToast } from '@helpers/showToast';
 import { Button } from 'react-native-paper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { colors } from '@config/';
 // import Text from '@shared/Text';
 import PropTypes from 'prop-types';
-import colors from '@config/';
 import LoginField from '@components/Login/loginField';
 import i18n from '@i18n/i18n';
+import vibrate from '@helpers/vibrate';
 
 /**
  * Login component
@@ -32,6 +34,7 @@ const Login = ({ navigation }) => {
   const [errorPassword, setErrorPassword] = useState(false);
 
   const _login = () => {
+    vibrate();
     if (_checkCredentials()) {
       const payload = {
         email,
