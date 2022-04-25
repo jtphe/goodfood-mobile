@@ -27,6 +27,7 @@ const RegisterField = ({
         }}
         error={errorEmail}
         autoCapitalize="none"
+        returnKeyType="next"
       />
       <TextInput
         mode="outlined"
@@ -41,6 +42,7 @@ const RegisterField = ({
           setPassword(txt);
         }}
         error={errorPassword}
+        returnKeyType="next"
       />
       <TextInput
         mode="outlined"
@@ -55,6 +57,7 @@ const RegisterField = ({
           setConfirmPassword(txt);
         }}
         error={errorPassword}
+        returnKeyType="done"
       />
       <Button
         mode="contained"

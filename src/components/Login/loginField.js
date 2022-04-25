@@ -45,6 +45,7 @@ const LoginField = ({
         }}
         error={errorEmail}
         autoCapitalize="none"
+        returnKeyType="next"
       />
       <TextInput
         mode="outlined"
@@ -65,6 +66,7 @@ const LoginField = ({
           setPassword(txt);
         }}
         error={errorPassword}
+        returnKeyType="done"
       />
       <Button
         mode="contained"

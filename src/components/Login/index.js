@@ -13,6 +13,8 @@ import { emailChecker } from '@helpers/emailChecker';
 import { checkPasswordLength } from '@helpers/passwordManager';
 import { showToast } from '@helpers/showToast';
 import { Button } from 'react-native-paper';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 // import Text from '@shared/Text';
 import PropTypes from 'prop-types';
 import colors from '@config/';
@@ -62,45 +64,56 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require('@images/goodfood_logo_G.png')}
-        style={styles.logo}
-      />
-      <View style={styles.wrapperLoginZone}>
-        <Text style={styles.welcomeText}>{i18n.t('login.welcome')}</Text>
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <LoginField
-            setEmail={(e) => setEmail(e)}
-            setPassword={(pwd) => setPassword(pwd)}
-            login={() => _login()}
-            errorEmail={errorEmail}
-            errorPassword={errorPassword}
-          />
-        </TouchableWithoutFeedback>
-        <View style={styles.noAccountZone}>
-          <Text style={styles.noAccountText}>{i18n.t('login.noAccount')}</Text>
-          <Button
-            mode="text"
-            color={colors.RED}
-            onPress={() => navigation.push(i18n.t('register.screenTitle'))}
-            style={styles.btnRegister}
-          >
-            {i18n.t('login.register')}
-          </Button>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.keyboardAwareScrollView}
+    >
+      <View style={styles.container}>
+        <Image
+          source={require('@images/goodfood_logo_G.png')}
+          style={styles.logo}
+        />
+        <View style={styles.wrapperLoginZone}>
+          <Text style={styles.welcomeText}>{i18n.t('login.welcome')}</Text>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <LoginField
+              setEmail={(e) => setEmail(e)}
+              setPassword={(pwd) => setPassword(pwd)}
+              login={() => _login()}
+              errorEmail={errorEmail}
+              errorPassword={errorPassword}
+            />
+          </TouchableWithoutFeedback>
+          <View style={styles.noAccountZone}>
+            <Text style={styles.noAccountText}>
+              {i18n.t('login.noAccount')}
+            </Text>
+            <Button
+              mode="text"
+              color={colors.RED}
+              onPress={() => navigation.push(i18n.t('register.screenTitle'))}
+              style={styles.btnRegister}
+            >
+              {i18n.t('login.register')}
+            </Button>
+          </View>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  keyboardAwareScrollView: { flex: 1 },
   container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: colors.BEIGE
   },
-  logo: { width: 200, height: 200, marginTop: calcHeight(15) },
+  logo: {
+    width: 200,
+    height: 200,
+    ...ifIphoneX({ marginTop: calcHeight(15) }, { marginTop: calcHeight(10) })
+  },
   wrapperLoginZone: {
     flex: 1,
     width: '100%',
@@ -118,7 +131,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 34
+    paddingBottom: 34,
+    paddingTop: 24
   },
   noAccountText: { fontSize: 16, color: colors.YELLOW },
   btnRegister: { marginTop: 12 }
