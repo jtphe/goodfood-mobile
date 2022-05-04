@@ -8,11 +8,16 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { calcHeight } from '@helpers/responsiveHelper';
 import * as Animatable from 'react-native-animatable';
 import i18n from '@i18n/i18n';
+import PropTypes from 'prop-types';
 
 const mapStateToProps = createSelector(getNetworkState, (networkState) => {
   return { networkState };
 });
 
+/**
+ * ConnectionStateBar component
+ * @param {String} networkState - The network state
+ */
 const ConnectionStateBar = ({ networkState }) => {
   const networkBar = useRef();
 
@@ -64,5 +69,9 @@ const styles = StyleSheet.create({
     color: 'white'
   }
 });
+
+ConnectionStateBar.propTypes = {
+  networkState: PropTypes.string
+};
 
 export default connect(mapStateToProps)(ConnectionStateBar);

@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import update from 'immutability-helper';
 import { M_UPDATE_NETWORK_STATE } from '@store/modules/app/actions';
 

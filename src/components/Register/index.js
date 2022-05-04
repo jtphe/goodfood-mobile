@@ -17,12 +17,17 @@ import {
 } from '@helpers/passwordManager';
 import { showToast } from '@helpers/showToast';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { colors } from '@config/';
 import RegisterField from '@components/Register/registerField';
 import i18n from '@i18n/i18n';
-import { colors } from '@config/';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import vibrate from '@helpers/vibrate';
+import PropTypes from 'prop-types';
 
+/**
+ * Register component
+ * @param {Object} navigation - Props used to navigate between screens
+ */
 const Register = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -149,5 +154,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   }
 });
+
+Register.propTypes = {
+  navigation: PropTypes.object
+};
 
 export default Register;
