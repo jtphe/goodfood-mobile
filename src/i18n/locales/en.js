@@ -23,5 +23,9 @@ export default {
     passwordTooShort: 'The password must be at least 8 characters long',
     emailAndPasswordIncorrect: 'Check your login details',
     passwordNotTheSame: 'Passwords do not match'
+  },
+  connection: {
+    disconnected: 'Searching for a connection...',
+    connected: 'Connected !'
   }
 };

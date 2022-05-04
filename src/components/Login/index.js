@@ -1,13 +1,12 @@
 /* eslint-disable global-require */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   Image,
   StyleSheet,
   Keyboard,
-  TouchableWithoutFeedback,
-  Alert
+  TouchableWithoutFeedback
 } from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { emailChecker } from '@helpers/emailChecker';
@@ -17,11 +16,14 @@ import { Button } from 'react-native-paper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { colors } from '@config/';
-// import Text from '@shared/Text';
+import { useDispatch } from 'react-redux';
+import { updateNetworkState } from '@store/modules/app/actions';
 import PropTypes from 'prop-types';
 import LoginField from '@components/Login/loginField';
 import i18n from '@i18n/i18n';
 import vibrate from '@helpers/vibrate';
+import NetInfo from '@react-native-community/netinfo';
+import ConnectionStateBar from '@shared/connectionStateBar';
 
 /**
  * Login component
@@ -32,6 +34,18 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorMail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    NetInfo.addEventListener((networkState) => {
+      const { isConnected } = networkState;
+      const payload = {
+        connectionState: isConnected ? 'connected' : 'disconnected'
+      };
+      dispatch(updateNetworkState(payload));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const _login = () => {
     vibrate();
@@ -71,6 +85,7 @@ const Login = ({ navigation }) => {
       contentContainerStyle={styles.keyboardAwareScrollView}
     >
       <View style={styles.container}>
+        <ConnectionStateBar />
         <Image
           source={require('@images/goodfood_logo_G.png')}
           style={styles.logo}
