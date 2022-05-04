@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
@@ -92,7 +93,10 @@ const styles = StyleSheet.create({
 
 LoginField.propTypes = {
   setEmail: PropTypes.func,
-  setPassword: PropTypes.func
+  setPassword: PropTypes.func,
+  login: PropTypes.func,
+  errorMail: PropTypes.bool,
+  errorPassword: PropTypes.bool
 };
 
 export default LoginField;

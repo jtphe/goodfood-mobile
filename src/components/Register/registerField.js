@@ -1,9 +1,20 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import i18n from '@i18n/i18n';
 import { colors } from '@config/';
+import i18n from '@i18n/i18n';
+import PropTypes from 'prop-types';
 
+/**
+ * RegisterField component
+ * @param {Function} setEmail - Set the user email
+ * @param {Function} setPassword - Set the user password
+ * @param {Function} setConfirmPassword - Set the user confirm password
+ * @param {Boolean} errorMail - If the user enter a wrong email address
+ * @param {Boolean} errorPassword - If the user enter a too short password
+ * @param {Function} createAccount - Create the user account
+ */
 const RegisterField = ({
   setEmail,
   setPassword,
@@ -81,5 +92,14 @@ const styles = StyleSheet.create({
   btnCreateAccount: { marginTop: 24, marginHorizontal: 40 },
   btnCreateAccountContentStyle: { height: 50 }
 });
+
+RegisterField.propTypes = {
+  setEmail: PropTypes.func,
+  setPassword: PropTypes.func,
+  setConfirmPassword: PropTypes.func,
+  errorMail: PropTypes.bool,
+  errorPassword: PropTypes.bool,
+  createAccount: PropTypes.func
+};
 
 export default RegisterField;

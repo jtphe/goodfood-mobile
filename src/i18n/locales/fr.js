@@ -23,5 +23,9 @@ export default {
     passwordTooShort: 'Le mot de passer doit faire au minimum 8 charactères',
     emailAndPasswordIncorrect: 'Vérifiez vos identifiants',
     passwordNotTheSame: 'Les mots de passe ne correspondent pas'
+  },
+  connection: {
+    disconnected: 'Recherche de connexion en cours...',
+    connected: 'Connecté !'
   }
 };
