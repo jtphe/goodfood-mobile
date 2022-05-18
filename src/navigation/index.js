@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreenAnimated from '@components/SplashScreenAnimated';
 import Login from '@components/Login';
 import Register from '@components/Register';
-import Home from '@components/Home';
+import BottomNavigator from '@navigation/BottomNavigator';
+import OrderDetails from '@components/Order/orderDetails';
 import i18n from '@i18n/i18n';
 
 const Navigation = () => {
@@ -28,7 +29,24 @@ const Navigation = () => {
               component={Register}
             />
           </Stack.Group>
-          <Stack.Screen name={i18n.t('home.screenTitle')} component={Home} />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name={i18n.t('orderPage.detailsTitle')}
+              component={OrderDetails}
+              options={{
+                headerShown: false
+              }}
+            />
+          </Stack.Group>
+          <Stack.Screen
+            name="Root"
+            component={BottomNavigator}
+            options={{
+              headerShown: false,
+              gestureEnabled: false,
+              animationEnabled: false
+            }}
+          />
         </Stack.Navigator>
       </SplashScreenAnimated>
     </NavigationContainer>

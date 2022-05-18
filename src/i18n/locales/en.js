@@ -1,6 +1,10 @@
 export default {
   home: {
-    screenTitle: 'Home'
+    screenTitle: 'Home',
+    btnDelivery: 'Delivery',
+    btnTakeaway: 'Takeaway',
+    placeholderSearchFood: 'Search for your food...',
+    peckishTitle: 'Peckish ? 🍔'
   },
   login: {
     screenTitle: 'Login',
@@ -27,5 +31,22 @@ export default {
   connection: {
     disconnected: 'Searching for a connection...',
     connected: 'Connected !'
+  },
+  searchPage: {
+    screenTitle: 'Search'
+  },
+  orderPage: {
+    screenTitle: 'Orders',
+    mainTitle: 'YOUR ORDERS',
+    oldOrdersTitle: 'Old orders'
+  },
+  accountPage: {
+    screenTitle: 'Account'
+  },
+  categories: {
+    burger: 'Burger',
+    tacos: 'Tacos',
+    pizza: 'Pizzas',
+    sandwich: 'Sandwich'
   }
 };

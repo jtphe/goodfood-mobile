@@ -49,14 +49,15 @@ const Login = ({ navigation }) => {
 
   const _login = () => {
     vibrate();
-    if (_checkCredentials()) {
-      const payload = {
-        email,
-        password
-      };
-      console.log('payload', payload);
-      // Dispatch the login method
-    }
+    navigation.navigate('Root');
+    // if (_checkCredentials()) {
+    //   const payload = {
+    //     email,
+    //     password
+    //   };
+    //   console.log('payload', payload);
+    //   // Dispatch the login method
+    // }
   };
 
   const _checkCredentials = () => {

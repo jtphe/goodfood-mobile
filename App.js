@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '@navigation/index';
 import configureStore from '@store/configureStore';
+import 'react-native-gesture-handler';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';

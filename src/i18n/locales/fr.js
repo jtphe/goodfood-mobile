@@ -1,6 +1,10 @@
 export default {
   home: {
-    screenTitle: 'Accueil'
+    screenTitle: 'Accueil',
+    btnDelivery: 'Livraison',
+    btnTakeaway: 'À emporter',
+    placeholderSearchFood: 'Rechercher votre nourriture...',
+    peckishTitle: 'Une petite faim ? 🍔'
   },
   login: {
     screenTitle: 'Connexion',
@@ -27,5 +31,23 @@ export default {
   connection: {
     disconnected: 'Recherche de connexion en cours...',
     connected: 'Connecté !'
+  },
+  searchPage: {
+    screenTitle: 'Parcourir'
+  },
+  orderPage: {
+    screenTitle: 'Commandes',
+    mainTitle: 'VOS COMMANDES',
+    oldOrdersTitle: 'Anciennes commandes',
+    detailsTitle: 'Détails de la commande'
+  },
+  accountPage: {
+    screenTitle: 'Compte'
+  },
+  categories: {
+    burger: 'Burger',
+    tacos: 'Tacos',
+    pizza: 'Pizzas',
+    sandwich: 'Sandwich'
   }
 };
