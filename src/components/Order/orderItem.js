@@ -6,7 +6,6 @@ import moment from 'moment';
 import i18n from '@i18n/i18n';
 
 const OrderItem = ({ navigation, order }) => {
-  console.log('navigation :>> ', navigation);
   const pictureSource = useMemo(() => {
     return order.pictureSrc;
   }, [order]);
@@ -22,10 +21,6 @@ const OrderItem = ({ navigation, order }) => {
     return moment.unix(dateOfOrder).format('MM dddd YYYY');
   };
 
-  const _menuNameParser = () => {
-    return `${'Commande #'}${order.id}`;
-  };
-
   const _seeOrderDetails = () => {
     navigation.navigate(i18n.t('orderPage.detailsTitle'), { order });
   };
@@ -35,20 +30,22 @@ const OrderItem = ({ navigation, order }) => {
       <Image source={pictureSource} style={styles.orderPicture} />
       <View style={styles.dataContainer}>
         <View style={styles.orderInfoContainer}>
-          <Text style={styles.menuName}>{_menuNameParser()}</Text>
+          <Text style={styles.menuName}>
+            {i18n.t('orderPage.orderNumber', { number: order.id })}
+          </Text>
           <Text style={styles.menuPrice}>{_priceParser()}</Text>
           <Text style={styles.menuDate}>{_dateParser()}</Text>
         </View>
         <View style={styles.containerSeeBtn}>
           <Button
             mode="contained"
-            onPress={() => _seeOrderDetails()}
+            onPress={() => _seeOrderDetails({ navigation })}
             style={styles.seeMoreBtn}
             labelStyle={styles.labelStyleBtn}
             color={colors.BEIGE}
             uppercase={false}
           >
-            Voir
+            {i18n.t('orderPage.see')}
           </Button>
         </View>
       </View>

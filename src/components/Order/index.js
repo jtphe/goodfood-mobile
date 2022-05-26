@@ -20,9 +20,9 @@ const Order = ({ navigation }) => {
           type: 'Menu Burger',
           price: 14.99,
           items: {
-            food: 1,
-            snack: 2,
-            drink: 3
+            food: { id: 1, name: 'Burger NRV' },
+            snack: { id: 2, name: 'Frites' },
+            drink: { id: 76, name: 'Eau' }
           }
         },
         {
@@ -30,9 +30,16 @@ const Order = ({ navigation }) => {
           type: 'Custom',
           price: 9,
           items: {
-            food: [1, 4, 6],
-            snack: [2, 3, 4],
-            drink: [2, 3]
+            food: [
+              { id: 1, name: 'Burger NRV', quantity: 2 },
+              { id: 43, name: 'MaxiTacos', quantity: 1 },
+              { id: 34, name: 'Chickendwich', quantity: 3 }
+            ],
+            snack: [
+              { id: 2, name: 'Frites', quantity: 4 },
+              { id: 3, name: 'Nuggets', quantity: 2 }
+            ],
+            drink: [{ id: 76, name: 'Eau', quantity: 6 }]
           }
         }
       ]
@@ -49,9 +56,16 @@ const Order = ({ navigation }) => {
           type: 'Custom',
           price: 9,
           items: {
-            food: [1, 2, 4],
-            snack: [2, 5, 6],
-            drink: [2, 3]
+            food: [
+              { id: 1, name: 'Burger NRV', quantity: 1 },
+              { id: 43, name: 'MaxiTacos', quantity: 3 },
+              { id: 34, name: 'Chickendwich', quantity: 2 }
+            ],
+            snack: [
+              { id: 2, name: 'Frites', quantity: 3 },
+              { id: 3, name: 'Nuggets', quantity: 1 }
+            ],
+            drink: [{ id: 76, name: 'Eau', quantity: 3 }]
           }
         }
       ]

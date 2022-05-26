@@ -39,7 +39,18 @@ export default {
     screenTitle: 'Commandes',
     mainTitle: 'VOS COMMANDES',
     oldOrdersTitle: 'Anciennes commandes',
-    detailsTitle: 'Détails de la commande'
+    detailsTitle: 'Détails de la commande',
+    orderNumber: 'Commande #{{number}}',
+    orderAddress: 'Adresse de la livraison: ',
+    menuTitle: 'MENUS',
+    foodTitle: 'PLATS',
+    snackTitle: 'SNACKS',
+    drinkTitle: 'BOISSONS',
+    see: 'Voir',
+    total: 'Total',
+    totalPrice: '{{totalPrice}}€',
+    itemMenu: '1 x {{itemType}}',
+    itemCustom: '{{quantity}} x {{productName}}'
   },
   accountPage: {
     screenTitle: 'Compte'
@@ -49,5 +60,8 @@ export default {
     tacos: 'Tacos',
     pizza: 'Pizzas',
     sandwich: 'Sandwich'
+  },
+  button: {
+    back: 'Retour'
   }
 };
