@@ -95,8 +95,9 @@ const Order = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    ...ifIphoneX({ marginTop: calcHeight(7) }, { marginTop: calcHeight(3) }),
-    paddingLeft: 24
+    ...ifIphoneX({ paddingTop: calcHeight(7) }, { paddingTop: calcHeight(3) }),
+    paddingLeft: 24,
+    backgroundColor: 'white'
   },
   title: { alignSelf: 'center', fontSize: 24, fontWeight: 'bold' },
   oldOrdersTitle: {

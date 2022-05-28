@@ -6,6 +6,7 @@ import Login from '@components/Login';
 import Register from '@components/Register';
 import BottomNavigator from '@navigation/BottomNavigator';
 import OrderDetails from '@components/Order/orderDetails';
+import PasswordEdit from '@components/Profile/PasswordEdit';
 import i18n from '@i18n/i18n';
 
 const Navigation = () => {
@@ -33,6 +34,13 @@ const Navigation = () => {
             <Stack.Screen
               name={i18n.t('orderPage.detailsTitle')}
               component={OrderDetails}
+              options={{
+                headerShown: false
+              }}
+            />
+            <Stack.Screen
+              name={i18n.t('accountPage.passwordEditScreenTitle')}
+              component={PasswordEdit}
               options={{
                 headerShown: false
               }}

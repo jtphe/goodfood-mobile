@@ -6,7 +6,6 @@ import i18n from '@i18n/i18n';
 import Items from '@components/Order/items';
 
 const OrderDetails = ({ navigation, route }) => {
-  console.log('route :>> ', navigation);
   const order = useMemo(() => {
     return route.params.order;
   }, [route.params.order]);
@@ -20,7 +19,6 @@ const OrderDetails = ({ navigation, route }) => {
         <Icon name="arrow-back-ios" size={20} style={styles.iconArrow} />
         <Text style={styles.textGoBack}>{i18n.t('button.back')}</Text>
       </TouchableOpacity>
-
       <View style={styles.containerOrderDetails}>
         <Text style={styles.orderDetailsTitle}>
           {i18n.t('orderPage.detailsTitle')}

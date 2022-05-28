@@ -2,6 +2,7 @@
 import React from 'react';
 import Home from '@components/Home';
 import Order from '@components/Order';
+import Profile from '@components/Profile';
 import i18n from '@i18n/i18n';
 import TabBarIcon from '@navigation/BottomNavigator/tabBarIcon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -44,7 +45,7 @@ const BottomNavigator = () => {
       />
       <Tab.Screen
         name={i18n.t('accountPage.screenTitle')}
-        component={Home}
+        component={Profile}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>

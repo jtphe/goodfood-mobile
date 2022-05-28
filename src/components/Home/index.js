@@ -100,14 +100,16 @@ const Home = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  containerPeckish: { marginTop: 50, paddingHorizontal: 24 },
+  containerPeckish: { paddingHorizontal: 24 },
   titlePeckish: { fontSize: 24, fontWeight: 'bold' },
   categoriesFlatList: {
     paddingHorizontal: 24,
     marginTop: 36
   },
   container: {
-    ...ifIphoneX({ marginTop: calcHeight(7) }, { marginTop: calcHeight(3) })
+    flex: 1,
+    backgroundColor: 'white',
+    ...ifIphoneX({ paddingTop: calcHeight(7) }, { paddingTop: calcHeight(3) })
   },
   containerDeliveriesButton: {
     flexDirection: 'row',

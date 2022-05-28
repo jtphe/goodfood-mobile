@@ -4,6 +4,7 @@ import configureStore from '@store/configureStore';
 import 'react-native-gesture-handler';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { Provider } from 'react-redux';
+import { Provider as PaperProvider } from 'react-native-paper';
 import { PersistGate } from 'redux-persist/integration/react';
 
 export const { store, persistor } = configureStore();
@@ -13,7 +14,9 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RootSiblingParent>
-          <Navigation />
+          <PaperProvider>
+            <Navigation />
+          </PaperProvider>
         </RootSiblingParent>
       </PersistGate>
     </Provider>

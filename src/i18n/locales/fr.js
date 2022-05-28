@@ -53,7 +53,24 @@ export default {
     itemCustom: '{{quantity}} x {{productName}}'
   },
   accountPage: {
-    screenTitle: 'Compte'
+    screenTitle: 'Compte',
+    firstName: 'Prénom',
+    lastName: 'Nom',
+    address: 'Adresse du domicile',
+    email: 'Adresse e-mail',
+    password: 'Mot de passe',
+    firstNamePlaceholder: 'Entrez votre prénom',
+    lastNamePlaceholder: 'Entrez votre nom',
+    addressPlaceholder: 'Entrez votre adresse postale',
+    personalInfoTitle: 'MES INFORMATIONS PERSONNELLES',
+    connectionInfoTitle: 'MES INFORMATIONS DE CONNEXION',
+    edit: 'Éditer',
+    logout: 'Déconnexion',
+    dialogLogoutContent: 'Tu es sûr(e) de vouloir te déconnecter ?',
+    passwordEditScreenTitle: 'Éditer votre mot de passe',
+    currentPassword: 'Mot de passe actuel',
+    newPassword: 'Nouveau mot de passe',
+    confirmNewPassword: 'Confirmer le nouveau mot de passe'
   },
   categories: {
     burger: 'Burger',
@@ -62,6 +79,9 @@ export default {
     sandwich: 'Sandwich'
   },
   button: {
-    back: 'Retour'
+    back: 'Retour',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+    logout: 'Déconnexion'
   }
 };
