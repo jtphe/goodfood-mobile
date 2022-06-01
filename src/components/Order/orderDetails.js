@@ -4,11 +4,16 @@ import { colors } from '@config/';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import i18n from '@i18n/i18n';
 import Items from '@components/Order/items';
+import moment from 'moment';
 
 const OrderDetails = ({ navigation, route }) => {
   const order = useMemo(() => {
     return route.params.order;
   }, [route.params.order]);
+
+  const orderDateParser = () => {
+    return moment.unix(order.createdAt).format('D MMMM YYYY');
+  };
 
   return (
     <View style={styles.container}>
@@ -40,12 +45,24 @@ const OrderDetails = ({ navigation, route }) => {
             {i18n.t('orderPage.totalPrice', { totalPrice: order.totalPrice })}
           </Text>
         </View>
+        <View style={styles.orderDateContainer}>
+          <Text style={styles.orderDateText}>
+            {i18n.t('orderPage.orderDate', { date: orderDateParser() })}
+          </Text>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  orderDateText: { color: colors.YELLOW, fontSize: 14 },
+  orderDateContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginBottom: 32
+  },
   totalText: { color: colors.YELLOW, fontWeight: 'bold', fontSize: 18 },
   containerTotal: {
     flexDirection: 'row',
@@ -77,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 12
   },
   orderNumber: { fontSize: 16, opacity: 0.5, marginBottom: 8 },
-  containerOrderDetails: { paddingHorizontal: 18 },
+  containerOrderDetails: { flex: 1, paddingHorizontal: 18 },
   containerOrderAddress: {
     flexDirection: 'row',
     flexWrap: 'wrap',

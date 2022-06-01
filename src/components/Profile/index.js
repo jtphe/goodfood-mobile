@@ -1,15 +1,28 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable global-require */
 import React, { useState } from 'react';
 import InputFields from '@components/Profile/inputFields';
 import DialogLogout from '@components/Profile/dialogLogout';
 import i18n from 'i18n-js';
+import ImageCropPicker from 'react-native-image-crop-picker';
 import { logout } from '@store/modules/app/actions';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Platform
+} from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { colors } from '@config/index';
 import { Button } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
+import {
+  requestIOSCameraPermission,
+  requestAndroidCameraPermission
+} from '@helpers/files-utils';
 
 const Profile = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
@@ -21,8 +34,40 @@ const Profile = ({ navigation }) => {
     email: 'rv.beltz@mario.com'
   };
 
-  const _updateProfilePicture = () => {
-    console.log('update profile picture');
+  const _updateProfilePicture = async () => {
+    if (canAccessCamera()) {
+      _openCamera();
+    }
+  };
+
+  const canAccessCamera = async () => {
+    if (Platform.OS === 'ios') {
+      if (await !requestIOSCameraPermission()) return;
+    } else {
+      let canOpenCamera;
+      await requestAndroidCameraPermission().then((res) => {
+        canOpenCamera = res;
+      });
+      if (!canOpenCamera) return;
+    }
+  };
+
+  const _openCamera = () => {
+    ImageCropPicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+      useFrontCamera: true
+    }).then((image) => {
+      const picture = {
+        uri: image.path,
+        fileName: image.filename,
+        type: image.mime,
+        fileSize: image.size
+      };
+      console.log('picture =>', picture);
+      // dispatch(updateProfilePicture({ payload: camPicture }));
+    });
   };
 
   const _openPasswordEditModal = () => {
@@ -30,7 +75,10 @@ const Profile = ({ navigation }) => {
   };
 
   const _logout = () => {
-    dispatch(logout());
+    const payload = {
+      navigation
+    };
+    dispatch(logout({ payload }));
   };
 
   return (

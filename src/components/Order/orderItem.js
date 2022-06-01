@@ -18,7 +18,7 @@ const OrderItem = ({ navigation, order }) => {
   };
 
   const _dateParser = () => {
-    return moment.unix(dateOfOrder).format('MM dddd YYYY');
+    return moment.unix(dateOfOrder).format('D MMMM YYYY');
   };
 
   const _seeOrderDetails = () => {

@@ -30,6 +30,7 @@ const Navigation = () => {
               component={Register}
             />
           </Stack.Group>
+
           <Stack.Group screenOptions={{ presentation: 'modal' }}>
             <Stack.Screen
               name={i18n.t('orderPage.detailsTitle')}
@@ -46,6 +47,7 @@ const Navigation = () => {
               }}
             />
           </Stack.Group>
+
           <Stack.Screen
             name="Root"
             component={BottomNavigator}

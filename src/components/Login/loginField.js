@@ -56,6 +56,7 @@ const LoginField = ({
         secureTextEntry={showPassword}
         right={
           <TextInput.Icon
+            color={colors.YELLOW}
             name={_returnRightIcon()}
             onPress={() => setShowPassword(!showPassword)}
           />

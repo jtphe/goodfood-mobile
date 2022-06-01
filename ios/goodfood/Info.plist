@@ -35,8 +35,20 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+  <key>NSCameraUsageDescription</key>
+    <string>Take photos and videos to share them with Good Food</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Share your location with Good Food</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Share your location with Good Food</string>
+    <key>NSMotionUsageDescription</key>
+    <string>Good would like to access motion detection to work properly</string>
+    <key>NSMicrophoneUsageDescription</key>
+      <string>Good Food would like to access your microphone to share videos</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Save photos from Good Food workspaces to your photo gallery</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Take photos and videos to share with Good Food</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>fonts/AntDesign.ttf</string>

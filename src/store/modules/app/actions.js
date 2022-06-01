@@ -8,6 +8,7 @@ export const updateNetworkState = (payload) => ({
   payload
 });
 
-export const logout = () => ({
-  type: U_LOG_OUT
+export const logout = ({ payload }) => ({
+  type: U_LOG_OUT,
+  payload
 });

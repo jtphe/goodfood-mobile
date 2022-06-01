@@ -50,7 +50,8 @@ export default {
     total: 'Total',
     totalPrice: '{{totalPrice}}€',
     itemMenu: '1 x {{itemType}}',
-    itemCustom: '{{quantity}} x {{productName}}'
+    itemCustom: '{{quantity}} x {{productName}}',
+    orderDate: 'Ordered on {{date}}'
   },
   accountPage: {
     screenTitle: 'Account',
@@ -70,7 +71,11 @@ export default {
     passwordEditScreenTitle: 'Edit your password',
     currentPassword: 'Current password',
     newPassword: 'New password',
-    confirmNewPassword: 'Confirm new password'
+    confirmNewPassword: 'Confirm new password',
+    error1: 'Fields cannot be empty',
+    error2: 'Passwords do not match',
+    error3: 'New password requires at least 8 characters',
+    error4: 'Old password incorrect'
   },
   categories: {
     burger: 'Burger',
@@ -83,5 +88,14 @@ export default {
     cancel: 'Cancel',
     save: 'Save',
     logout: 'Log out'
+  },
+  camera: {
+    needCameraPermissions:
+      'Good Food does not have access to your camera. To enable access, access settings and then enable camera in permissions.',
+    needPhotosPermissionsAndroid:
+      'Good Food does not have access to your photos and videos. To enable access, tap Settings and enable photos in permissions.',
+    needCameraPermissionsAndroid:
+      'Good Food does not have access to your camera. To enable access, tap Access Settings and then enable camera in permissions.',
+    goToSettings: 'Go to settings'
   }
 };

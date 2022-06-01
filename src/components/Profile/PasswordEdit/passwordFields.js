@@ -27,6 +27,7 @@ const PasswordFields = ({
         onChangeText={(txt) => {
           setCurrentPassword(txt);
         }}
+        secureTextEntry={true}
         autoCapitalize="none"
         returnKeyType="done"
       />
@@ -43,6 +44,7 @@ const PasswordFields = ({
         onChangeText={(txt) => {
           setNewPassword(txt);
         }}
+        secureTextEntry={true}
         autoCapitalize="none"
         returnKeyType="done"
       />
@@ -59,6 +61,7 @@ const PasswordFields = ({
         onChangeText={(txt) => {
           setConfirmNewPassword(txt);
         }}
+        secureTextEntry={true}
         autoCapitalize="none"
         returnKeyType="done"
       />

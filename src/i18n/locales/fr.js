@@ -50,7 +50,8 @@ export default {
     total: 'Total',
     totalPrice: '{{totalPrice}}€',
     itemMenu: '1 x {{itemType}}',
-    itemCustom: '{{quantity}} x {{productName}}'
+    itemCustom: '{{quantity}} x {{productName}}',
+    orderDate: 'Commande passé le {{date}}'
   },
   accountPage: {
     screenTitle: 'Compte',
@@ -70,7 +71,11 @@ export default {
     passwordEditScreenTitle: 'Éditer votre mot de passe',
     currentPassword: 'Mot de passe actuel',
     newPassword: 'Nouveau mot de passe',
-    confirmNewPassword: 'Confirmer le nouveau mot de passe'
+    confirmNewPassword: 'Confirmer le nouveau mot de passe',
+    error1: 'Les champs de textes ne peuvent être vide',
+    error2: 'Les nouveaux mots de passe ne correspondent pas',
+    error3: 'Le nouveau mot de passe doit contenir au moins 8 caractères',
+    error4: "L'ancien mot de passe est incorrect"
   },
   categories: {
     burger: 'Burger',
@@ -83,5 +88,14 @@ export default {
     cancel: 'Annuler',
     save: 'Enregistrer',
     logout: 'Déconnexion'
+  },
+  camera: {
+    needCameraPermissions:
+      "Good Food n'a pas accès à votre appareil photo. Pour activer l'accès, accéder aux paramètres puis activez l'appareil photo dans les autorisations",
+    needPhotosPermissionsAndroid:
+      "Good Food n'a pas accès à vos photos et vidéos. Pour activer l'accès, appuyez sur Paramètres et activez les photos dans les permissions",
+    needCameraPermissionsAndroid:
+      "Good Food n'a pas accès à votre appareil photo. Pour activer l'accès, appuyez sur Accéder aux paramètres puis activez l'appareil photo dans les autorisations",
+    goToSettings: 'Accéder aux paramètres'
   }
 };
