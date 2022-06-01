@@ -1,6 +1,9 @@
 /* eslint-disable default-param-last */
 import update from 'immutability-helper';
-import { M_UPDATE_NETWORK_STATE } from '@store/modules/app/actions';
+import {
+  M_UPDATE_NETWORK_STATE,
+  M_RESET_APP_STORE
+} from '@store/modules/app/actions';
 
 const initialState = {
   name: 'goodfood-mobile',
@@ -16,6 +19,8 @@ export default function reducer(state = initialState, action) {
           $set: action.payload.connectionState
         }
       });
+    case M_RESET_APP_STORE:
+      return initialState;
     default:
       return state;
   }
