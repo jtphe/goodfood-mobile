@@ -18,6 +18,8 @@ import {
 import { showToast } from '@helpers/showToast';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { colors } from '@config/';
+import { useDispatch } from 'react-redux';
+import { signUp } from '@store/modules/user/actions';
 import RegisterField from '@components/Register/registerField';
 import i18n from '@i18n/i18n';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -29,9 +31,10 @@ import PropTypes from 'prop-types';
  * @param {Object} navigation - Props used to navigate between screens
  */
 const Register = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmedPassword, setConfirmedPassword] = useState('');
   const [errorEmail, setErrorMail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
 
@@ -40,17 +43,18 @@ const Register = ({ navigation }) => {
     if (_checkUserInfos()) {
       const payload = {
         email,
-        password
+        password,
+        confirmedPassword,
+        navigation
       };
-      console.log('payload', payload);
-      // Dispatch the register method
+      dispatch(signUp({ payload }));
     }
   };
 
   const _checkUserInfos = () => {
     if (
       !emailChecker(email) &&
-      !checkPasswordSame(password, confirmPassword) &&
+      !checkPasswordSame(password, confirmedPassword) &&
       !checkPasswordLength(password)
     ) {
       showToast(i18n.t('error.emailAndPasswordIncorrect'), true);
@@ -60,7 +64,7 @@ const Register = ({ navigation }) => {
       showToast(i18n.t('error.emailIncorrect'), true);
       setErrorMail(true);
       setErrorPassword(false);
-    } else if (!checkPasswordSame(password, confirmPassword)) {
+    } else if (!checkPasswordSame(password, confirmedPassword)) {
       showToast(i18n.t('error.passwordNotTheSame', true));
       setErrorPassword(true);
       setErrorMail(false);
@@ -103,7 +107,7 @@ const Register = ({ navigation }) => {
             <RegisterField
               setEmail={(e) => setEmail(e)}
               setPassword={(pwd) => setPassword(pwd)}
-              setConfirmPassword={(pwd) => setConfirmPassword(pwd)}
+              setConfirmedPassword={(pwd) => setConfirmedPassword(pwd)}
               errorEmail={errorEmail}
               errorPassword={errorPassword}
               createAccount={() => _createAccount()}

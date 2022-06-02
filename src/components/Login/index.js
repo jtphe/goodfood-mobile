@@ -16,8 +16,11 @@ import { Button } from 'react-native-paper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { colors } from '@config/';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { updateNetworkState } from '@store/modules/app/actions';
+import { signIn } from '@store/modules/user/actions';
+import { createSelector } from 'reselect';
+import { getToken } from '@store/modules/user/selectors';
 import PropTypes from 'prop-types';
 import LoginField from '@components/Login/loginField';
 import i18n from '@i18n/i18n';
@@ -25,11 +28,17 @@ import vibrate from '@helpers/vibrate';
 import NetInfo from '@react-native-community/netinfo';
 import ConnectionStateBar from '@shared/connectionStateBar';
 
+const mapStateToProps = createSelector([getToken], (token) => {
+  return {
+    isLoggedIn: token !== undefined
+  };
+});
+
 /**
  * Login component
  * @param {Object} navigation - Props used to navigate between screens
  */
-const Login = ({ navigation }) => {
+const Login = ({ navigation, isLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorMail] = useState(false);
@@ -50,14 +59,15 @@ const Login = ({ navigation }) => {
   const _login = () => {
     vibrate();
     navigation.navigate('Root');
-    // if (_checkCredentials()) {
-    //   const payload = {
-    //     email,
-    //     password
-    //   };
-    //   console.log('payload', payload);
-    //   // Dispatch the login method
-    // }
+    if (_checkCredentials()) {
+      const payload = {
+        email,
+        password
+      };
+      console.log('payload', payload);
+      // Dispatch the login method
+      dispatch(signIn({ payload }));
+    }
   };
 
   const _checkCredentials = () => {
@@ -80,6 +90,10 @@ const Login = ({ navigation }) => {
       return true;
     }
   };
+
+  if (isLoggedIn) {
+    navigation.navigate('Root');
+  }
 
   return (
     <KeyboardAwareScrollView
@@ -161,4 +175,4 @@ Login.propTypes = {
   navigation: PropTypes.object
 };
 
-export default Login;
+export default connect(mapStateToProps)(Login);

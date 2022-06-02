@@ -20,13 +20,17 @@ export default {
     email: 'Email',
     password: 'Password',
     confirmPassword: 'Confirm your password',
-    createAccount: 'Create your account'
+    createAccount: 'Create your account',
+    success: 'Your account has been created'
   },
   error: {
     emailIncorrect: 'The email address is invalid',
-    passwordTooShort: 'The password must be at least 8 characters long',
+    passwordTooShort:
+      'The password must be at least 8 characters long, including 1 upper case letter, 1 lower case letter, 1 special character and a number',
     emailAndPasswordIncorrect: 'Check your login details',
-    passwordNotTheSame: 'Passwords do not match'
+    passwordNotTheSame: 'Passwords do not match',
+    accountAlreadyExists: 'This account already exists',
+    default: 'An error occurred'
   },
   connection: {
     disconnected: 'Searching for a connection...',

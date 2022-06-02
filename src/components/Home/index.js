@@ -65,8 +65,8 @@ const Home = ({ navigation }) => {
         </Button>
       </View>
       <TouchableOpacity style={styles.containerLocation}>
-        <Icon name="map-marker-alt" size={18} style={styles.iconMap} />
-        <Text>Hello world</Text>
+        <Icon name="shopping-store" size={18} style={styles.iconMap} />
+        <Text>Mon resto favoris</Text>
         <IconArrow
           name="keyboard-arrow-down"
           size={18}
