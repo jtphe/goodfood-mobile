@@ -20,13 +20,17 @@ export default {
     email: 'Adresse email',
     password: 'Mot de passe',
     confirmPassword: 'Confirmer le mot de passe',
-    createAccount: 'Créer votre compte'
+    createAccount: 'Créer votre compte',
+    success: 'Votre compte a bien été créé'
   },
   error: {
     emailIncorrect: "L'adresse e-mail est invalide",
-    passwordTooShort: 'Le mot de passer doit faire au minimum 8 charactères',
+    passwordTooShort:
+      'Le mot de passer doit faire au minimum 8 caractères, dont 1 lettre majuscule, 1 lettre minuscule, 1 caractère spécial et un chiffre',
     emailAndPasswordIncorrect: 'Vérifiez vos identifiants',
-    passwordNotTheSame: 'Les mots de passe ne correspondent pas'
+    passwordNotTheSame: 'Les mots de passe ne correspondent pas',
+    accountAlreadyExists: 'Ce compte existe déjà',
+    default: 'Une erreur est apparue'
   },
   connection: {
     disconnected: 'Recherche de connexion en cours...',

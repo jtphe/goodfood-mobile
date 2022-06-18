@@ -18,21 +18,21 @@ import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { colors } from '@config/index';
 import { Button } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import {
   requestIOSCameraPermission,
   requestAndroidCameraPermission
 } from '@helpers/files-utils';
+import { createSelector } from 'reselect';
+import { getUser } from '@store/modules/user/selectors';
 
-const Profile = ({ navigation }) => {
+const mapStateToProps = createSelector([getUser], (user) => {
+  return { user };
+});
+
+const Profile = ({ navigation, user }) => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
-  const user = {
-    firstname: 'Hervé',
-    lastname: 'Beltz',
-    address: '12 rue du Puit, 67000 Strasbourg',
-    email: 'rv.beltz@mario.com'
-  };
 
   const _updateProfilePicture = async () => {
     if (canAccessCamera()) {
@@ -200,4 +200,4 @@ const styles = StyleSheet.create({
   btnLogout: { width: 200, marginTop: 32, alignSelf: 'center' }
 });
 
-export default Profile;
+export default connect(mapStateToProps)(Profile);

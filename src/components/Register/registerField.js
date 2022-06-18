@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  * RegisterField component
  * @param {Function} setEmail - Set the user email
  * @param {Function} setPassword - Set the user password
- * @param {Function} setConfirmPassword - Set the user confirm password
+ * @param {Function} setConfirmedPassword - Set the user confirm password
  * @param {Boolean} errorMail - If the user enter a wrong email address
  * @param {Boolean} errorPassword - If the user enter a too short password
  * @param {Function} createAccount - Create the user account
@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 const RegisterField = ({
   setEmail,
   setPassword,
-  setConfirmPassword,
+  setConfirmedPassword,
   errorEmail,
   errorPassword,
   createAccount
@@ -65,7 +65,7 @@ const RegisterField = ({
         placeholder={i18n.t('login.password')}
         style={[styles.input, styles.inputPassword]}
         onChangeText={(txt) => {
-          setConfirmPassword(txt);
+          setConfirmedPassword(txt);
         }}
         error={errorPassword}
         returnKeyType="done"

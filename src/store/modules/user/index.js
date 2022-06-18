@@ -1,24 +1,24 @@
 /* eslint-disable default-param-last */
 import update from 'immutability-helper';
-import {
-  M_UPDATE_NETWORK_STATE,
-  M_RESET_APP_STORE
-} from '@store/modules/app/actions';
+import { M_RESET_USER_STORE, M_SET_USER } from '@store/modules/user/actions';
 
 const initialState = {
-  name: 'goodfood-mobile',
-  networkState: 'connected'
+  user: null,
+  token: null
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case M_UPDATE_NETWORK_STATE:
+    case M_SET_USER:
       return update(state, {
-        networkState: {
-          $set: action.payload.connectionState
+        user: {
+          $set: action.res.user
+        },
+        token: {
+          $set: action.res.token
         }
       });
-    case M_RESET_APP_STORE:
+    case M_RESET_USER_STORE:
       return initialState;
     default:
       return state;
