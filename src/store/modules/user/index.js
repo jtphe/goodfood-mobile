@@ -3,7 +3,8 @@ import update from 'immutability-helper';
 import { M_RESET_USER_STORE, M_SET_USER } from '@store/modules/user/actions';
 
 const initialState = {
-  user: null
+  user: null,
+  token: null
 };
 
 export default function reducer(state = initialState, action) {

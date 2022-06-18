@@ -7,7 +7,6 @@ import {
 
 const initialState = {
   name: 'goodfood-mobile',
-  socket: null,
   networkState: 'connected'
 };
 

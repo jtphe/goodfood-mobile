@@ -30,7 +30,7 @@ import ConnectionStateBar from '@shared/connectionStateBar';
 
 const mapStateToProps = createSelector([getToken], (token) => {
   return {
-    isLoggedIn: token !== undefined
+    isLoggedIn: token !== null
   };
 });
 
@@ -58,14 +58,12 @@ const Login = ({ navigation, isLoggedIn }) => {
 
   const _login = () => {
     vibrate();
-    navigation.navigate('Root');
     if (_checkCredentials()) {
       const payload = {
         email,
-        password
+        password,
+        navigation
       };
-      console.log('payload', payload);
-      // Dispatch the login method
       dispatch(signIn({ payload }));
     }
   };
