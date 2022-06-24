@@ -27,12 +27,21 @@ import i18n from '@i18n/i18n';
 import vibrate from '@helpers/vibrate';
 import NetInfo from '@react-native-community/netinfo';
 import ConnectionStateBar from '@shared/connectionStateBar';
+import moment from 'moment';
+import 'moment/min/locales';
 
 const mapStateToProps = createSelector([getToken], (token) => {
   return {
     isLoggedIn: token !== null
   };
 });
+
+const locale = i18n.currentLocale().split('-')[0];
+if (locale === 'fr') {
+  moment.locale('fr');
+} else {
+  moment.locale('en');
+}
 
 /**
  * Login component
