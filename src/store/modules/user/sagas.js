@@ -45,9 +45,9 @@ function* signIn({ payload }) {
     yield put({ type: M_SET_USER, res });
     payload.navigation.navigate('Root');
   } catch (e) {
-    errorHandler(e.response?.data.message);
+    errorHandler(e.response?.data?.message);
     if (e.response) {
-      console.log('Error while signing up => ', e.response?.data.message);
+      console.log('Error while signing in => ', e.response?.data.message);
     }
   }
 }

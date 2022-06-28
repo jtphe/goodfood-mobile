@@ -1,10 +1,18 @@
 export default {
+  restaurant: {
+    details: 'Détails',
+    detailsTitle: 'Détails du restaurant',
+    findRestaurants: 'Trouver un restaurant',
+    comments: 'Avis',
+    emptyComments: "Pas encore d'avis"
+  },
   home: {
     screenTitle: 'Accueil',
     btnDelivery: 'Livraison',
     btnTakeaway: 'À emporter',
     placeholderSearchFood: 'Rechercher votre nourriture...',
-    peckishTitle: 'Une petite faim ? 🍔'
+    peckishTitle: 'Une petite faim ? 🍔',
+    favoriteRestaurant: 'Mon resto favoris'
   },
   login: {
     screenTitle: 'Connexion',
@@ -91,7 +99,8 @@ export default {
     back: 'Retour',
     cancel: 'Annuler',
     save: 'Enregistrer',
-    logout: 'Déconnexion'
+    logout: 'Déconnexion',
+    order: 'Commander'
   },
   camera: {
     needCameraPermissions:
