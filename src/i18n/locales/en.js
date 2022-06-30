@@ -1,10 +1,18 @@
 export default {
+  comments: {
+    added: 'Comment added !',
+    deleted: 'Comment deleted !'
+  },
   restaurant: {
     details: 'Details',
     detailsTitle: 'Restaurant details',
     findRestaurants: 'Find restaurants',
     comments: 'Comments',
-    emptyComments: 'No comments yet'
+    emptyComments: 'No comments yet',
+    added: 'Restaurant has been added to favorites',
+    removed: 'The favorite restaurant has been removed',
+    addComment: 'Add a comment',
+    addCommentPlaceholder: 'Write a comment...'
   },
   home: {
     screenTitle: 'Home',
@@ -100,7 +108,8 @@ export default {
     cancel: 'Cancel',
     save: 'Save',
     logout: 'Log out',
-    order: 'Order'
+    order: 'Order',
+    add: 'Add'
   },
   camera: {
     needCameraPermissions:

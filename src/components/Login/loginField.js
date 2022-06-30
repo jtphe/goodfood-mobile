@@ -31,7 +31,7 @@ const LoginField = ({
   };
 
   return (
-    <View style={styles.containerTextInput}>
+    <View>
       <TextInput
         mode="outlined"
         label={i18n.t('login.email')}
@@ -83,7 +83,6 @@ const LoginField = ({
 };
 
 const styles = StyleSheet.create({
-  containerTextInput: { flex: 1 },
   input: {
     backgroundColor: colors.BEIGE
   },

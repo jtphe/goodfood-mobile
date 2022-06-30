@@ -6,20 +6,30 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { PersistGate } from 'redux-persist/integration/react';
+import { MenuProvider } from 'react-native-popup-menu';
 
 export const { store, persistor } = configureStore();
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <RootSiblingParent>
+    <RootSiblingParent>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
           <PaperProvider>
-            <Navigation />
+            <MenuProvider
+              customStyles={{
+                backdrop: {
+                  backgroundColor: 'black',
+                  opacity: 0.5
+                }
+              }}
+            >
+              <Navigation />
+            </MenuProvider>
           </PaperProvider>
-        </RootSiblingParent>
-      </PersistGate>
-    </Provider>
+        </PersistGate>
+      </Provider>
+    </RootSiblingParent>
   );
 };
 

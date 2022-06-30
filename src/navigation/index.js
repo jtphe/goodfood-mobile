@@ -7,7 +7,8 @@ import Register from '@components/Register';
 import BottomNavigator from '@navigation/BottomNavigator';
 import OrderDetails from '@components/Order/orderDetails';
 import PasswordEdit from '@components/Profile/PasswordEdit';
-import RestaurantDetails from '@components/Restaurant/restaurantDetails';
+import RestaurantDetails from '@components/Restaurant/RestaurantDetails';
+import AddComment from '@components/Restaurant/RestaurantDetails/addComment';
 import i18n from '@i18n/i18n';
 
 const Navigation = () => {
@@ -30,12 +31,19 @@ const Navigation = () => {
               name={i18n.t('register.screenTitle')}
               component={Register}
             />
+            <Stack.Screen
+              name={i18n.t('restaurant.detailsTitle')}
+              component={RestaurantDetails}
+              options={{
+                headerShown: false
+              }}
+            />
           </Stack.Group>
 
           <Stack.Group screenOptions={{ presentation: 'modal' }}>
             <Stack.Screen
-              name={i18n.t('restaurant.detailsTitle')}
-              component={RestaurantDetails}
+              name={i18n.t('restaurant.addComment')}
+              component={AddComment}
               options={{
                 headerShown: false
               }}

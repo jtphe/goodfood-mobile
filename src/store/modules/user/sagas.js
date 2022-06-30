@@ -20,7 +20,7 @@ function* signUp({ payload }) {
     const res = yield call(fetchService.request, query);
 
     yield put({ type: M_SET_USER, res });
-    showToast(i18n.t('register.success'));
+    showToast(i18n.t('register.success'), true);
     payload.navigation.navigate('Root');
   } catch (e) {
     errorHandler(e.response?.data.message);

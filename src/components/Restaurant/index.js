@@ -12,7 +12,7 @@ const Restaurant = ({ restaurant, selectRestaurant }) => {
     return restaurant.city;
   }, [restaurant]);
   const restaurantPostalCode = useMemo(() => {
-    return restaurant.postalCode;
+    return restaurant.postalcode;
   }, [restaurant]);
 
   const _addressParser = () => {

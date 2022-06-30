@@ -4,7 +4,9 @@ import {
   M_RESET_RESTAURANT_STORE,
   M_SET_RESTAURANTS,
   M_SET_COMMENTS,
-  M_SET_CURRENT_RESTAURANT
+  M_SET_CURRENT_RESTAURANT,
+  M_ADD_COMMENT,
+  M_DELETE_COMMENT
 } from '@store/modules/restaurant/actions';
 
 const initialState = {
@@ -14,6 +16,27 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case M_DELETE_COMMENT: {
+      const index = state.currentRestaurant.comments?.findIndex(
+        (comment) => comment.id === action.id
+      );
+      return update(state, {
+        currentRestaurant: {
+          comments: {
+            $splice: [[index, 1]]
+          }
+        }
+      });
+    }
+    case M_ADD_COMMENT:
+      return update(state, {
+        currentRestaurant: {
+          comments: {
+            $push: [action.comment]
+          }
+        }
+      });
+
     case M_SET_COMMENTS: {
       return update(state, {
         currentRestaurant: {
