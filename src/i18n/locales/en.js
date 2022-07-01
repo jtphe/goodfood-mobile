@@ -15,6 +15,10 @@ export default {
     addCommentPlaceholder: 'Write a comment...',
     addRating: 'Rate the restaurant'
   },
+  search: {
+    title: 'OUR CARD',
+    subtitle: 'No excuse, please yourself: there is something for everyone!'
+  },
   home: {
     screenTitle: 'Home',
     btnDelivery: 'Delivery',
@@ -72,7 +76,9 @@ export default {
     totalPrice: '{{totalPrice}}€',
     itemMenu: '1 x {{itemType}}',
     itemCustom: '{{quantity}} x {{productName}}',
-    orderDate: 'Ordered on {{date}}'
+    orderDate: 'Ordered on {{date}}',
+    orderProcessTitle: 'Order process',
+    orderStep: 'STEP {{step}}'
   },
   accountPage: {
     screenTitle: 'Account',
@@ -102,7 +108,10 @@ export default {
     burger: 'Burger',
     tacos: 'Tacos',
     pizza: 'Pizzas',
-    sandwich: 'Sandwich'
+    sandwich: 'Sandwich',
+    menu: 'Menu',
+    snacks: 'Snacks',
+    drink: 'Drink'
   },
   button: {
     back: 'Back',

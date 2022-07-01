@@ -21,6 +21,21 @@ const foodCategories = [
     id: 4,
     pictureSrc: require('@images/category_sandwich.png'),
     name: i18n.t('categories.sandwich')
+  },
+  {
+    id: 5,
+    pictureSrc: require('@images/category_menu.png'),
+    name: i18n.t('categories.menu')
+  },
+  {
+    id: 6,
+    pictureSrc: require('@images/category_snacks.png'),
+    name: i18n.t('categories.snacks')
+  },
+  {
+    id: 7,
+    pictureSrc: require('@images/category_drink.png'),
+    name: i18n.t('categories.drink')
   }
 ];
 

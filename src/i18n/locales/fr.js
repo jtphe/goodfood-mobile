@@ -15,6 +15,11 @@ export default {
     addCommentPlaceholder: 'Écrivez un commentaire...',
     addRating: 'Noter le restaurant'
   },
+  search: {
+    title: 'NOTRE CARTE',
+    subtitle:
+      'Aucune excuse, faites vous plaisir : il y en a pour tous les goûts !'
+  },
   home: {
     screenTitle: 'Accueil',
     btnDelivery: 'Livraison',
@@ -72,7 +77,9 @@ export default {
     totalPrice: '{{totalPrice}}€',
     itemMenu: '1 x {{itemType}}',
     itemCustom: '{{quantity}} x {{productName}}',
-    orderDate: 'Commande passé le {{date}}'
+    orderDate: 'Commande passé le {{date}}',
+    orderProcessTitle: 'Process commande',
+    orderStep: 'ÉTAPE {{step}}'
   },
   accountPage: {
     screenTitle: 'Compte',
@@ -102,7 +109,10 @@ export default {
     burger: 'Burger',
     tacos: 'Tacos',
     pizza: 'Pizzas',
-    sandwich: 'Sandwich'
+    sandwich: 'Sandwich',
+    menu: 'Menu',
+    snacks: 'Snacks',
+    drink: 'Boissons'
   },
   button: {
     back: 'Retour',
