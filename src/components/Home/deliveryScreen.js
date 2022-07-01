@@ -27,7 +27,13 @@ const DeliveryScreen = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         style={styles.categoriesFlatList}
-        renderItem={({ item }) => <Category category={item} />}
+        renderItem={({ item }) => (
+          <Category
+            category={item}
+            styleContainer={styles.styleContainer}
+            styleCategory={styles.styleCategory}
+          />
+        )}
       />
       <View style={styles.containerPeckish}>
         <Text style={styles.titlePeckish}>{i18n.t('home.peckishTitle')}</Text>
@@ -37,6 +43,8 @@ const DeliveryScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  styleContainer: { marginRight: 13 },
+  styleCategory: { width: 85, height: 85 },
   container: { flex: 1 },
   containerLocation: {
     flexDirection: 'row',
