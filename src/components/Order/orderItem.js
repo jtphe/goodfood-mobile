@@ -39,7 +39,7 @@ const OrderItem = ({ navigation, order }) => {
         <View style={styles.containerSeeBtn}>
           <Button
             mode="contained"
-            onPress={() => _seeOrderDetails({ navigation })}
+            onPress={() => _seeOrderDetails()}
             style={styles.seeMoreBtn}
             labelStyle={styles.labelStyleBtn}
             color={colors.BEIGE}

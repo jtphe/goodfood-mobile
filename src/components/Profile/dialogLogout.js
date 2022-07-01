@@ -3,7 +3,6 @@ import { StyleSheet, Text } from 'react-native';
 import { Dialog, Button, Portal } from 'react-native-paper';
 import { colors } from '@config/';
 import i18n from '@i18n/i18n';
-import PropTypes from 'prop-types';
 
 const DialogLogout = ({ visible, setVisible, logout }) => {
   return (
