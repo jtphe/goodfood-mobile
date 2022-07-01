@@ -20,7 +20,7 @@ function* signUp({ payload }) {
     const res = yield call(fetchService.request, query);
 
     yield put({ type: M_SET_USER, res });
-    showToast(i18n.t('register.success'));
+    showToast(i18n.t('register.success'), true);
     payload.navigation.navigate('Root');
   } catch (e) {
     errorHandler(e.response?.data.message);
@@ -45,9 +45,9 @@ function* signIn({ payload }) {
     yield put({ type: M_SET_USER, res });
     payload.navigation.navigate('Root');
   } catch (e) {
-    errorHandler(e.response?.data.message);
+    errorHandler(e.response?.data?.message);
     if (e.response) {
-      console.log('Error while signing up => ', e.response?.data.message);
+      console.log('Error while signing in => ', e.response?.data?.message);
     }
   }
 }

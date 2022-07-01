@@ -1,10 +1,27 @@
 export default {
+  comments: {
+    added: 'Commentaire ajouté !',
+    deleted: 'Commentaire supprimé !'
+  },
+  restaurant: {
+    details: 'Détails',
+    detailsTitle: 'Détails du restaurant',
+    findRestaurants: 'Trouver un restaurant',
+    comments: 'Avis',
+    emptyComments: "Pas encore d'avis",
+    added: 'Le restaurant a été ajouté en favoris',
+    removed: 'Le restaurant favoris a été supprimé',
+    addComment: 'Ajouter un avis',
+    addCommentPlaceholder: 'Écrivez un commentaire...',
+    addRating: 'Noter le restaurant'
+  },
   home: {
     screenTitle: 'Accueil',
     btnDelivery: 'Livraison',
     btnTakeaway: 'À emporter',
     placeholderSearchFood: 'Rechercher votre nourriture...',
-    peckishTitle: 'Une petite faim ? 🍔'
+    peckishTitle: 'Une petite faim ? 🍔',
+    favoriteRestaurant: 'Mon resto favoris'
   },
   login: {
     screenTitle: 'Connexion',
@@ -91,7 +108,9 @@ export default {
     back: 'Retour',
     cancel: 'Annuler',
     save: 'Enregistrer',
-    logout: 'Déconnexion'
+    logout: 'Déconnexion',
+    order: 'Commander',
+    add: 'Ajouter'
   },
   camera: {
     needCameraPermissions:

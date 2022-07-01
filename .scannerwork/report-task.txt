@@ -2,5 +2,5 @@ projectKey=Good-food-mobile
 serverUrl=http://localhost:9000
 serverVersion=9.4.0.54424
 dashboardUrl=http://localhost:9000/dashboard?id=Good-food-mobile
-ceTaskId=AYBh8f2Wgpxs21pXtBLo
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYBh8f2Wgpxs21pXtBLo
+ceTaskId=AYG6O3CGQOXybcGSVigM
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYG6O3CGQOXybcGSVigM
