@@ -112,8 +112,12 @@ function* deleteComment({ payload }) {
         token
       }
     };
-    yield call(fetchService.request, query);
-    yield put({ type: M_DELETE_COMMENT, id: payload.id });
+    const restaurant = yield call(fetchService.request, query);
+    yield put({
+      type: M_DELETE_COMMENT,
+      id: payload.id,
+      avg: restaurant.avgRating
+    });
     showToast(i18n.t('comments.deleted'));
   } catch (e) {
     console.log('Error while deleting comment => ', e);

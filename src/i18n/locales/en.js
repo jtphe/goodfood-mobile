@@ -12,7 +12,8 @@ export default {
     added: 'Restaurant has been added to favorites',
     removed: 'The favorite restaurant has been removed',
     addComment: 'Add a comment',
-    addCommentPlaceholder: 'Write a comment...'
+    addCommentPlaceholder: 'Write a comment...',
+    addRating: 'Rate the restaurant'
   },
   home: {
     screenTitle: 'Home',

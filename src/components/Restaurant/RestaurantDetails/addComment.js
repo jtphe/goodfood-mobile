@@ -35,7 +35,7 @@ const AddComment = () => {
         </Text>
       </View>
       <View style={styles.containerPage}>
-        <Text style={styles.title}>Noter le restaurant</Text>
+        <Text style={styles.title}>{i18n.t('restaurant.addRating')}</Text>
         <StarRating
           maxStars={5}
           rating={starCount}
@@ -48,7 +48,7 @@ const AddComment = () => {
           containerStyle={styles.containerStars}
           selectedStar={(rating) => setStartCount(rating)}
         />
-        <Text style={styles.title}>Ajouter un commentaire</Text>
+        <Text style={styles.title}>{i18n.t('restaurant.addComment')}</Text>
         <TextInput
           style={styles.input}
           multiline
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     marginBottom: 32
   },
   input: {
+    textAlignVertical: 'top',
     height: 250,
     borderWidth: 1.5,
     borderRadius: 6,

@@ -23,6 +23,7 @@ import Cover from '@components/Restaurant/RestaurantDetails/cover';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import i18n from '@i18n/i18n';
 import vibrate from '@helpers/vibrate';
+import StarRating from 'react-native-star-rating';
 
 const mapStateToProps = createSelector(
   [getCurrentRestaurant, getFavoriteRestaurant],
@@ -71,6 +72,9 @@ const RestaurantDetails = ({
   const restaurantComments = useMemo(() => {
     return currentRestaurant.comments;
   }, [currentRestaurant]);
+  const averageRating = useMemo(() => {
+    return currentRestaurant.avgRating;
+  }, [currentRestaurant]);
   const [isFavoriteRestaurant, setIsFavoriteRestaurant] = useState(false);
 
   const _addressParser = () => {
@@ -117,6 +121,25 @@ const RestaurantDetails = ({
       <View style={styles.content}>
         <View style={styles.containerRestaurantName}>
           <Text style={styles.restaurantName}>{restaurantName}</Text>
+          {averageRating !== null ? (
+            <View style={styles.containerRowAverage}>
+              <Text>{averageRating}</Text>
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                halfStarEnabled={true}
+                halfStar="star-half"
+                rating={averageRating}
+                emptyStar="star-border"
+                emptyStarColor={colors.YELLOW}
+                fullStar="star"
+                fullStarColor={colors.YELLOW}
+                iconSet="MaterialIcons"
+                starSize={16}
+                containerStyle={styles.containerStars}
+              />
+            </View>
+          ) : null}
           <Text style={styles.restaurantAddress}>{_addressParser()}</Text>
         </View>
         <Button
@@ -177,6 +200,11 @@ const RestaurantDetails = ({
 };
 
 const styles = StyleSheet.create({
+  containerRowAverage: { flexDirection: 'row', paddingTop: 8 },
+  containerStars: {
+    width: 100,
+    marginLeft: 6
+  },
   contentContainerStyle: { marginTop: 24, marginBottom: 30 },
   textMenuOptions: { marginLeft: 12, fontSize: 18 },
   menuOption: {
@@ -192,10 +220,15 @@ const styles = StyleSheet.create({
   },
   noComments: { marginTop: 12 },
   comments: { marginTop: 24, fontSize: 16, fontWeight: 'bold' },
-  restaurantDescription: { color: colors.YELLOW, fontSize: 13, marginTop: 20 },
+  restaurantDescription: {
+    color: colors.YELLOW,
+    fontSize: 14,
+    marginTop: 20,
+    textAlign: 'justify'
+  },
   containerOther: { paddingHorizontal: 18 },
   restaurantAddress: { fontWeight: '500', marginTop: 6 },
-  restaurantName: { fontSize: 16, fontWeight: 'bold', color: colors.RED },
+  restaurantName: { fontSize: 18, fontWeight: 'bold', color: colors.RED },
   content: { flexDirection: 'row', marginTop: 20, paddingHorizontal: 18 },
   orderTxt: { color: colors.YELLOW, fontSize: 14 },
   orderBtn: {

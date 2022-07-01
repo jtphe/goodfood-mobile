@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  FlatList,
-  ScrollView
-} from 'react-native';
+import { Text, View, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { colors } from '@config/';
-import Icon from 'react-native-vector-icons/Fontisto';
-import IconArrow from 'react-native-vector-icons/MaterialIcons';
-import IconSearch from 'react-native-vector-icons/Feather';
+import { Searchbar } from 'react-native-paper';
 import i18n from '@i18n/i18n';
 import Category from '@components/Home/category';
 import foodCategories from '@utils/foodCategories';
@@ -21,25 +11,15 @@ const DeliveryScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity style={styles.containerLocation}>
-        <Icon name="shopping-store" size={18} style={styles.iconMap} />
-        <Text>{i18n.t('home.favoriteRestaurant')}</Text>
-        <IconArrow
-          name="keyboard-arrow-down"
-          size={18}
-          style={styles.iconArrowDown}
-        />
-      </TouchableOpacity>
-      <View style={styles.containerSearchInput}>
-        <IconSearch name="search" size={18} color={colors.YELLOW} />
-        <TextInput
-          placeholder={i18n.t('home.placeholderSearchFood')}
-          value={searchFoodText}
-          onChangeText={(text) => setSearchFoodText(text)}
-          style={styles.textInput}
-          returnKeyType="search"
-        />
-      </View>
+      <Searchbar
+        placeholder={i18n.t('home.placeholderSearchFood')}
+        value={searchFoodText}
+        onChangeText={(text) => setSearchFoodText(text)}
+        style={styles.containerSearchInput}
+        inputStyle={styles.searchInput}
+        returnKeyType="search"
+        selectionColor={colors.YELLOW}
+      />
       <FlatList
         data={foodCategories}
         keyExtractor={(item) => item.id.toString()}
@@ -65,10 +45,8 @@ const styles = StyleSheet.create({
   },
   iconMap: { marginRight: 6 },
   iconArrowDown: { marginLeft: 6 },
+  searchInput: { fontSize: 16 },
   containerSearchInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 12,
     marginHorizontal: 24,
     marginTop: 24,
     borderRadius: 12,

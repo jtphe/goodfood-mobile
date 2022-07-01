@@ -47,7 +47,7 @@ function* signIn({ payload }) {
   } catch (e) {
     errorHandler(e.response?.data?.message);
     if (e.response) {
-      console.log('Error while signing in => ', e.response?.data.message);
+      console.log('Error while signing in => ', e.response?.data?.message);
     }
   }
 }

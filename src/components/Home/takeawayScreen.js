@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import {
   loadRestaurants,
@@ -32,7 +32,7 @@ const TakeawayScreen = ({ restaurants, navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>{i18n.t('restaurant.findRestaurants')}</Text>
       {restaurants.length === 0 ? (
         <View style={styles.containerLoader}>
@@ -46,6 +46,7 @@ const TakeawayScreen = ({ restaurants, navigation }) => {
       ) : (
         <FlatList
           data={restaurants}
+          nestedScrollEnabled
           keyExtractor={(item) => item.id.toString()}
           initialNumToRender={restaurants.length}
           style={styles.restaurantsList}
@@ -57,7 +58,7 @@ const TakeawayScreen = ({ restaurants, navigation }) => {
           )}
         />
       )}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     marginTop: 24
   },
-  containerLoader: { alignSelf: 'center', marginTop: 100 }
+  containerLoader: { alignSelf: 'center', marginTop: 100 },
+  restaurantsList: { marginBottom: 32 }
 });
 
 export default connect(mapStateToProps)(TakeawayScreen);

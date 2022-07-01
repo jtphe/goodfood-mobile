@@ -12,7 +12,8 @@ export default {
     added: 'Le restaurant a été ajouté en favoris',
     removed: 'Le restaurant favoris a été supprimé',
     addComment: 'Ajouter un avis',
-    addCommentPlaceholder: 'Écrivez un commentaire...'
+    addCommentPlaceholder: 'Écrivez un commentaire...',
+    addRating: 'Noter le restaurant'
   },
   home: {
     screenTitle: 'Accueil',

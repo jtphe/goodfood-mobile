@@ -24,6 +24,9 @@ export default function reducer(state = initialState, action) {
         currentRestaurant: {
           comments: {
             $splice: [[index, 1]]
+          },
+          avgRating: {
+            $set: action.avg
           }
         }
       });
@@ -33,6 +36,9 @@ export default function reducer(state = initialState, action) {
         currentRestaurant: {
           comments: {
             $push: [action.comment]
+          },
+          avgRating: {
+            $set: action.comment.avgRating
           }
         }
       });
