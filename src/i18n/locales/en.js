@@ -103,7 +103,14 @@ export default {
     displayCart: 'View cart',
     subTotal: 'Subtotal',
     validateOrder: 'Validate order',
-    payOrder: 'Pay'
+    payOrder: 'Pay',
+    summary: 'SUMMARY',
+    homeDelivery: 'Home delivery',
+    addDeliveryAddress: '+ Add a delivery address',
+    paymentMethod: 'Payment method',
+    addPaymentMethod: '+ Add a payment method',
+    deliveryAddress: 'Delivery address',
+    missingDeliveryAddress: 'Add a home address for delivery'
   },
   accountPage: {
     screenTitle: 'Account',

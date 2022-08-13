@@ -17,58 +17,68 @@ const Summary = ({
   setCurrentStep,
   totalPrice
 }) => {
+  const _payOrder = () => {
+    console.log('payeeer');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerSummary}>
         <TouchableOpacity onPress={() => setCurrentStep(1)}>
           <Icon style={styles.iconLeft} name="left" size={26} />
         </TouchableOpacity>
-        <Text style={styles.titleHeaderSummary}>Récapitulatif</Text>
+        <Text style={styles.titleHeaderSummary}>
+          {i18n.t('orderPage.summary')}
+        </Text>
       </View>
       <View style={styles.containerDelivery}>
         {currentRestaurant === null ? (
           userAddress ? (
             <View>
-              <Text>Livraison</Text>
+              <Text>{i18n.t('home.btnDelivery')}</Text>
             </View>
           ) : (
             <View>
-              <Text style={styles.titleHomeDelivery}>Livraison à domicile</Text>
+              <Text style={styles.titleHomeDelivery}>
+                {i18n.t('home.homeDelivery')}
+              </Text>
               <TouchableOpacity
                 style={styles.touchableAddDeliveryAddress}
                 onPress={() => setCurrentStep(3)}
               >
                 <Text style={styles.addDeliveryAddressText}>
-                  + Ajouter une addresse de livraison
+                  {i18n.t('orderPage.addDeliveryAddress')}
                 </Text>
               </TouchableOpacity>
             </View>
           )
         ) : (
           <View>
-            <Text>A emporter</Text>
+            <Text>{i18n.t('home.btnTakeaway')}</Text>
           </View>
         )}
       </View>
       <View style={styles.containerTotal}>
-        <Text style={styles.totalText}>Total</Text>
+        <Text style={styles.totalText}>{i18n.t('orderPage.total')}</Text>
         <Text style={styles.totalPrice}>{totalPrice}€</Text>
       </View>
       <View style={styles.containerPayementMethod}>
-        <Text style={styles.titlePaymentMethod}>Moyen de paiement</Text>
+        <Text style={styles.titlePaymentMethod}>
+          {i18n.t('orderPage.paymentMethod')}
+        </Text>
         <TouchableOpacity
           style={styles.touchableAddPaymentMethod}
           onPress={() => setCurrentStep(4)}
         >
           <Text style={{ color: colors.DARK_GREY }}>
-            + Ajouter un moyen de paiement
+            {i18n.t('orderPage.addPaymentMethod')}
           </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.footer}>
         <Button
           mode="contained"
-          onPress={() => console.log('oui')}
+          onPress={() => _payOrder()}
           style={styles.btnPayOrder}
           labelStyle={styles.btnPayOrderText}
           color={colors.BEIGE}

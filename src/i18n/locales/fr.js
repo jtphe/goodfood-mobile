@@ -105,7 +105,14 @@ export default {
     displayCart: 'Afficher le panier',
     subTotal: 'Sous-total',
     validateOrder: 'Valider la commande',
-    payOrder: 'Payer'
+    payOrder: 'Payer',
+    summary: 'RÉCAPITULATIF',
+    homeDelivery: 'Livraison à domicile',
+    addDeliveryAddress: '+ Ajouter une adresse de livraison',
+    paymentMethod: 'Moyen de paiement',
+    addPaymentMethod: '+ Ajouter un moyen de paiement',
+    deliveryAddress: 'Adresse de livraison',
+    missingDeliveryAddress: 'Ajouter une adresse de domicile pour la livraison'
   },
   accountPage: {
     screenTitle: 'Compte',

@@ -30,10 +30,12 @@ const Address = ({ setCurrentStep }) => {
         <TouchableOpacity onPress={() => setCurrentStep(2)}>
           <Icon style={styles.iconLeft} name="left" size={26} />
         </TouchableOpacity>
-        <Text style={styles.titleHeaderAddress}>Adresse de livraison</Text>
+        <Text style={styles.titleHeaderAddress}>
+          {i18n.t('orderPage.deliveryAddress')}
+        </Text>
       </View>
       <Text style={styles.titleAddAddress}>
-        Ajouter une adresse de domicile pour la livraison
+        {i18n.t('orderPage.missingDeliveryAddress')}
       </Text>
       <TextInput
         mode="outlined"
