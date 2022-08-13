@@ -28,7 +28,9 @@ function* loadRestaurants() {
         token
       }
     };
+
     const restaurants = yield call(fetchService.request, query);
+
     yield put({ type: M_SET_RESTAURANTS, restaurants });
   } catch (e) {
     console.log('Error while loading restaurants => ', e);
@@ -59,7 +61,7 @@ function* setFavoriteRestaurant({ payload }) {
     const removeRestaurant = payload.mode === 'remove';
     const query = {
       method: 'put',
-      url: `${Config.API_URL}restaurants/${payload.id}/setfavorite`,
+      url: `${Config.API_URL}restaurants/${payload.restaurant.id}/setfavorite`,
       headers: {
         token
       }
@@ -67,7 +69,7 @@ function* setFavoriteRestaurant({ payload }) {
     yield call(fetchService.request, query);
     yield put({
       type: M_UPDATE_USER_FAVORITE_RESTAURANT,
-      id: removeRestaurant ? null : payload.id
+      restaurant: removeRestaurant ? null : payload.restaurant
     });
     if (removeRestaurant) {
       showToast(i18n.t('restaurant.removed'), false);

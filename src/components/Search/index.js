@@ -3,20 +3,67 @@ import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { colors } from '@config/';
+import { connect, useDispatch } from 'react-redux';
+import { createSelector } from 'reselect';
+import { getUser } from '@store/modules/user/selectors';
+import { showToast } from '@helpers/showToast';
+import { loadFoodType } from '@store/modules/order/actions';
 import Category from '@components/Home/category';
-import i18n from 'i18n-js';
+import CartBanner from '@shared/cartBanner';
+import i18n from '@i18n/i18n';
 import foodCategories from '@utils/foodCategories';
+import foodTypes from '@utils/foodTypes';
 
-const Search = ({ navigation }) => {
+const mapStateToProps = createSelector([getUser], (user) => {
+  return { user };
+});
+
+const Search = ({ navigation, route, user }) => {
+  const dispatch = useDispatch();
+
   const _startOrderProcess = (item) => {
-    console.log('item', item);
-    if (item.name === i18n.t('categories.menu')) {
-      // Process menu
-      navigation.navigate(i18n.t('orderPage.orderProcessTitle'));
+    const fromTakeaway = route.params?.restaurant;
+    const { name, id } = item;
+
+    if (fromTakeaway === undefined && user.restaurant === null) {
+      showToast(i18n.t('search.noAddress'), true);
+      return null;
+    }
+
+    if (name === i18n.t('categories.menu')) {
+      navigation.navigate(i18n.t('orderPage.orderProcessTitle'), {
+        foodTypes,
+        restaurant: route.params?.restaurant || user.restaurant,
+        user
+      });
     } else {
-      // Process product itself
+      // If the user choose just a product
+      let payload = {};
+      if (name === i18n.t('categories.snacks')) {
+        payload = {
+          restaurant: route.params?.restaurant || user.restaurant,
+          type: 5
+        };
+      } else if (name === i18n.t('categories.drink')) {
+        payload = {
+          restaurant: route.params?.restaurant || user.restaurant,
+          type: 6
+        };
+      } else {
+        payload = {
+          restaurant: route.params?.restaurant || user.restaurant,
+          type: id
+        };
+      }
+      dispatch(loadFoodType({ payload }));
+      navigation.navigate(i18n.t('orderPage.orderProcessProductTitle'), {
+        foodType: item,
+        user,
+        processType: 'product'
+      });
     }
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t('search.title')}</Text>
@@ -28,7 +75,7 @@ const Search = ({ navigation }) => {
             keyExtractor={(item) => item.id.toString()}
             initialNumToRender={foodCategories.length}
             numColumns={2}
-            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
               <Category
                 category={item}
@@ -40,18 +87,18 @@ const Search = ({ navigation }) => {
           />
         </View>
       </>
+      <CartBanner />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  containerFlatlist: { alignItems: 'center' },
+  containerFlatlist: { flex: 1, alignItems: 'center' },
   styleContainer: { margin: 10 },
   styleCategory: { width: 130, height: 130 },
   container: {
     flex: 1,
     ...ifIphoneX({ paddingTop: calcHeight(7) }, { paddingTop: calcHeight(3) }),
-    paddingHorizontal: 24,
     backgroundColor: 'white'
   },
   title: { alignSelf: 'center', fontSize: 24, fontWeight: 'bold' },
@@ -61,8 +108,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 15,
     marginTop: 50,
-    marginBottom: 25
+    marginBottom: 25,
+    paddingHorizontal: 24
   }
 });
 
-export default Search;
+export default connect(mapStateToProps)(Search);

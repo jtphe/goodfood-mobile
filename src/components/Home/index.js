@@ -4,19 +4,32 @@ import { Button } from 'react-native-paper';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { colors } from '@config/';
+import { connect, useDispatch } from 'react-redux';
+import { resetCurrentRestaurant } from '@store/modules/restaurant/actions';
+import { getCurrentRestaurant } from '@store/modules/restaurant/selectors';
+import { createSelector } from 'reselect';
 import DeliveryScreen from '@components/Home/deliveryScreen';
 import TakeawayScreen from '@components/Home/takeawayScreen';
+import CartBanner from '@shared/cartBanner';
 import i18n from '@i18n/i18n';
 import PropTypes from 'prop-types';
+
+const mapStateToProps = createSelector(
+  [getCurrentRestaurant],
+  (currentRestaurant) => {
+    return { currentRestaurant };
+  }
+);
 
 /**
  * Home component
  * @param {Object} navigation - Props used to navigate between screens
  */
-const Home = ({ navigation }) => {
+const Home = ({ navigation, currentRestaurant }) => {
   const [deliveryBtnMode, setDeliveryBtnMode] = useState('contained');
   const [takeAwayBtnMode, setTakeAwayBtnMode] = useState('text');
   const [deliveryType, setDeliveryType] = useState('delivery');
+  const dispatch = useDispatch();
 
   const _switchDeliveryMode = (type) => {
     if (deliveryType !== type) {
@@ -28,6 +41,9 @@ const Home = ({ navigation }) => {
         setTakeAwayBtnMode('text');
         setDeliveryBtnMode('contained');
         setDeliveryType('delivery');
+        if (currentRestaurant) {
+          dispatch(resetCurrentRestaurant());
+        }
       }
     }
   };
@@ -61,6 +77,7 @@ const Home = ({ navigation }) => {
       ) : (
         <TakeawayScreen navigation={navigation} />
       )}
+      <CartBanner />
     </View>
   );
 };
@@ -87,4 +104,4 @@ Home.propTypes = {
   navigation: PropTypes.object
 };
 
-export default Home;
+export default connect(mapStateToProps)(Home);

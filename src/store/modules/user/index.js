@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
       return update(state, {
         user: {
           restaurant: {
-            $set: action.id
+            $set: action.restaurant
           }
         }
       });

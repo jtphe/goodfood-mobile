@@ -9,7 +9,7 @@ import {
   deleteComment
 } from '@store/modules/restaurant/actions';
 import { getCurrentRestaurant } from '@store/modules/restaurant/selectors';
-import { getFavoriteRestaurant } from '@store/modules/user/selectors';
+import { getUserFavoriteRestaurant } from '@store/modules/user/selectors';
 import { createSelector } from 'reselect';
 import {
   Menu,
@@ -26,7 +26,7 @@ import vibrate from '@helpers/vibrate';
 import StarRating from 'react-native-star-rating';
 
 const mapStateToProps = createSelector(
-  [getCurrentRestaurant, getFavoriteRestaurant],
+  [getCurrentRestaurant, getUserFavoriteRestaurant],
   (currentRestaurant, favoriteRestaurant) => {
     return { currentRestaurant, favoriteRestaurant };
   }
@@ -49,7 +49,7 @@ const RestaurantDetails = ({
   }, []);
 
   useEffect(() => {
-    if (currentRestaurant.id === favoriteRestaurant) {
+    if (currentRestaurant.id === favoriteRestaurant?.id) {
       setIsFavoriteRestaurant(true);
     }
   }, [favoriteRestaurant, currentRestaurant]);
@@ -82,13 +82,15 @@ const RestaurantDetails = ({
   };
 
   const _order = () => {
-    console.log('Order');
+    navigation.navigate(i18n.t('searchPage.screenTitle'), {
+      restaurant: currentRestaurant
+    });
   };
 
   const _setFavoriteRestaurant = () => {
     setIsFavoriteRestaurant(!isFavoriteRestaurant);
     const payload = {
-      id: currentRestaurant.id,
+      restaurant: currentRestaurant,
       mode: isFavoriteRestaurant ? 'remove' : 'set'
     };
     dispatch(setFavoriteRestaurant({ payload }));

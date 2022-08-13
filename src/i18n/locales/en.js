@@ -13,11 +13,16 @@ export default {
     removed: 'The favorite restaurant has been removed',
     addComment: 'Add a comment',
     addCommentPlaceholder: 'Write a comment...',
-    addRating: 'Rate the restaurant'
+    addRating: 'Rate the restaurant',
+    list: 'Restaurants list',
+    noRestaurant:
+      "You don't have a restaurant yet! Choose a restaurant among the following",
+    restaurantChoice: 'Restaurant choice'
   },
   search: {
     title: 'OUR CARD',
-    subtitle: 'No excuse, please yourself: there is something for everyone!'
+    subtitle: 'No excuse, please yourself: there is something for everyone!',
+    noAddress: 'Please add a favorite restaurant in your account settings'
   },
   home: {
     screenTitle: 'Home',
@@ -78,7 +83,27 @@ export default {
     itemCustom: '{{quantity}} x {{productName}}',
     orderDate: 'Ordered on {{date}}',
     orderProcessTitle: 'Order process',
-    orderStep: 'STEP {{step}}'
+    orderStep: 'STEP {{step}}',
+    finalStep: 'FINAL STEP',
+    stepOne: 'Choose your type of dish!',
+    chooseFoodType: 'Choose {{foodType}}',
+    chooseSnack: 'Choose a snack',
+    chooseDrink: 'Choose a drink',
+    recap: 'Summary of your order',
+    orderBurger: 'a burger',
+    orderTacos: 'a taco',
+    orderPizza: 'a pizza',
+    orderSandwich: 'a sandwich',
+    orderSnacks: 'a snack',
+    orderDrink: 'a drink',
+    addToCart: 'Add to cart',
+    orderProcessProductTitle: 'Process order product',
+    quantityPrice: 'Price: {{totalPrice}}€',
+    yourCart: 'Your order',
+    displayCart: 'View cart',
+    subTotal: 'Subtotal',
+    validateOrder: 'Validate order',
+    payOrder: 'Pay'
   },
   accountPage: {
     screenTitle: 'Account',
@@ -92,6 +117,8 @@ export default {
     addressPlaceholder: 'Enter your postal address',
     personalInfoTitle: 'MY PERSONAL INFORMATION',
     connectionInfoTitle: 'MY CONNECTION INFORMATION',
+    favoriteRestaurant: 'MY FAVORITE RESTAURANT',
+    updateFavoriteRestaurant: 'Change my favorite restaurant',
     edit: 'Edit',
     logout: 'Logout',
     dialogLogoutContent: 'Are you sure you want to log out?',
@@ -119,7 +146,10 @@ export default {
     save: 'Save',
     logout: 'Log out',
     order: 'Order',
-    add: 'Add'
+    add: 'Add',
+    choose: 'Choose',
+    plus: '+',
+    minus: '-'
   },
   camera: {
     needCameraPermissions:

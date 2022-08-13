@@ -5,7 +5,7 @@ import IconSearch from 'react-native-vector-icons/Feather';
 import IconOrder from 'react-native-vector-icons/Fontisto';
 import i18n from '@i18n/i18n';
 
-const TabBarIcon = ({ route, focused, color, size }) => {
+const TabBarIcon = ({ route, color, size }) => {
   const routeName = useMemo(() => {
     return route.name;
   }, [route]);

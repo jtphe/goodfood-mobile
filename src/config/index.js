@@ -4,7 +4,8 @@ export const colors = {
   YELLOW: '#DCB265',
   LIGHT_GREY: '#F7F7F7',
   GREEN: '#126454',
-  GREY: '#E4E3E3'
+  GREY: '#E4E3E3',
+  DARK_GREY: '#CDCCCC'
 };
 
 export const vibrationOptions = {

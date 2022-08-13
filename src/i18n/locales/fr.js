@@ -13,12 +13,18 @@ export default {
     removed: 'Le restaurant favoris a été supprimé',
     addComment: 'Ajouter un avis',
     addCommentPlaceholder: 'Écrivez un commentaire...',
-    addRating: 'Noter le restaurant'
+    addRating: 'Noter le restaurant',
+    list: 'Liste des restaurants',
+    noRestaurant:
+      "Vous n'avez pas de restaurant encore ! Choisissez un restaurant parmis les suivants",
+    restaurantChoice: 'Choix du restaurant'
   },
   search: {
     title: 'NOTRE CARTE',
     subtitle:
-      'Aucune excuse, faites vous plaisir : il y en a pour tous les goûts !'
+      'Aucune excuse, faites vous plaisir : il y en a pour tous les goûts !',
+    noAddress:
+      'Veuillez ajouter un restaurant favoris dans les paramètres de votre compte'
   },
   home: {
     screenTitle: 'Accueil',
@@ -79,7 +85,27 @@ export default {
     itemCustom: '{{quantity}} x {{productName}}',
     orderDate: 'Commande passé le {{date}}',
     orderProcessTitle: 'Process commande',
-    orderStep: 'ÉTAPE {{step}}'
+    orderStep: 'ÉTAPE {{step}}',
+    finalStep: 'ÉTAPE FINALE',
+    stepOne: 'Choisissez votre type de plat !',
+    chooseFoodType: 'Choisissez {{foodType}}',
+    chooseSnack: 'Choisissez un accompagnement',
+    chooseDrink: 'Choisissez une boisson',
+    recap: 'Récapitulatif de votre commande',
+    orderBurger: 'un burger',
+    orderTacos: 'un tacos',
+    orderPizza: 'une pizza',
+    orderSandwich: 'un sandwich',
+    orderSnacks: 'un snack',
+    orderDrink: 'une boisson',
+    addToCart: 'Ajouter au panier',
+    orderProcessProductTitle: 'Process commande produit',
+    quantityPrice: 'Prix: {{totalPrice}}€',
+    yourCart: 'Votre panier',
+    displayCart: 'Afficher le panier',
+    subTotal: 'Sous-total',
+    validateOrder: 'Valider la commande',
+    payOrder: 'Payer'
   },
   accountPage: {
     screenTitle: 'Compte',
@@ -93,6 +119,8 @@ export default {
     addressPlaceholder: 'Entrez votre adresse postale',
     personalInfoTitle: 'MES INFORMATIONS PERSONNELLES',
     connectionInfoTitle: 'MES INFORMATIONS DE CONNEXION',
+    favoriteRestaurant: 'MON RESTAURANT FAVORIS',
+    updateFavoriteRestaurant: 'Modifier mon restaurant favoris',
     edit: 'Éditer',
     logout: 'Déconnexion',
     dialogLogoutContent: 'Tu es sûr(e) de vouloir te déconnecter ?',
@@ -120,7 +148,8 @@ export default {
     save: 'Enregistrer',
     logout: 'Déconnexion',
     order: 'Commander',
-    add: 'Ajouter'
+    add: 'Ajouter',
+    choose: 'Choisir'
   },
   camera: {
     needCameraPermissions:
