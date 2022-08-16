@@ -40,7 +40,7 @@ const Summary = ({
           ) : (
             <View>
               <Text style={styles.titleHomeDelivery}>
-                {i18n.t('home.homeDelivery')}
+                {i18n.t('orderPage.homeDelivery')}
               </Text>
               <TouchableOpacity
                 style={styles.touchableAddDeliveryAddress}
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     paddingVertical: 24
   },
   containerDelivery: { marginTop: 32 },
-  container: { flex: 1, paddingHorizontal: 12, backgroundColor: 'white' },
+  container: { flex: 1, paddingHorizontal: 26, backgroundColor: 'white' },
   footer: {
     width: '100%',
     position: 'absolute',
@@ -154,14 +154,15 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 8,
     marginTop: 24,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginLeft: 45
   },
   titleHeaderSummary: {
     alignSelf: 'center',
     flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
-    marginLeft: Dimensions.get('window').width / 4 - 5
+    marginLeft: Dimensions.get('window').width / 7
   },
   headerSummary: {
     flexDirection: 'row',

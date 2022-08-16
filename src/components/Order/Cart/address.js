@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 8,
     marginTop: 24,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginLeft: 50
   },
   footer: {
     width: '100%',
@@ -99,13 +100,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: colors.YELLOW
   },
-  container: { flex: 1, paddingHorizontal: 12, backgroundColor: 'white' },
+  container: { flex: 1, paddingHorizontal: 26, backgroundColor: 'white' },
   titleHeaderAddress: {
     alignSelf: 'center',
     flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
-    marginLeft: Dimensions.get('window').width / 8
+    marginLeft: Dimensions.get('window').width / 9
   },
   headerAddress: {
     flexDirection: 'row',

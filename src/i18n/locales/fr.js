@@ -112,7 +112,14 @@ export default {
     paymentMethod: 'Moyen de paiement',
     addPaymentMethod: '+ Ajouter un moyen de paiement',
     deliveryAddress: 'Adresse de livraison',
-    missingDeliveryAddress: 'Ajouter une adresse de domicile pour la livraison'
+    missingDeliveryAddress: 'Ajouter une adresse de domicile pour la livraison',
+    creditCard: 'Carte de crédit',
+    addCreditCard: 'Ajouter une carte bancaire',
+    cardName: 'Nom de la carte',
+    cardType: 'Type de la carte',
+    cardNumber: 'Numéro de la carte',
+    cardExpiration: 'Exp.date(MM/AA)',
+    cardCVV: 'CVV'
   },
   accountPage: {
     screenTitle: 'Compte',

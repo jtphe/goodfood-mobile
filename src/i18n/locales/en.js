@@ -110,7 +110,14 @@ export default {
     paymentMethod: 'Payment method',
     addPaymentMethod: '+ Add a payment method',
     deliveryAddress: 'Delivery address',
-    missingDeliveryAddress: 'Add a home address for delivery'
+    missingDeliveryAddress: 'Add a home address for delivery',
+    creditCard: 'Credit card',
+    addCreditCard: 'Add a credit card',
+    cardName: 'Name of the card',
+    cardType: 'Type of the card',
+    cardNumber: 'Card number',
+    cardExpiration: 'Exp.date(MM/YY)',
+    cardCVV: 'CVV'
   },
   accountPage: {
     screenTitle: 'Account',

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     alignItems: 'center'
   },
-  quantity: { fontSize: 18, fontWeight: 800 },
+  quantity: { fontSize: 18, fontWeight: '500' },
   priceTotal: { flex: 1 },
   price: { fontSize: 18, fontWeight: 'bold', color: colors.YELLOW },
   containerOrderAddress: {

@@ -123,7 +123,7 @@ const Cart = ({
   } else if (currentStep === 3) {
     return <Address setCurrentStep={(step) => setCurrentStep(step)} />;
   } else if (currentStep === 4) {
-    return <Card />;
+    return <Card setCurrentStep={(step) => setCurrentStep(step)} />;
   } else {
     <View style={styles.container}>
       <Text>Carte</Text>
