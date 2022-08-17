@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   View,
   Text,
@@ -8,17 +8,35 @@ import {
 } from 'react-native';
 import { colors } from '@config/';
 import { Button } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
+import { createOrder } from '@store/modules/order/actions';
 import Icon from 'react-native-vector-icons/AntDesign';
 import i18n from '@i18n/i18n';
 
 const Summary = ({
   currentRestaurant,
   userAddress,
+  userPostalCode,
+  userCity,
   setCurrentStep,
-  totalPrice
+  totalPrice,
+  cardName,
+  cardNumber,
+  cardExpiration,
+  cardCVV
 }) => {
+  const userAddressParsed = useMemo(() => {
+    return `${userAddress}, ${userPostalCode} ${userCity}`;
+  }, [userAddress, userPostalCode, userCity]);
+  const isCardValid = useMemo(() => {
+    return cardName && cardNumber && cardExpiration && cardCVV;
+  }, [cardName, cardNumber, cardExpiration, cardCVV]);
+  const dispatch = useDispatch();
+
   const _payOrder = () => {
-    console.log('payeeer');
+    if (userAddressParsed.length > 0 && isCardValid) {
+      dispatch(createOrder());
+    }
   };
 
   return (
@@ -35,7 +53,10 @@ const Summary = ({
         {currentRestaurant === null ? (
           userAddress ? (
             <View>
-              <Text>{i18n.t('home.btnDelivery')}</Text>
+              <Text style={styles.titleHomeDelivery}>
+                {i18n.t('orderPage.homeDelivery')}
+              </Text>
+              <Text style={styles.userAddress}>{userAddressParsed}</Text>
             </View>
           ) : (
             <View>
@@ -66,14 +87,18 @@ const Summary = ({
         <Text style={styles.titlePaymentMethod}>
           {i18n.t('orderPage.paymentMethod')}
         </Text>
-        <TouchableOpacity
-          style={styles.touchableAddPaymentMethod}
-          onPress={() => setCurrentStep(4)}
-        >
-          <Text style={{ color: colors.DARK_GREY }}>
-            {i18n.t('orderPage.addPaymentMethod')}
-          </Text>
-        </TouchableOpacity>
+        {!cardNumber ? (
+          <TouchableOpacity
+            style={styles.touchableAddPaymentMethod}
+            onPress={() => setCurrentStep(4)}
+          >
+            <Text style={{ color: colors.DARK_GREY }}>
+              {i18n.t('orderPage.addPaymentMethod')}
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <Text>{cardNumber}</Text>
+        )}
       </View>
       <View style={styles.footer}>
         <Button
@@ -92,6 +117,11 @@ const Summary = ({
 };
 
 const styles = StyleSheet.create({
+  userAddress: {
+    fontWeight: '600',
+    fontSize: 16,
+    opacity: 0.5
+  },
   touchableAddPaymentMethod: {
     borderWidth: 1,
     paddingHorizontal: 12,

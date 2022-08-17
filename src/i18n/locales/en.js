@@ -56,7 +56,8 @@ export default {
     emailAndPasswordIncorrect: 'Check your login details',
     passwordNotTheSame: 'Passwords do not match',
     accountAlreadyExists: 'This account already exists',
-    default: 'An error occurred'
+    default: 'An error occurred',
+    postalCodeNotNumber: 'Postal code should be number'
   },
   connection: {
     disconnected: 'Searching for a connection...',
@@ -124,6 +125,8 @@ export default {
     firstName: 'First Name',
     lastName: 'Name',
     address: 'Home address',
+    postalCode: 'Postal code',
+    city: 'City',
     email: 'E-mail address',
     password: 'Password',
     firstNamePlaceholder: 'Enter your first name',

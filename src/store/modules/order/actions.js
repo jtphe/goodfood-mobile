@@ -8,6 +8,11 @@ export const M_ADD_PRODUCT_TO_CART = 'M_ADD_PRODUCT_TO_CART';
 export const M_REMOVE_LAST_ITEM_CART = 'M_REMOVE_LAST_ITEM_CART';
 export const M_UPDATE_PRODUCT_LIST = 'M_UPDATE_PRODUCT_LIST';
 export const M_REMOVE_MENU = 'M_REMOVE_MENU';
+export const U_CREATE_ORDER = 'U_CREATE_ORDER';
+
+export const createOrder = () => ({
+  type: U_CREATE_ORDER
+});
 
 export const removeMenu = ({ payload }) => ({
   type: M_REMOVE_MENU,

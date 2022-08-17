@@ -58,7 +58,8 @@ export default {
     emailAndPasswordIncorrect: 'Vérifiez vos identifiants',
     passwordNotTheSame: 'Les mots de passe ne correspondent pas',
     accountAlreadyExists: 'Ce compte existe déjà',
-    default: 'Une erreur est apparue'
+    default: 'Une erreur est apparue',
+    postalCodeNotNumber: 'Le code postal doit être des chiffres'
   },
   connection: {
     disconnected: 'Recherche de connexion en cours...',
@@ -126,6 +127,8 @@ export default {
     firstName: 'Prénom',
     lastName: 'Nom',
     address: 'Adresse du domicile',
+    postalCode: 'Code postal',
+    city: 'Ville',
     email: 'Adresse e-mail',
     password: 'Mot de passe',
     firstNamePlaceholder: 'Entrez votre prénom',

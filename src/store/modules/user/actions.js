@@ -6,6 +6,13 @@ export const M_UPDATE_USER_FAVORITE_RESTAURANT =
   'M_UPDATE_USER_FAVORITE_RESTAURANT';
 export const U_LOAD_USER_FAVORITE_RESTAURANT =
   'U_LOAD_USER_FAVORITE_RESTAURANT';
+export const U_UPDATE_USER = 'U_UPDATE_USER';
+export const M_UPDATE_USER_ADDRESS = 'M_UPDATE_USER_ADDRESS';
+
+export const updateUser = ({ payload }) => ({
+  type: U_UPDATE_USER,
+  payload
+});
 
 export const loadUserFavoriteRestaurant = () => ({
   type: U_LOAD_USER_FAVORITE_RESTAURANT

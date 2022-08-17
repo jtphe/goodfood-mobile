@@ -19,7 +19,11 @@ import {
   updateProductList,
   removeMenu
 } from '@store/modules/order/actions';
-import { getUserAddress } from '@store/modules/user/selectors';
+import {
+  getUserAddress,
+  getUserPostalCode,
+  getUserCity
+} from '@store/modules/user/selectors';
 import { getCurrentRestaurant } from '@store/modules/restaurant/selectors';
 import { createSelector } from 'reselect';
 import { roundToTwo } from '@helpers/roundToTwo';
@@ -37,14 +41,26 @@ const mapStateToProps = createSelector(
     getProductList,
     getCartTotalPrice,
     getUserAddress,
+    getUserPostalCode,
+    getUserCity,
     getCurrentRestaurant
   ],
-  (menuList, productList, totalPrice, userAddress, currentRestaurant) => {
+  (
+    menuList,
+    productList,
+    totalPrice,
+    userAddress,
+    userPostalCode,
+    userCity,
+    currentRestaurant
+  ) => {
     return {
       menuList,
       productList,
       totalPrice,
       userAddress,
+      userPostalCode,
+      userCity,
       currentRestaurant
     };
   }
@@ -55,9 +71,15 @@ const Cart = ({
   productList,
   totalPrice,
   userAddress,
+  userPostalCode,
+  userCity,
   currentRestaurant
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [cardName, setCardName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardExpiration, setCardExpiration] = useState('');
+  const [cardCVV, setCardCVV] = useState('');
 
   const _validateOrder = () => {
     setCurrentStep(2);
@@ -116,14 +138,28 @@ const Cart = ({
       <Summary
         currentRestaurant={currentRestaurant}
         userAddress={userAddress}
+        userPostalCode={userPostalCode}
+        userCity={userCity}
         setCurrentStep={(step) => setCurrentStep(step)}
         totalPrice={totalPrice}
+        cardName={cardName}
+        cardNumber={cardNumber}
+        cardExpiration={cardExpiration}
+        cardCVV={cardCVV}
       />
     );
   } else if (currentStep === 3) {
     return <Address setCurrentStep={(step) => setCurrentStep(step)} />;
   } else if (currentStep === 4) {
-    return <Card setCurrentStep={(step) => setCurrentStep(step)} />;
+    return (
+      <Card
+        setCurrentStep={(step) => setCurrentStep(step)}
+        setCardName={(name) => setCardName(name)}
+        setCardNumber={(number) => setCardNumber(number)}
+        setCardExpiration={(date) => setCardExpiration(date)}
+        setCardCVV={(cvv) => setCardCVV(cvv)}
+      />
+    );
   } else {
     <View style={styles.container}>
       <Text>Carte</Text>

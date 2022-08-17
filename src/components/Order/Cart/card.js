@@ -15,11 +15,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import i18n from '@i18n/i18n';
 
-const Card = ({ setCurrentStep }) => {
-  const [cardName, setCardName] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardExpiration, setCardExpiration] = useState('');
-  const [cardCVV, setCardCVV] = useState('');
+const Card = ({
+  setCurrentStep,
+  setCardName,
+  setCardNumber,
+  setCardExpiration,
+  setCardCVV
+}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -27,17 +29,17 @@ const Card = ({ setCurrentStep }) => {
     { label: 'VISA', value: 2 },
     { label: 'Maestro', value: 3 }
   ]);
-  const dispatch = useDispatch();
 
   const _saveUserCreditCard = () => {
-    const payload = {
-      cardName,
-      cardNumber: parseInt(cardNumber, 10),
-      cardExpiration,
-      cardCVV: parseInt(cardCVV, 10),
-      cardType: value
-    };
-    console.log('payload :>> ', payload);
+    setCurrentStep(2);
+    // const payload = {
+    //   cardName,
+    //   cardNumber: parseInt(cardNumber, 10),
+    //   cardExpiration,
+    //   cardCVV: parseInt(cardCVV, 10),
+    //   cardType: value
+    // };
+    // console.log('payload :>> ', payload);
     // dispatch(updateUser({ payload }));
   };
 

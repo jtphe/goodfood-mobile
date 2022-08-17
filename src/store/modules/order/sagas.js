@@ -3,7 +3,8 @@ import {
   U_LOAD_CURRENT_FOOD,
   M_SET_CURRENT_FOODS,
   M_UPDATE_ORDER_STEP,
-  U_LOAD_FOOD_TYPE
+  U_LOAD_FOOD_TYPE,
+  U_CREATE_ORDER
 } from '@store/modules/order/actions';
 import {
   getToken,
@@ -56,7 +57,24 @@ function* loadFoodType({ payload }) {
   }
 }
 
+function* createOrder() {
+  try {
+    const token = yield select(getToken);
+    const query = {
+      method: 'get',
+      url: `${Config.API_URL}order/`,
+      headers: {
+        token
+      }
+    };
+    const foods = yield call(fetchService.request, query);
+  } catch (e) {
+    console.log('Error while creating order => ', e);
+  }
+}
+
 export default function* watchOrder() {
   yield takeLatest(U_LOAD_CURRENT_FOOD, loadCurrentFood);
   yield takeLatest(U_LOAD_FOOD_TYPE, loadFoodType);
+  yield takeLatest(U_CREATE_ORDER, createOrder);
 }

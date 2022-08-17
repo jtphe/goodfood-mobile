@@ -9,19 +9,77 @@ import {
 import { colors } from '@config/';
 import { TextInput, Button } from 'react-native-paper';
 import { connect, useDispatch } from 'react-redux';
+import { updateUser } from '@store/modules/user/actions';
 import Icon from 'react-native-vector-icons/AntDesign';
 import i18n from '@i18n/i18n';
 
 const Address = ({ setCurrentStep }) => {
   const [address, setAddress] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [city, setCity] = useState('');
+  const [errorAddress, setErrorAddress] = useState(false);
+  const [errorPostalCode, setErrorPostalCode] = useState(false);
+  const [errorCity, setErrorCity] = useState(false);
   const dispatch = useDispatch();
 
   const _saveUserAddress = () => {
-    const payload = {
-      address
-    };
-    console.log('payload :>> ', payload);
-    // dispatch(updateUser({ payload }));
+    const addressLength = address.trim().length;
+    const postalCodeLength = postalCode.trim().length;
+    const cityLength = city.trim().length;
+
+    if (addressLength > 0 && postalCodeLength > 0 && cityLength > 0) {
+      const payload = {
+        address,
+        postalCode,
+        city
+      };
+      dispatch(updateUser({ payload }));
+      setCurrentStep(2);
+    } else if (
+      addressLength === 0 &&
+      postalCodeLength === 0 &&
+      cityLength === 0
+    ) {
+      setErrorAddress(true);
+      setErrorPostalCode(true);
+      setErrorCity(true);
+    } else if (
+      addressLength > 0 &&
+      postalCodeLength === 0 &&
+      cityLength === 0
+    ) {
+      setErrorAddress(false);
+      setErrorPostalCode(true);
+      setErrorCity(true);
+    } else if (
+      addressLength === 0 &&
+      postalCodeLength > 0 &&
+      cityLength === 0
+    ) {
+      setErrorAddress(true);
+      setErrorPostalCode(false);
+      setErrorCity(true);
+    } else if (
+      addressLength === 0 &&
+      postalCodeLength === 0 &&
+      cityLength > 0
+    ) {
+      setErrorAddress(true);
+      setErrorPostalCode(true);
+      setErrorCity(false);
+    } else if (addressLength > 0 && postalCodeLength > 0 && cityLength === 0) {
+      setErrorAddress(false);
+      setErrorPostalCode(false);
+      setErrorCity(true);
+    } else if (addressLength > 0 && postalCodeLength === 0 && cityLength > 0) {
+      setErrorAddress(false);
+      setErrorPostalCode(true);
+      setErrorCity(false);
+    } else if (addressLength === 0 && postalCodeLength > 0 && cityLength > 0) {
+      setErrorAddress(true);
+      setErrorPostalCode(false);
+      setErrorCity(false);
+    }
   };
 
   return (
@@ -47,6 +105,37 @@ const Address = ({ setCurrentStep }) => {
         onChangeText={(txt) => {
           setAddress(txt);
         }}
+        error={errorAddress}
+        autoCapitalize="none"
+        returnKeyType="next"
+      />
+      <TextInput
+        mode="outlined"
+        outlineColor={colors.DARK_GREY}
+        activeOutlineColor={colors.DARK_GREY}
+        selectionColor={colors.DARK_GREY}
+        placeholder={i18n.t('accountPage.postalCode')}
+        style={styles.input}
+        keyboardType="numeric"
+        maxLength={5}
+        onChangeText={(txt) => {
+          setPostalCode(txt);
+        }}
+        error={errorPostalCode}
+        autoCapitalize="none"
+        returnKeyType="next"
+      />
+      <TextInput
+        mode="outlined"
+        outlineColor={colors.DARK_GREY}
+        activeOutlineColor={colors.DARK_GREY}
+        selectionColor={colors.DARK_GREY}
+        placeholder={i18n.t('accountPage.city')}
+        style={styles.input}
+        onChangeText={(txt) => {
+          setCity(txt);
+        }}
+        error={errorCity}
         autoCapitalize="none"
         returnKeyType="done"
       />

@@ -4,7 +4,9 @@ import {
   M_SET_USER,
   U_SIGN_IN,
   U_LOAD_USER_FAVORITE_RESTAURANT,
-  M_UPDATE_USER_FAVORITE_RESTAURANT
+  M_UPDATE_USER_FAVORITE_RESTAURANT,
+  U_UPDATE_USER,
+  M_UPDATE_USER_ADDRESS
 } from '@store/modules/user/actions';
 import { errorHandler } from '@helpers/errorHandler';
 import { showToast } from '@helpers/showToast';
@@ -81,7 +83,38 @@ function* loadUserFavoriteRestaurant() {
   }
 }
 
+function* updateUser({ payload }) {
+  try {
+    const token = yield select(getToken);
+    const user = yield select(getUser);
+    const { firstName, lastName, address, postalCode, city } = payload;
+
+    const query = {
+      method: 'put',
+      url: `${Config.API_URL}users/${user.id}`,
+      headers: {
+        token
+      },
+      data: {
+        firstName: firstName || null,
+        lastName: lastName || null,
+        address: address || null,
+        postalCode: postalCode || null,
+        city: city || null
+      }
+    };
+    const res = yield call(fetchService.request, query);
+    console.log('res :>> ', res);
+    if (res.status === 200) {
+      yield put({ type: M_UPDATE_USER_ADDRESS, address, postalCode, city });
+    }
+  } catch (e) {
+    console.log('Error while updating user =>  :>> ', e);
+  }
+}
+
 export default function* watchUser() {
+  yield takeLatest(U_UPDATE_USER, updateUser);
   yield takeLatest(U_SIGN_UP, signUp);
   yield takeLatest(U_SIGN_IN, signIn);
   yield takeLatest(U_LOAD_USER_FAVORITE_RESTAURANT, loadUserFavoriteRestaurant);
