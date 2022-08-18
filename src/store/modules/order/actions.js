@@ -9,6 +9,14 @@ export const M_REMOVE_LAST_ITEM_CART = 'M_REMOVE_LAST_ITEM_CART';
 export const M_UPDATE_PRODUCT_LIST = 'M_UPDATE_PRODUCT_LIST';
 export const M_REMOVE_MENU = 'M_REMOVE_MENU';
 export const U_CREATE_ORDER = 'U_CREATE_ORDER';
+export const M_SET_ORDER_PROCESS_STATUS = 'M_SET_ORDER_PROCESS_STATUS';
+export const M_RESET_ORDER = 'M_RESET_ORDER';
+export const M_UPDATE_PROCESS_STATUS = 'M_UPDATE_PROCESS_STATUS';
+
+export const updateProcessStatus = ({ payload }) => ({
+  type: M_UPDATE_PROCESS_STATUS,
+  payload
+});
 
 export const createOrder = () => ({
   type: U_CREATE_ORDER

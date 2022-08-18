@@ -7,7 +7,10 @@ import {
   M_ADD_PRODUCT_TO_CART,
   M_REMOVE_LAST_ITEM_CART,
   M_UPDATE_PRODUCT_LIST,
-  M_REMOVE_MENU
+  M_REMOVE_MENU,
+  M_SET_ORDER_PROCESS_STATUS,
+  M_RESET_ORDER,
+  M_UPDATE_PROCESS_STATUS
 } from '@store/modules/order/actions';
 import update from 'immutability-helper';
 import { roundToTwo } from '@helpers/roundToTwo';
@@ -17,11 +20,45 @@ const initialState = {
   currentFoods: null,
   menuList: [],
   productList: [],
-  cartTotalPrice: 0
+  cartTotalPrice: 0,
+  processStatus: {
+    created: false
+  }
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case M_UPDATE_PROCESS_STATUS: {
+      return update(state, {
+        processStatus: {
+          created: {
+            $set: action.payload.created
+          }
+        }
+      });
+    }
+    case M_RESET_ORDER: {
+      return update(state, {
+        menuList: {
+          $set: []
+        },
+        productList: {
+          $set: []
+        },
+        cartTotalPrice: {
+          $set: 0
+        }
+      });
+    }
+    case M_SET_ORDER_PROCESS_STATUS: {
+      return update(state, {
+        processStatus: {
+          created: {
+            $set: action.created
+          }
+        }
+      });
+    }
     case M_REMOVE_MENU: {
       const menuIndex = state.menuList.findIndex(
         (menu) => menu.id === action.payload.menu.id

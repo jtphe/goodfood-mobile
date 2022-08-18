@@ -35,6 +35,7 @@ const Summary = ({
 
   const _payOrder = () => {
     if (userAddressParsed.length > 0 && isCardValid) {
+      setCurrentStep(5);
       dispatch(createOrder());
     }
   };
@@ -97,7 +98,11 @@ const Summary = ({
             </Text>
           </TouchableOpacity>
         ) : (
-          <Text>{cardNumber}</Text>
+          <View style={styles.containerCardNumber}>
+            <Text style={styles.cardNumber}>
+              {`*************${cardNumber.slice(-3)}`}
+            </Text>
+          </View>
         )}
       </View>
       <View style={styles.footer}>
@@ -117,6 +122,14 @@ const Summary = ({
 };
 
 const styles = StyleSheet.create({
+  cardNumber: { fontSize: 16, opacity: 0.5 },
+  containerCardNumber: {
+    borderWidth: 1,
+    borderColor: colors.DARK_GREY,
+    paddingVertical: 18,
+    paddingHorizontal: 12,
+    borderRadius: 6
+  },
   userAddress: {
     fontWeight: '600',
     fontSize: 16,

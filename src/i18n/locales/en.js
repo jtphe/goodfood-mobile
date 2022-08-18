@@ -118,7 +118,9 @@ export default {
     cardType: 'Type of the card',
     cardNumber: 'Card number',
     cardExpiration: 'Exp.date(MM/YY)',
-    cardCVV: 'CVV'
+    cardCVV: 'CVV',
+    orderPlaced: 'YOUR ORDER HAS BEEN PLACED!',
+    errorOrderPlaced: 'AN ERROR HAS APPEARED... PLEASE TRY AGAIN'
   },
   accountPage: {
     screenTitle: 'Account',

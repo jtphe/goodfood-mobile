@@ -10,12 +10,15 @@ import {
 } from 'react-native';
 import { colors } from '@config/';
 import { Button } from 'react-native-paper';
-import { connect, useDispatch } from 'react-redux';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import i18n from '@i18n/i18n';
 
 const Card = ({
+  cardName,
+  cardNumber,
+  cardExpiration,
+  cardCVV,
   setCurrentStep,
   setCardName,
   setCardNumber,
@@ -31,7 +34,14 @@ const Card = ({
   ]);
 
   const _saveUserCreditCard = () => {
-    setCurrentStep(2);
+    if (
+      cardName.length > 0 &&
+      cardNumber.length > 0 &&
+      cardExpiration.length > 0 &&
+      cardCVV > 0
+    ) {
+      setCurrentStep(2);
+    }
     // const payload = {
     //   cardName,
     //   cardNumber: parseInt(cardNumber, 10),
@@ -117,9 +127,16 @@ const Card = ({
           placeholder={i18n.t('orderPage.cardExpiration')}
           style={[styles.input, styles.expCVV]}
           onChangeText={(txt) => {
-            setCardExpiration(txt);
+            if (txt.length === 2 && cardExpiration.slice(-1) !== '/') {
+              setCardExpiration(`${txt}/`);
+            } else {
+              setCardExpiration(txt);
+            }
           }}
           autoCapitalize="none"
+          maxLength={5}
+          keyboardType="numeric"
+          value={cardExpiration}
         />
         <TextInput
           placeholder={i18n.t('orderPage.cardCVV')}
@@ -216,4 +233,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(Card);
+export default Card;

@@ -12,12 +12,14 @@ import { connect, useDispatch } from 'react-redux';
 import {
   getMenuList,
   getProductList,
-  getCartTotalPrice
+  getCartTotalPrice,
+  getProcessStatus
 } from '@store/modules/order/selectors';
 import {
   removeLastItemCart,
   updateProductList,
-  removeMenu
+  removeMenu,
+  updateProcessStatus
 } from '@store/modules/order/actions';
 import {
   getUserAddress,
@@ -34,6 +36,7 @@ import i18n from '@i18n/i18n';
 import Summary from '@components/Order/Cart/summary';
 import Address from '@components/Order/Cart/address';
 import Card from '@components/Order/Cart/card';
+import OrderPlaced from '@components/Order/Cart/orderPlaced';
 
 const mapStateToProps = createSelector(
   [
@@ -43,7 +46,8 @@ const mapStateToProps = createSelector(
     getUserAddress,
     getUserPostalCode,
     getUserCity,
-    getCurrentRestaurant
+    getCurrentRestaurant,
+    getProcessStatus
   ],
   (
     menuList,
@@ -52,7 +56,8 @@ const mapStateToProps = createSelector(
     userAddress,
     userPostalCode,
     userCity,
-    currentRestaurant
+    currentRestaurant,
+    processStatus
   ) => {
     return {
       menuList,
@@ -61,7 +66,8 @@ const mapStateToProps = createSelector(
       userAddress,
       userPostalCode,
       userCity,
-      currentRestaurant
+      currentRestaurant,
+      processStatus
     };
   }
 );
@@ -73,16 +79,27 @@ const Cart = ({
   userAddress,
   userPostalCode,
   userCity,
-  currentRestaurant
+  currentRestaurant,
+  processStatus
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [cardName, setCardName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [cardExpiration, setCardExpiration] = useState('');
   const [cardCVV, setCardCVV] = useState('');
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const _validateOrder = () => {
     setCurrentStep(2);
+  };
+
+  const _closeModal = () => {
+    navigation.goBack();
+    const payload = {
+      created: false
+    };
+    dispatch(updateProcessStatus({ payload }));
   };
 
   if (currentStep === 1) {
@@ -153,6 +170,10 @@ const Cart = ({
   } else if (currentStep === 4) {
     return (
       <Card
+        cardName={cardName}
+        cardNumber={cardNumber}
+        cardExpiration={cardExpiration}
+        cardCVV={cardCVV}
         setCurrentStep={(step) => setCurrentStep(step)}
         setCardName={(name) => setCardName(name)}
         setCardNumber={(number) => setCardNumber(number)}
@@ -161,9 +182,12 @@ const Cart = ({
       />
     );
   } else {
-    <View style={styles.container}>
-      <Text>Carte</Text>
-    </View>;
+    return (
+      <OrderPlaced
+        processStatus={processStatus}
+        closeModal={() => _closeModal()}
+      />
+    );
   }
 };
 

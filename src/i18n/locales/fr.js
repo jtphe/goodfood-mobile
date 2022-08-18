@@ -120,7 +120,9 @@ export default {
     cardType: 'Type de la carte',
     cardNumber: 'Numéro de la carte',
     cardExpiration: 'Exp.date(MM/AA)',
-    cardCVV: 'CVV'
+    cardCVV: 'CVV',
+    orderPlaced: 'VOTRE COMMANDE A BIEN ÉTÉ PASSÉE !',
+    errorOrderPlaced: 'UNE ERREUR EST APPARUE... VEUILLEZ RÉESSAYEZ'
   },
   accountPage: {
     screenTitle: 'Compte',

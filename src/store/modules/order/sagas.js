@@ -4,12 +4,19 @@ import {
   M_SET_CURRENT_FOODS,
   M_UPDATE_ORDER_STEP,
   U_LOAD_FOOD_TYPE,
-  U_CREATE_ORDER
+  U_CREATE_ORDER,
+  M_SET_ORDER_PROCESS_STATUS,
+  M_RESET_ORDER
 } from '@store/modules/order/actions';
 import {
   getToken,
   getUserFavoriteRestaurant
 } from '@store/modules/user/selectors';
+import {
+  getMenuList,
+  getProductList,
+  getCartTotalPrice
+} from '@store/modules/order/selectors';
 import Config from 'react-native-config';
 import fetchService from '@api/fetchService';
 
@@ -60,15 +67,32 @@ function* loadFoodType({ payload }) {
 function* createOrder() {
   try {
     const token = yield select(getToken);
+    const menuList = yield select(getMenuList);
+    const productList = yield select(getProductList);
+    const restaurant = yield select(getUserFavoriteRestaurant);
+    const price = yield select(getCartTotalPrice);
+
     const query = {
-      method: 'get',
-      url: `${Config.API_URL}order/`,
+      method: 'post',
+      url: `${Config.API_URL}restaurants/${restaurant.id}/orders`,
       headers: {
         token
+      },
+      data: {
+        products: productList,
+        menus: menuList,
+        price,
+        type: 2, // a voir ce que c'est
+        payment: 'Paid'
       }
     };
-    const foods = yield call(fetchService.request, query);
+    const orderCreated = yield call(fetchService.request, query);
+    if (orderCreated.message === 'Order Created') {
+      yield put({ type: M_SET_ORDER_PROCESS_STATUS, created: true });
+      yield put({ type: M_RESET_ORDER });
+    }
   } catch (e) {
+    yield put({ type: M_SET_ORDER_PROCESS_STATUS, created: false });
     console.log('Error while creating order => ', e);
   }
 }
