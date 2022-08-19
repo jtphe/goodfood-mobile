@@ -17,6 +17,7 @@ import {
   getProductList,
   getCartTotalPrice
 } from '@store/modules/order/selectors';
+import { getCurrentRestaurant } from '@store/modules/restaurant/selectors';
 import Config from 'react-native-config';
 import fetchService from '@api/fetchService';
 
@@ -70,11 +71,15 @@ function* createOrder() {
     const menuList = yield select(getMenuList);
     const productList = yield select(getProductList);
     const restaurant = yield select(getUserFavoriteRestaurant);
+    const currentRestaurant = yield select(getCurrentRestaurant);
     const price = yield select(getCartTotalPrice);
+    const restaurantId = currentRestaurant
+      ? currentRestaurant.id
+      : restaurant.id;
 
     const query = {
       method: 'post',
-      url: `${Config.API_URL}restaurants/${restaurant.id}/orders`,
+      url: `${Config.API_URL}restaurants/${restaurantId}/orders`,
       headers: {
         token
       },

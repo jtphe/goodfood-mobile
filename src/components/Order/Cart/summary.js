@@ -40,6 +40,10 @@ const Summary = ({
     }
   };
 
+  const _parsedAddress = () => {
+    return `${currentRestaurant.address}, ${currentRestaurant.postalcode} ${currentRestaurant.city}`;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerSummary}>
@@ -76,7 +80,11 @@ const Summary = ({
           )
         ) : (
           <View>
-            <Text>{i18n.t('home.btnTakeaway')}</Text>
+            <Text style={styles.titleHomeDelivery}>
+              {i18n.t('home.btnTakeaway')}
+            </Text>
+            <Text style={styles.userAddress}>{currentRestaurant.name}</Text>
+            <Text style={styles.userAddress}>{_parsedAddress()}</Text>
           </View>
         )}
       </View>

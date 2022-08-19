@@ -19,7 +19,8 @@ import {
   removeLastItemCart,
   updateProductList,
   removeMenu,
-  updateProcessStatus
+  updateProcessStatus,
+  cancelOrder
 } from '@store/modules/order/actions';
 import {
   getUserAddress,
@@ -282,6 +283,13 @@ const RowProduct = ({ item, quantity, price }) => {
 
 const Header = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const _cancelOrder = () => {
+    dispatch(cancelOrder());
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.containerHeader}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -293,11 +301,20 @@ const Header = () => {
         />
       </TouchableOpacity>
       <Text style={styles.headerTitle}>{i18n.t('orderPage.yourCart')}</Text>
+      <TouchableOpacity onPress={() => _cancelOrder()}>
+        <Text style={styles.cancelOrder}>{i18n.t('button.cancel')}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  cancelOrder: {
+    color: colors.RED,
+    marginRight: 18,
+    fontSize: 16,
+    fontWeight: '600'
+  },
   subTotalPrice: { fontWeight: 'bold', fontSize: 16 },
   subTotalText: { fontWeight: 'bold', fontSize: 16, flex: 1 },
   rowSubtotal: { flexDirection: 'row' },

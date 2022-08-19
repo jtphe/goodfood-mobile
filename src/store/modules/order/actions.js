@@ -13,6 +13,10 @@ export const M_SET_ORDER_PROCESS_STATUS = 'M_SET_ORDER_PROCESS_STATUS';
 export const M_RESET_ORDER = 'M_RESET_ORDER';
 export const M_UPDATE_PROCESS_STATUS = 'M_UPDATE_PROCESS_STATUS';
 
+export const cancelOrder = () => ({
+  type: M_RESET_ORDER
+});
+
 export const updateProcessStatus = ({ payload }) => ({
   type: M_UPDATE_PROCESS_STATUS,
   payload
