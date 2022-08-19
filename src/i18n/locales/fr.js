@@ -136,6 +136,8 @@ export default {
     firstNamePlaceholder: 'Entrez votre prénom',
     lastNamePlaceholder: 'Entrez votre nom',
     addressPlaceholder: 'Entrez votre adresse postale',
+    postalCodePlaceholder: 'Entrez votre code postale',
+    cityPlaceholder: 'Entrez votre ville',
     personalInfoTitle: 'MES INFORMATIONS PERSONNELLES',
     connectionInfoTitle: 'MES INFORMATIONS DE CONNEXION',
     favoriteRestaurant: 'MON RESTAURANT FAVORIS',
@@ -150,7 +152,8 @@ export default {
     error1: 'Les champs de textes ne peuvent être vide',
     error2: 'Les nouveaux mots de passe ne correspondent pas',
     error3: 'Le nouveau mot de passe doit contenir au moins 8 caractères',
-    error4: "L'ancien mot de passe est incorrect"
+    error4: "L'ancien mot de passe est incorrect",
+    userUpdated: 'Utilisateur mis à jour !'
   },
   categories: {
     burger: 'Burger',

@@ -112,6 +112,8 @@ const Profile = ({ navigation, user }) => {
               firstname={user.firstname}
               lastname={user.lastname}
               address={user.address}
+              postalCode={user.postalcode}
+              city={user.city}
             />
           </View>
         </View>

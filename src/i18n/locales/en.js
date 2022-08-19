@@ -134,6 +134,8 @@ export default {
     firstNamePlaceholder: 'Enter your first name',
     lastNamePlaceholder: 'Enter your last name',
     addressPlaceholder: 'Enter your postal address',
+    postalCodePlaceholder: 'Enter your postal code',
+    cityPlaceholder: 'Enter your city',
     personalInfoTitle: 'MY PERSONAL INFORMATION',
     connectionInfoTitle: 'MY CONNECTION INFORMATION',
     favoriteRestaurant: 'MY FAVORITE RESTAURANT',
@@ -148,7 +150,8 @@ export default {
     error1: 'Fields cannot be empty',
     error2: 'Passwords do not match',
     error3: 'New password requires at least 8 characters',
-    error4: 'Old password incorrect'
+    error4: 'Old password incorrect',
+    userUpdated: 'User updated !'
   },
   categories: {
     burger: 'Burger',

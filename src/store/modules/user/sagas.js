@@ -6,7 +6,7 @@ import {
   U_LOAD_USER_FAVORITE_RESTAURANT,
   M_UPDATE_USER_FAVORITE_RESTAURANT,
   U_UPDATE_USER,
-  M_UPDATE_USER_ADDRESS
+  M_UPDATE_USER
 } from '@store/modules/user/actions';
 import { errorHandler } from '@helpers/errorHandler';
 import { showToast } from '@helpers/showToast';
@@ -104,9 +104,17 @@ function* updateUser({ payload }) {
       }
     };
     const res = yield call(fetchService.request, query);
-    console.log('res :>> ', res);
     if (res.status === 200) {
-      yield put({ type: M_UPDATE_USER_ADDRESS, address, postalCode, city });
+      yield put({
+        type: M_UPDATE_USER,
+        address: address || user.address,
+        postalCode: postalCode || user.postalcode,
+        city: city || user.city,
+        firstName: firstName || user.firstname,
+        lastName: lastName || user.lastname
+      });
+
+      showToast(i18n.t('accountPage.userUpdated'), true);
     }
   } catch (e) {
     console.log('Error while updating user =>  :>> ', e);
