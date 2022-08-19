@@ -9,6 +9,10 @@ import OrderDetails from '@components/Order/orderDetails';
 import PasswordEdit from '@components/Profile/PasswordEdit';
 import RestaurantDetails from '@components/Restaurant/RestaurantDetails';
 import AddComment from '@components/Restaurant/RestaurantDetails/addComment';
+import OrderProcess from '@components/Order/Process/index';
+import OrderProcessProduct from '@components/Order/ProcessProduct/index';
+import RestaurantList from '@components/Restaurant/restaurantList';
+import Cart from '@components/Order/Cart';
 import i18n from '@i18n/i18n';
 
 const Navigation = () => {
@@ -39,7 +43,6 @@ const Navigation = () => {
               }}
             />
           </Stack.Group>
-
           <Stack.Group screenOptions={{ presentation: 'modal' }}>
             <Stack.Screen
               name={i18n.t('restaurant.addComment')}
@@ -62,6 +65,19 @@ const Navigation = () => {
                 headerShown: false
               }}
             />
+            <Stack.Screen
+              name={i18n.t('orderPage.orderProcessTitle')}
+              component={OrderProcess}
+            />
+            <Stack.Screen
+              name={i18n.t('orderPage.orderProcessProductTitle')}
+              component={OrderProcessProduct}
+            />
+            <Stack.Screen
+              name={i18n.t('restaurant.list')}
+              component={RestaurantList}
+            />
+            <Stack.Screen name={i18n.t('order.yourCart')} component={Cart} />
           </Stack.Group>
 
           <Stack.Screen

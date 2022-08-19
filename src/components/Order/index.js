@@ -1,10 +1,11 @@
 /* eslint-disable global-require */
 import React from 'react';
 import OrderItem from '@components/Order/orderItem';
+import CartBanner from '@shared/cartBanner';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import i18n from 'i18n-js';
+import i18n from '@i18n/i18n';
 
 const Order = ({ navigation }) => {
   const fictionalDataOrders = [
@@ -71,10 +72,11 @@ const Order = ({ navigation }) => {
       ]
     }
   ];
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t('orderPage.mainTitle')}</Text>
-      <>
+      <View style={styles.containerContent}>
         <Text style={styles.oldOrdersTitle}>
           {i18n.t('orderPage.oldOrdersTitle')}
         </Text>
@@ -87,16 +89,17 @@ const Order = ({ navigation }) => {
             <OrderItem navigation={navigation} order={item} />
           )}
         />
-      </>
+      </View>
+      <CartBanner />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  containerContent: { paddingLeft: 24 },
   container: {
     flex: 1,
     ...ifIphoneX({ paddingTop: calcHeight(7) }, { paddingTop: calcHeight(3) }),
-    paddingLeft: 24,
     backgroundColor: 'white'
   },
   title: { alignSelf: 'center', fontSize: 24, fontWeight: 'bold' },

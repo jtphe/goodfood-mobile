@@ -1,7 +1,16 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import { U_SIGN_UP, M_SET_USER, U_SIGN_IN } from '@store/modules/user/actions';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
+import {
+  U_SIGN_UP,
+  M_SET_USER,
+  U_SIGN_IN,
+  U_LOAD_USER_FAVORITE_RESTAURANT,
+  M_UPDATE_USER_FAVORITE_RESTAURANT,
+  U_UPDATE_USER,
+  M_UPDATE_USER_ADDRESS
+} from '@store/modules/user/actions';
 import { errorHandler } from '@helpers/errorHandler';
 import { showToast } from '@helpers/showToast';
+import { getToken, getUser } from '@store/modules/user/selectors';
 import i18n from '@i18n/i18n';
 import Config from 'react-native-config';
 import fetchService from '@api/fetchService';
@@ -52,7 +61,61 @@ function* signIn({ payload }) {
   }
 }
 
+// Plus nécessaire car plus besoin de l'appeler car restaurant Object et plus id
+function* loadUserFavoriteRestaurant() {
+  try {
+    const token = yield select(getToken);
+    const user = yield select(getUser);
+
+    const query = {
+      method: 'get',
+      url: `${Config.API_URL}restaurants/${user.restaurant.id}`,
+      headers: {
+        token
+      }
+    };
+
+    const restaurant = yield call(fetchService.request, query);
+
+    yield put({ type: M_UPDATE_USER_FAVORITE_RESTAURANT, restaurant });
+  } catch (e) {
+    console.log('Error while loading user favorite restaurant => ', e);
+  }
+}
+
+function* updateUser({ payload }) {
+  try {
+    const token = yield select(getToken);
+    const user = yield select(getUser);
+    const { firstName, lastName, address, postalCode, city } = payload;
+
+    const query = {
+      method: 'put',
+      url: `${Config.API_URL}users/${user.id}`,
+      headers: {
+        token
+      },
+      data: {
+        firstName: firstName || null,
+        lastName: lastName || null,
+        address: address || null,
+        postalCode: postalCode || null,
+        city: city || null
+      }
+    };
+    const res = yield call(fetchService.request, query);
+    console.log('res :>> ', res);
+    if (res.status === 200) {
+      yield put({ type: M_UPDATE_USER_ADDRESS, address, postalCode, city });
+    }
+  } catch (e) {
+    console.log('Error while updating user =>  :>> ', e);
+  }
+}
+
 export default function* watchUser() {
+  yield takeLatest(U_UPDATE_USER, updateUser);
   yield takeLatest(U_SIGN_UP, signUp);
   yield takeLatest(U_SIGN_IN, signIn);
+  yield takeLatest(U_LOAD_USER_FAVORITE_RESTAURANT, loadUserFavoriteRestaurant);
 }

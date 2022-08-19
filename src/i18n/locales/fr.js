@@ -13,7 +13,18 @@ export default {
     removed: 'Le restaurant favoris a été supprimé',
     addComment: 'Ajouter un avis',
     addCommentPlaceholder: 'Écrivez un commentaire...',
-    addRating: 'Noter le restaurant'
+    addRating: 'Noter le restaurant',
+    list: 'Liste des restaurants',
+    noRestaurant:
+      "Vous n'avez pas de restaurant encore ! Choisissez un restaurant parmis les suivants",
+    restaurantChoice: 'Choix du restaurant'
+  },
+  search: {
+    title: 'NOTRE CARTE',
+    subtitle:
+      'Aucune excuse, faites vous plaisir : il y en a pour tous les goûts !',
+    noAddress:
+      'Veuillez ajouter un restaurant favoris dans les paramètres de votre compte'
   },
   home: {
     screenTitle: 'Accueil',
@@ -47,7 +58,8 @@ export default {
     emailAndPasswordIncorrect: 'Vérifiez vos identifiants',
     passwordNotTheSame: 'Les mots de passe ne correspondent pas',
     accountAlreadyExists: 'Ce compte existe déjà',
-    default: 'Une erreur est apparue'
+    default: 'Une erreur est apparue',
+    postalCodeNotNumber: 'Le code postal doit être des chiffres'
   },
   connection: {
     disconnected: 'Recherche de connexion en cours...',
@@ -72,13 +84,53 @@ export default {
     totalPrice: '{{totalPrice}}€',
     itemMenu: '1 x {{itemType}}',
     itemCustom: '{{quantity}} x {{productName}}',
-    orderDate: 'Commande passé le {{date}}'
+    orderDate: 'Commande passé le {{date}}',
+    orderProcessTitle: 'Process commande',
+    orderStep: 'ÉTAPE {{step}}',
+    finalStep: 'ÉTAPE FINALE',
+    stepOne: 'Choisissez votre type de plat !',
+    chooseFoodType: 'Choisissez {{foodType}}',
+    chooseSnack: 'Choisissez un accompagnement',
+    chooseDrink: 'Choisissez une boisson',
+    recap: 'Récapitulatif de votre commande',
+    orderBurger: 'un burger',
+    orderTacos: 'un tacos',
+    orderPizza: 'une pizza',
+    orderSandwich: 'un sandwich',
+    orderSnacks: 'un snack',
+    orderDrink: 'une boisson',
+    addToCart: 'Ajouter au panier',
+    orderProcessProductTitle: 'Process commande produit',
+    quantityPrice: 'Prix: {{totalPrice}}€',
+    yourCart: 'Votre panier',
+    displayCart: 'Afficher le panier',
+    subTotal: 'Sous-total',
+    validateOrder: 'Valider la commande',
+    payOrder: 'Payer',
+    summary: 'RÉCAPITULATIF',
+    homeDelivery: 'Livraison à domicile',
+    addDeliveryAddress: '+ Ajouter une adresse de livraison',
+    paymentMethod: 'Moyen de paiement',
+    addPaymentMethod: '+ Ajouter un moyen de paiement',
+    deliveryAddress: 'Adresse de livraison',
+    missingDeliveryAddress: 'Ajouter une adresse de domicile pour la livraison',
+    creditCard: 'Carte de crédit',
+    addCreditCard: 'Ajouter une carte bancaire',
+    cardName: 'Nom de la carte',
+    cardType: 'Type de la carte',
+    cardNumber: 'Numéro de la carte',
+    cardExpiration: 'Exp.date(MM/AA)',
+    cardCVV: 'CVV',
+    orderPlaced: 'VOTRE COMMANDE A BIEN ÉTÉ PASSÉE !',
+    errorOrderPlaced: 'UNE ERREUR EST APPARUE... VEUILLEZ RÉESSAYEZ'
   },
   accountPage: {
     screenTitle: 'Compte',
     firstName: 'Prénom',
     lastName: 'Nom',
     address: 'Adresse du domicile',
+    postalCode: 'Code postal',
+    city: 'Ville',
     email: 'Adresse e-mail',
     password: 'Mot de passe',
     firstNamePlaceholder: 'Entrez votre prénom',
@@ -86,6 +138,8 @@ export default {
     addressPlaceholder: 'Entrez votre adresse postale',
     personalInfoTitle: 'MES INFORMATIONS PERSONNELLES',
     connectionInfoTitle: 'MES INFORMATIONS DE CONNEXION',
+    favoriteRestaurant: 'MON RESTAURANT FAVORIS',
+    updateFavoriteRestaurant: 'Modifier mon restaurant favoris',
     edit: 'Éditer',
     logout: 'Déconnexion',
     dialogLogoutContent: 'Tu es sûr(e) de vouloir te déconnecter ?',
@@ -102,7 +156,10 @@ export default {
     burger: 'Burger',
     tacos: 'Tacos',
     pizza: 'Pizzas',
-    sandwich: 'Sandwich'
+    sandwich: 'Sandwich',
+    menu: 'Menu',
+    snacks: 'Snacks',
+    drink: 'Boissons'
   },
   button: {
     back: 'Retour',
@@ -110,7 +167,8 @@ export default {
     save: 'Enregistrer',
     logout: 'Déconnexion',
     order: 'Commander',
-    add: 'Ajouter'
+    add: 'Ajouter',
+    choose: 'Choisir'
   },
   camera: {
     needCameraPermissions:

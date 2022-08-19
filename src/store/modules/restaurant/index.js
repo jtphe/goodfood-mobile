@@ -6,7 +6,8 @@ import {
   M_SET_COMMENTS,
   M_SET_CURRENT_RESTAURANT,
   M_ADD_COMMENT,
-  M_DELETE_COMMENT
+  M_DELETE_COMMENT,
+  M_RESET_CURRENT_RESTAURANT
 } from '@store/modules/restaurant/actions';
 
 const initialState = {
@@ -16,6 +17,12 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case M_RESET_CURRENT_RESTAURANT:
+      return update(state, {
+        currentRestaurant: {
+          $set: null
+        }
+      });
     case M_DELETE_COMMENT: {
       const index = state.currentRestaurant.comments?.findIndex(
         (comment) => comment.id === action.id

@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import InputFields from '@components/Profile/inputFields';
 import DialogLogout from '@components/Profile/dialogLogout';
-import i18n from 'i18n-js';
+import i18n from '@i18n/i18n';
 import ImageCropPicker from 'react-native-image-crop-picker';
+import CartBanner from '@shared/cartBanner';
 import { logout } from '@store/modules/app/actions';
 import {
   View,
@@ -12,7 +13,8 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  Platform
+  Platform,
+  ScrollView
 } from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
@@ -81,6 +83,10 @@ const Profile = ({ navigation, user }) => {
     dispatch(logout({ payload }));
   };
 
+  const _openFavoriteRestaurantModal = () => {
+    navigation.navigate(i18n.t('restaurant.list'));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -94,54 +100,71 @@ const Profile = ({ navigation, user }) => {
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.containerPersonalInfo}>
-        <View style={styles.containerPersonalInfosTitle}>
-          <Text style={styles.personalInfoTitle}>
-            {i18n.t('accountPage.personalInfoTitle')}
-          </Text>
+      <ScrollView>
+        <View style={styles.containerPersonalInfo}>
+          <View style={styles.containerPersonalInfosTitle}>
+            <Text style={styles.personalInfoTitle}>
+              {i18n.t('accountPage.personalInfoTitle')}
+            </Text>
+          </View>
+          <View>
+            <InputFields
+              firstname={user.firstname}
+              lastname={user.lastname}
+              address={user.address}
+            />
+          </View>
         </View>
-        <View>
-          <InputFields
-            firstname={user.firstname}
-            lastname={user.lastname}
-            address={user.address}
-          />
+        <View style={styles.containerPersonalInfo}>
+          <View style={styles.containerPersonalInfosTitle}>
+            <Text style={styles.personalInfoTitle}>
+              {i18n.t('accountPage.favoriteRestaurant')}
+            </Text>
+          </View>
+          <View style={styles.containerConnectionRow}>
+            <TouchableOpacity onPress={() => _openFavoriteRestaurantModal()}>
+              <Text style={styles.updateFavoriteRestaurant}>
+                {i18n.t('accountPage.updateFavoriteRestaurant')}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.containerConnectionInfo}>
-        <View style={styles.containerPersonalInfosTitle}>
-          <Text style={styles.personalInfoTitle}>
-            {i18n.t('accountPage.connectionInfoTitle')}
-          </Text>
-          <TouchableOpacity
-            style={styles.containerEdition}
-            onPress={() => _openPasswordEditModal()}
-          >
-            <Text>{i18n.t('accountPage.edit')}</Text>
-          </TouchableOpacity>
+        <View style={styles.containerConnectionInfo}>
+          <View style={styles.containerPersonalInfosTitle}>
+            <Text style={styles.personalInfoTitle}>
+              {i18n.t('accountPage.connectionInfoTitle')}
+            </Text>
+            <TouchableOpacity
+              style={styles.containerEdition}
+              onPress={() => _openPasswordEditModal()}
+            >
+              <Text>{i18n.t('accountPage.edit')}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.containerConnectionRow}>
+            <Text style={styles.titleConnectionInfo}>
+              {i18n.t('accountPage.email')}
+            </Text>
+            <Text>{user.email}</Text>
+          </View>
+          <View style={styles.containerConnectionRow}>
+            <Text style={styles.titleConnectionInfo}>
+              {i18n.t('accountPage.password')}
+            </Text>
+            <Text>************</Text>
+          </View>
         </View>
-        <View style={styles.containerConnectionRow}>
-          <Text style={styles.titleConnectionInfo}>
-            {i18n.t('accountPage.email')}
-          </Text>
-          <Text>{user.email}</Text>
-        </View>
-        <View style={styles.containerConnectionRow}>
-          <Text style={styles.titleConnectionInfo}>
-            {i18n.t('accountPage.password')}
-          </Text>
-          <Text>************</Text>
-        </View>
-      </View>
-      <Button
-        mode="contained"
-        color={colors.RED}
-        uppercase={false}
-        onPress={() => setVisible(true)}
-        style={styles.btnLogout}
-      >
-        {i18n.t('accountPage.logout')}
-      </Button>
+        <Button
+          mode="contained"
+          color={colors.RED}
+          uppercase={false}
+          onPress={() => setVisible(true)}
+          style={styles.btnLogout}
+        >
+          {i18n.t('accountPage.logout')}
+        </Button>
+      </ScrollView>
+      <CartBanner />
       <DialogLogout
         visible={visible}
         setVisible={(value) => setVisible(value)}
@@ -152,6 +175,7 @@ const Profile = ({ navigation, user }) => {
 };
 
 const styles = StyleSheet.create({
+  updateFavoriteRestaurant: { fontWeight: '500' },
   container: { flex: 1, backgroundColor: 'white' },
   header: {
     ...ifIphoneX({ paddingTop: calcHeight(7) }, { paddingTop: calcHeight(3) }),
@@ -197,7 +221,12 @@ const styles = StyleSheet.create({
   },
   titleConnectionInfo: { fontSize: 14, fontWeight: 'bold', marginBottom: 6 },
   containerEdition: { marginRight: 12 },
-  btnLogout: { width: 200, marginTop: 32, alignSelf: 'center' }
+  btnLogout: {
+    width: 200,
+    marginTop: 32,
+    alignSelf: 'center',
+    marginBottom: 100
+  }
 });
 
 export default connect(mapStateToProps)(Profile);

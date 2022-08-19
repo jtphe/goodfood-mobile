@@ -9,6 +9,11 @@ export const U_ADD_COMMENT = 'U_ADD_COMMENT';
 export const M_ADD_COMMENT = 'M_ADD_COMMENT';
 export const U_DELETE_COMMENT = 'U_DELETE_COMMENT';
 export const M_DELETE_COMMENT = 'M_DELETE_COMMENT';
+export const M_RESET_CURRENT_RESTAURANT = 'M_RESET_CURRENT_RESTAURANT';
+
+export const resetCurrentRestaurant = () => ({
+  type: M_RESET_CURRENT_RESTAURANT
+});
 
 export const loadRestaurants = () => ({
   type: U_LOAD_RESTAURANTS
