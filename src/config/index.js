@@ -12,3 +12,13 @@ export const vibrationOptions = {
   enableVibrateFallback: true,
   ignoreAndroidSystemSettings: true
 };
+
+export const awsConfig = {
+  bucket: 'goodfood-s3',
+  region: 'eu-west-3',
+  accessKey: 'AKIA34NZ3QNZCGACUI52',
+  secretKey: '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'
+};
+
+export const avatarUrl =
+  'https://goodfood-s3.s3.eu-west-3.amazonaws.com/avatar.png';

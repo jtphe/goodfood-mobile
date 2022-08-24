@@ -1,24 +1,25 @@
 /* eslint-disable no-useless-return */
-/* eslint-disable global-require */
 import React, { useState } from 'react';
 import InputFields from '@components/Profile/inputFields';
 import DialogLogout from '@components/Profile/dialogLogout';
 import i18n from '@i18n/i18n';
-import ImageCropPicker from 'react-native-image-crop-picker';
+import FastImage from 'react-native-fast-image';
 import CartBanner from '@shared/cartBanner';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { RNS3 } from 'react-native-aws3';
 import { logout } from '@store/modules/app/actions';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   TouchableOpacity,
   Platform,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from 'react-native';
 import { calcHeight } from '@helpers/responsiveHelper';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { colors } from '@config/index';
+import { avatarUrl, awsConfig, colors } from '@config/index';
 import { Button } from 'react-native-paper';
 import { useDispatch, connect } from 'react-redux';
 import {
@@ -27,6 +28,7 @@ import {
 } from '@helpers/files-utils';
 import { createSelector } from 'reselect';
 import { getUser } from '@store/modules/user/selectors';
+import { updateProfilePicture } from '@store/modules/user/actions';
 
 const mapStateToProps = createSelector([getUser], (user) => {
   return { user };
@@ -34,6 +36,7 @@ const mapStateToProps = createSelector([getUser], (user) => {
 
 const Profile = ({ navigation, user }) => {
   const [visible, setVisible] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const dispatch = useDispatch();
 
   const _updateProfilePicture = async () => {
@@ -55,20 +58,26 @@ const Profile = ({ navigation, user }) => {
   };
 
   const _openCamera = () => {
-    ImageCropPicker.openCamera({
-      width: 300,
-      height: 400,
-      cropping: true,
-      useFrontCamera: true
-    }).then((image) => {
-      const picture = {
-        uri: image.path,
-        fileName: image.filename,
-        type: image.mime,
-        fileSize: image.size
+    launchImageLibrary({}).then((image) => {
+      const imageSelected = image.assets[0];
+      const file = {
+        uri: imageSelected.uri,
+        name: imageSelected.fileName,
+        type: imageSelected.type
       };
-      console.log('picture =>', picture);
-      // dispatch(updateProfilePicture({ payload: camPicture }));
+      RNS3.put(file, awsConfig)
+        .then((response) => {
+          const payload = { pictureUrl: response.body.postResponse.location };
+          dispatch(updateProfilePicture({ payload }));
+        })
+        .progress((e) => {
+          if (e.percent !== 1) {
+            setIsUploading(true);
+          }
+          if (e.percent === 1) {
+            setIsUploading(false);
+          }
+        });
     });
   };
 
@@ -94,10 +103,19 @@ const Profile = ({ navigation, user }) => {
           {user.firstname} {user.lastname}
         </Text>
         <TouchableOpacity onPress={() => _updateProfilePicture()}>
-          <Image
-            source={require('@images/goodfood_logo_G.png')}
-            style={styles.orderPicture}
-          />
+          {!isUploading ? (
+            <FastImage
+              source={{
+                uri: user.picture ? user.picture : avatarUrl,
+                priority: FastImage.priority.high
+              }}
+              style={styles.orderPicture}
+            />
+          ) : (
+            <View style={[styles.orderPicture, styles.loader]}>
+              <ActivityIndicator size="large" color={colors.YELLOW} />
+            </View>
+          )}
         </TouchableOpacity>
       </View>
       <ScrollView>
@@ -177,6 +195,12 @@ const Profile = ({ navigation, user }) => {
 };
 
 const styles = StyleSheet.create({
+  loader: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 3,
+    paddingTop: 2
+  },
   updateFavoriteRestaurant: { fontWeight: '500' },
   container: { flex: 1, backgroundColor: 'white' },
   header: {

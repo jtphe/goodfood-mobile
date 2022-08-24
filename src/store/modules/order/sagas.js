@@ -6,11 +6,15 @@ import {
   U_LOAD_FOOD_TYPE,
   U_CREATE_ORDER,
   M_SET_ORDER_PROCESS_STATUS,
-  M_RESET_ORDER
+  M_RESET_ORDER,
+  U_LOAD_USER_ORDERS,
+  M_SET_USER_ORDERS,
+  M_ADD_ORDER_TO_ORDERS
 } from '@store/modules/order/actions';
 import {
   getToken,
-  getUserFavoriteRestaurant
+  getUserFavoriteRestaurant,
+  getUser
 } from '@store/modules/user/selectors';
 import {
   getMenuList,
@@ -87,14 +91,18 @@ function* createOrder() {
         products: productList,
         menus: menuList,
         price,
-        type: 2, // a voir ce que c'est
+        type: currentRestaurant ? 2 : 1,
         payment: 'Paid'
       }
     };
     const orderCreated = yield call(fetchService.request, query);
+    console.log('orderCreated', orderCreated);
+    // A voir la condition pour faire les mutations
+
     if (orderCreated.message === 'Order Created') {
       yield put({ type: M_SET_ORDER_PROCESS_STATUS, created: true });
       yield put({ type: M_RESET_ORDER });
+      yield put({ type: M_ADD_ORDER_TO_ORDERS, orderCreated });
     }
   } catch (e) {
     yield put({ type: M_SET_ORDER_PROCESS_STATUS, created: false });
@@ -102,7 +110,27 @@ function* createOrder() {
   }
 }
 
+function* loadUserOrders() {
+  try {
+    const token = yield select(getToken);
+    const user = yield select(getUser);
+
+    const query = {
+      method: 'get',
+      url: `${Config.API_URL}user/${user.id}/orders`,
+      headers: {
+        token
+      }
+    };
+    const orders = yield call(fetchService.request, query);
+    yield put({ type: M_SET_USER_ORDERS, orders });
+  } catch (e) {
+    console.log('Error while loading user orders => ', e);
+  }
+}
+
 export default function* watchOrder() {
+  yield takeLatest(U_LOAD_USER_ORDERS, loadUserOrders);
   yield takeLatest(U_LOAD_CURRENT_FOOD, loadCurrentFood);
   yield takeLatest(U_LOAD_FOOD_TYPE, loadFoodType);
   yield takeLatest(U_CREATE_ORDER, createOrder);

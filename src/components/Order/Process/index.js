@@ -67,7 +67,7 @@ const OrderProcess = ({
   const _setFoodType = (type) => {
     setFoodType(type.id);
     const payload = {
-      typeId: currentStep,
+      typeId: type.id,
       restaurant
     };
     dispatch(loadCurrentFood({ payload }));

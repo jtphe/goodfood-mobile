@@ -42,9 +42,9 @@ const OrderProcessProduct = ({
         } else if (foodType.id === 4) {
           typeToDisplay = i18n.t('orderPage.orderSandwich');
         } else if (foodType.id === 6) {
-          typeToDisplay = i18n.t('orderPage.orderSandwich');
+          typeToDisplay = i18n.t('orderPage.orderSnacks');
         } else {
-          typeToDisplay = i18n.t('orderPage.orderSandwich');
+          typeToDisplay = i18n.t('orderPage.orderDrink');
         }
         return i18n.t('orderPage.chooseFoodType', { foodType: typeToDisplay });
       }

@@ -7,11 +7,14 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '@config/';
 import { showToast } from '@helpers/showToast';
 import { RootSiblingParent } from 'react-native-root-siblings';
+import { connect, useDispatch } from 'react-redux';
+import { updateUserPassword } from '@store/modules/user/actions';
 
 const PasswordEdit = ({ navigation }) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const dispatch = useDispatch();
 
   const _updatePassword = () => {
     console.log('currentPassword', currentPassword);
@@ -22,15 +25,13 @@ const PasswordEdit = ({ navigation }) => {
       newPassword !== '' &&
       confirmNewPassword !== ''
     ) {
-      console.log('here');
       if (newPassword === confirmNewPassword) {
         if (newPassword.length >= 8) {
-          // const payload = {
-          //   id: user.id,
-          //   oldPassword,
-          //   newPassword
-          // };
-          // dispatch(updateUserPassword(payload));
+          const payload = {
+            oldPassword: currentPassword,
+            newPassword
+          };
+          dispatch(updateUserPassword(payload));
           setNewPassword('');
           setCurrentPassword('');
           setConfirmNewPassword('');
@@ -108,4 +109,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PasswordEdit;
+export default connect()(PasswordEdit);

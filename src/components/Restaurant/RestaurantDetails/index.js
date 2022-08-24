@@ -63,6 +63,9 @@ const RestaurantDetails = ({
   const restaurantCity = useMemo(() => {
     return currentRestaurant.city;
   }, [currentRestaurant]);
+  const restaurantImage = useMemo(() => {
+    return currentRestaurant.photo;
+  }, [currentRestaurant]);
   const restaurantPostalCode = useMemo(() => {
     return currentRestaurant.postalcode;
   }, [currentRestaurant]);
@@ -114,7 +117,7 @@ const RestaurantDetails = ({
   return (
     <ScrollView style={styles.container}>
       <Cover
-        restaurantCity={restaurantCity}
+        restaurantImage={restaurantImage}
         navigation={navigation}
         setFavoriteRestaurant={() => _setFavoriteRestaurant()}
         isFavoriteRestaurant={isFavoriteRestaurant}

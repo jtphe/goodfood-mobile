@@ -39,7 +39,6 @@ export const requestIOSCameraPermission = async () => {
         ]);
         return false;
       case RESULTS.GRANTED:
-        console.log('oui');
         return true;
       default:
         return false;

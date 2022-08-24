@@ -8,6 +8,19 @@ export const U_LOAD_USER_FAVORITE_RESTAURANT =
   'U_LOAD_USER_FAVORITE_RESTAURANT';
 export const U_UPDATE_USER = 'U_UPDATE_USER';
 export const M_UPDATE_USER = 'M_UPDATE_USER';
+export const U_UPDATE_USER_PASSWORD = 'U_UPDATE_USER_PASSWORD';
+export const U_UPDATE_PROFILE_PICTURE = 'U_UPDATE_PROFILE_PICTURE';
+export const M_UPDATE_USER_PICTURE = 'M_UPDATE_USER_PICTURE';
+
+export const updateProfilePicture = ({ payload }) => ({
+  type: U_UPDATE_PROFILE_PICTURE,
+  payload
+});
+
+export const updateUserPassword = ({ payload }) => ({
+  type: U_UPDATE_USER_PASSWORD,
+  payload
+});
 
 export const updateUser = ({ payload }) => ({
   type: U_UPDATE_USER,

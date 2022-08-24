@@ -1,10 +1,14 @@
 import React from 'react';
-import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 
 const Product = ({ item, onPress }) => {
   return (
     <TouchableOpacity onPress={() => onPress()} style={styles.container}>
-      <Image source={{ uri: item.image }} style={styles.productImage} />
+      <FastImage
+        source={{ uri: item.image, priority: FastImage.priority.high }}
+        style={styles.productImage}
+      />
     </TouchableOpacity>
   );
 };

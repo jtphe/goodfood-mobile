@@ -6,6 +6,8 @@ export const getMenuList = (state) => state.order.menuList;
 export const getProductList = (state) => state.order.productList;
 export const getCartTotalPrice = (state) => state.order.cartTotalPrice;
 export const getProcessStatus = (state) => state.order.processStatus.created;
+export const getOrders = (state) => state.order.orders;
+export const getOrdersIsLoading = (state) => state.order.ordersIsLoading;
 export const getCart = createSelector(
   [getMenuList, getProductList],
   (menuList, productList) => {

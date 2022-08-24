@@ -10,7 +10,9 @@ import {
   M_REMOVE_MENU,
   M_SET_ORDER_PROCESS_STATUS,
   M_RESET_ORDER,
-  M_UPDATE_PROCESS_STATUS
+  M_UPDATE_PROCESS_STATUS,
+  M_SET_USER_ORDERS,
+  M_ADD_ORDER_TO_ORDERS
 } from '@store/modules/order/actions';
 import update from 'immutability-helper';
 import { roundToTwo } from '@helpers/roundToTwo';
@@ -23,11 +25,28 @@ const initialState = {
   cartTotalPrice: 0,
   processStatus: {
     created: false
-  }
+  },
+  orders: [],
+  ordersIsLoading: true
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case M_ADD_ORDER_TO_ORDERS:
+      return update(state, {
+        orders: {
+          $push: [action.orderCreated]
+        }
+      });
+    case M_SET_USER_ORDERS:
+      return update(state, {
+        orders: {
+          $set: action.orders
+        },
+        ordersIsLoading: {
+          $set: false
+        }
+      });
     case M_UPDATE_PROCESS_STATUS: {
       return update(state, {
         processStatus: {
