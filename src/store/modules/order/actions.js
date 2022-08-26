@@ -12,6 +12,21 @@ export const U_CREATE_ORDER = 'U_CREATE_ORDER';
 export const M_SET_ORDER_PROCESS_STATUS = 'M_SET_ORDER_PROCESS_STATUS';
 export const M_RESET_ORDER = 'M_RESET_ORDER';
 export const M_UPDATE_PROCESS_STATUS = 'M_UPDATE_PROCESS_STATUS';
+export const U_LOAD_USER_ORDERS = 'U_LOAD_USER_ORDERS';
+export const M_SET_USER_ORDERS = 'M_SET_USER_ORDERS';
+export const M_ADD_ORDER_TO_ORDERS = 'M_ADD_ORDER_TO_ORDERS';
+export const U_LOAD_ORDER = 'U_LOAD_ORDER';
+export const M_SET_ORDER = 'M_SET_ORDER';
+export const M_SET_ORDER_IS_CREATING = 'M_SET_ORDER_IS_CREATING';
+
+export const loadOrder = ({ payload }) => ({
+  type: U_LOAD_ORDER,
+  payload
+});
+
+export const loadUserOrders = () => ({
+  type: U_LOAD_USER_ORDERS
+});
 
 export const cancelOrder = () => ({
   type: M_RESET_ORDER

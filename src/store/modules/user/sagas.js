@@ -6,7 +6,10 @@ import {
   U_LOAD_USER_FAVORITE_RESTAURANT,
   M_UPDATE_USER_FAVORITE_RESTAURANT,
   U_UPDATE_USER,
-  M_UPDATE_USER_ADDRESS
+  M_UPDATE_USER,
+  U_UPDATE_USER_PASSWORD,
+  U_UPDATE_PROFILE_PICTURE,
+  M_UPDATE_USER_PICTURE
 } from '@store/modules/user/actions';
 import { errorHandler } from '@helpers/errorHandler';
 import { showToast } from '@helpers/showToast';
@@ -104,12 +107,69 @@ function* updateUser({ payload }) {
       }
     };
     const res = yield call(fetchService.request, query);
-    console.log('res :>> ', res);
-    if (res.status === 200) {
-      yield put({ type: M_UPDATE_USER_ADDRESS, address, postalCode, city });
+    if (res) {
+      yield put({
+        type: M_UPDATE_USER,
+        address: res.address,
+        postalCode: res.postalcode,
+        city: res.city,
+        firstName: res.firstname,
+        lastName: res.lastname
+      });
+
+      showToast(i18n.t('accountPage.userUpdated'), true);
     }
   } catch (e) {
     console.log('Error while updating user =>  :>> ', e);
+  }
+}
+
+function* updateUserPassword({ payload }) {
+  try {
+    const token = yield select(getToken);
+    const user = yield select(getUser);
+    const { oldPassword, newPassword } = payload;
+
+    const query = {
+      method: 'put',
+      url: `${Config.API_URL}users/password`,
+      headers: {
+        token
+      },
+      data: {
+        id: user.id,
+        oldPassword,
+        newPassword
+      }
+    };
+  } catch (e) {
+    console.log('Error while updating user password => ', e);
+  }
+}
+
+function* updateUserPicture({ payload }) {
+  try {
+    const token = yield select(getToken);
+    const user = yield select(getUser);
+    const { pictureUrl } = payload;
+
+    const query = {
+      method: 'put',
+      url: `${Config.API_URL}users/${user.id}`,
+      headers: {
+        token
+      },
+      data: {
+        picture: pictureUrl
+      }
+    };
+    const res = yield call(fetchService.request, query);
+
+    if (res) {
+      yield put({ type: M_UPDATE_USER_PICTURE, picture: res.picture });
+    }
+  } catch (e) {
+    console.log('Error while updating user picture => ', e);
   }
 }
 
@@ -118,4 +178,6 @@ export default function* watchUser() {
   yield takeLatest(U_SIGN_UP, signUp);
   yield takeLatest(U_SIGN_IN, signIn);
   yield takeLatest(U_LOAD_USER_FAVORITE_RESTAURANT, loadUserFavoriteRestaurant);
+  yield takeLatest(U_UPDATE_USER_PASSWORD, updateUserPassword);
+  yield takeLatest(U_UPDATE_PROFILE_PICTURE, updateUserPicture);
 }

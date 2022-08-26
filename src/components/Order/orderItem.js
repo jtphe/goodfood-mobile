@@ -1,33 +1,39 @@
 import React, { useMemo } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { colors } from '@config/index';
 import { Button } from 'react-native-paper';
+import FastImage from 'react-native-fast-image';
 import moment from 'moment';
 import i18n from '@i18n/i18n';
 
 const OrderItem = ({ navigation, order }) => {
-  const pictureSource = useMemo(() => {
-    return order.pictureSrc;
-  }, [order]);
   const dateOfOrder = useMemo(() => {
     return order.createdAt;
   }, [order]);
 
   const _priceParser = () => {
-    return `${order.totalPrice}€`;
+    return `${order.price}€`;
   };
 
   const _dateParser = () => {
-    return moment.unix(dateOfOrder).format('D MMMM YYYY');
+    return moment(dateOfOrder).format('D MMMM YYYY');
   };
 
   const _seeOrderDetails = () => {
-    navigation.navigate(i18n.t('orderPage.detailsTitle'), { order });
+    navigation.navigate(i18n.t('orderPage.detailsTitle'), {
+      orderId: order.id
+    });
   };
 
   return (
     <View style={styles.container}>
-      <Image source={pictureSource} style={styles.orderPicture} />
+      <FastImage
+        source={{
+          uri: 'https://goodfood-s3.s3.eu-west-3.amazonaws.com/Good+Food+logo+RV.png',
+          priority: FastImage.priority.high
+        }}
+        style={styles.orderPicture}
+      />
       <View style={styles.dataContainer}>
         <View style={styles.orderInfoContainer}>
           <Text style={styles.menuName}>

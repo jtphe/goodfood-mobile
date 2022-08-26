@@ -13,6 +13,7 @@ import OrderProcess from '@components/Order/Process/index';
 import OrderProcessProduct from '@components/Order/ProcessProduct/index';
 import RestaurantList from '@components/Restaurant/restaurantList';
 import Cart from '@components/Order/Cart';
+import ProductDetails from '@components/Home/productDetails';
 import i18n from '@i18n/i18n';
 
 const Navigation = () => {
@@ -78,6 +79,10 @@ const Navigation = () => {
               component={RestaurantList}
             />
             <Stack.Screen name={i18n.t('order.yourCart')} component={Cart} />
+            <Stack.Screen
+              name={i18n.t('homePage.productDetails')}
+              component={ProductDetails}
+            />
           </Stack.Group>
 
           <Stack.Screen

@@ -1,40 +1,46 @@
-/* eslint-disable global-require */
 import i18n from '@i18n/i18n';
 
 const foodCategories = [
   {
     id: 1,
-    pictureSrc: require('@images/category_burger.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_burger.png',
     name: i18n.t('categories.burger')
   },
   {
     id: 2,
-    pictureSrc: require('@images/category_tacos.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_tacos.png',
     name: i18n.t('categories.tacos')
   },
   {
     id: 3,
-    pictureSrc: require('@images/category_pizza.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_pizza.png',
     name: i18n.t('categories.pizza')
   },
   {
     id: 4,
-    pictureSrc: require('@images/category_sandwich.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_sandwich.png',
     name: i18n.t('categories.sandwich')
   },
   {
     id: 5,
-    pictureSrc: require('@images/category_menu.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_menu.png',
     name: i18n.t('categories.menu')
   },
   {
     id: 6,
-    pictureSrc: require('@images/category_snacks.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_snacks.png',
     name: i18n.t('categories.snacks')
   },
   {
     id: 7,
-    pictureSrc: require('@images/category_drink.png'),
+    pictureSrc:
+      'https://goodfood-s3.s3.eu-west-3.amazonaws.com/category_drink.png',
     name: i18n.t('categories.drink')
   }
 ];

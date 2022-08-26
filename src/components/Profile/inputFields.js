@@ -2,12 +2,42 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { colors } from '@config/index';
+import { connect, useDispatch } from 'react-redux';
+import { updateUser } from '@store/modules/user/actions';
 import i18n from '@i18n/i18n';
 
-const InputFields = ({ firstname, lastname, address }) => {
+const InputFields = ({ firstname, lastname, address, postalCode, city }) => {
   const [firstName, setFirstName] = useState(firstname);
   const [lastName, setLastName] = useState(lastname);
   const [userAddress, setUserAddress] = useState(address);
+  const [userPostalCode, setUserPostalCode] = useState(postalCode);
+  const [userCity, setUserCity] = useState(city);
+  const dispatch = useDispatch();
+
+  const _updateUserName = (type) => {
+    let payload = {};
+    switch (type) {
+      case 'firstname':
+        payload = { firstName };
+        break;
+      case 'lastname':
+        payload = { lastName };
+        break;
+      case 'address':
+        payload = { address: userAddress };
+        break;
+      case 'postalCode':
+        payload = { postalCode: userPostalCode };
+        break;
+      case 'city':
+        payload = { city: userCity };
+        break;
+      default:
+        return null;
+    }
+    dispatch(updateUser({ payload }));
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.titlePlaceholder}>
@@ -23,6 +53,7 @@ const InputFields = ({ firstname, lastname, address }) => {
         onChangeText={(txt) => {
           setFirstName(txt);
         }}
+        onSubmitEditing={() => _updateUserName('firstname')}
         autoCapitalize="none"
         returnKeyType="done"
       />
@@ -39,6 +70,7 @@ const InputFields = ({ firstname, lastname, address }) => {
         onChangeText={(txt) => {
           setLastName(txt);
         }}
+        onSubmitEditing={() => _updateUserName('lastname')}
         autoCapitalize="none"
         returnKeyType="done"
       />
@@ -55,6 +87,35 @@ const InputFields = ({ firstname, lastname, address }) => {
         onChangeText={(txt) => {
           setUserAddress(txt);
         }}
+        onSubmitEditing={() => _updateUserName('address')}
+        autoCapitalize="none"
+        returnKeyType="next"
+      />
+      <TextInput
+        mode="outlined"
+        outlineColor={colors.GREY}
+        activeOutlineColor={colors.YELLOW}
+        placeholder={i18n.t('accountPage.postalCodePlaceholder')}
+        style={styles.input}
+        value={userPostalCode}
+        onChangeText={(txt) => {
+          setUserPostalCode(txt);
+        }}
+        onSubmitEditing={() => _updateUserName('postalCode')}
+        autoCapitalize="none"
+        returnKeyType="next"
+      />
+      <TextInput
+        mode="outlined"
+        outlineColor={colors.GREY}
+        activeOutlineColor={colors.YELLOW}
+        placeholder={i18n.t('accountPage.cityPlaceholder')}
+        style={styles.input}
+        value={userCity}
+        onChangeText={(txt) => {
+          setUserCity(txt);
+        }}
+        onSubmitEditing={() => _updateUserName('city')}
         autoCapitalize="none"
         returnKeyType="done"
       />
@@ -73,4 +134,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default InputFields;
+export default connect()(InputFields);

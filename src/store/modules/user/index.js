@@ -4,7 +4,8 @@ import {
   M_RESET_USER_STORE,
   M_SET_USER,
   M_UPDATE_USER_FAVORITE_RESTAURANT,
-  M_UPDATE_USER_ADDRESS
+  M_UPDATE_USER,
+  M_UPDATE_USER_PICTURE
 } from '@store/modules/user/actions';
 
 const initialState = {
@@ -14,7 +15,15 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case M_UPDATE_USER_ADDRESS:
+    case M_UPDATE_USER_PICTURE:
+      return update(state, {
+        user: {
+          picture: {
+            $set: action.picture
+          }
+        }
+      });
+    case M_UPDATE_USER:
       return update(state, {
         user: {
           address: {
@@ -25,6 +34,12 @@ export default function reducer(state = initialState, action) {
           },
           city: {
             $set: action.city
+          },
+          firstname: {
+            $set: action.firstName
+          },
+          lastname: {
+            $set: action.lastName
           }
         }
       });

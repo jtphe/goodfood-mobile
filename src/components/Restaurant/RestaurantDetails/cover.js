@@ -1,31 +1,18 @@
-/* eslint-disable global-require */
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Menu from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, StyleSheet, Pressable, Image } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { View, StyleSheet, Pressable, Text } from 'react-native';
 import { colors } from '@config/';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 const Cover = ({
-  restaurantCity,
+  restaurantImage,
   navigation,
   setFavoriteRestaurant,
   isFavoriteRestaurant,
   openOptionsMenu
 }) => {
-  const _renderImageSource = () => {
-    switch (restaurantCity) {
-      case 'Paris':
-        return require('@images/good_food_paris.jpeg');
-      case 'Bruxelles':
-        return require('@images/good_food_bruxelles.jpeg');
-      case 'Luxembourg':
-        return require('@images/good_food_luxembourg.jpeg');
-      default:
-        return require('@images/good_food_paris.jpeg');
-    }
-  };
-
   return (
     <View>
       <Pressable
@@ -70,7 +57,13 @@ const Cover = ({
           style={styles.iconOptions}
         />
       </Pressable>
-      <Image style={styles.cover} source={_renderImageSource()} />
+      <FastImage
+        style={styles.cover}
+        source={{
+          uri: restaurantImage,
+          priority: FastImage.priority.high
+        }}
+      />
     </View>
   );
 };

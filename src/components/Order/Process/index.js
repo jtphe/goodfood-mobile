@@ -19,7 +19,7 @@ const mapStateToProps = createSelector([getCurrentFoods], (currentFoods) => {
 
 const OrderProcess = ({
   route: {
-    params: { foodTypes, restaurant, user }
+    params: { restaurant, user }
   },
   currentFoods
 }) => {
@@ -67,7 +67,7 @@ const OrderProcess = ({
   const _setFoodType = (type) => {
     setFoodType(type.id);
     const payload = {
-      typeId: currentStep,
+      typeId: type.id,
       restaurant
     };
     dispatch(loadCurrentFood({ payload }));
@@ -114,7 +114,6 @@ const OrderProcess = ({
     if (currentStep === 1) {
       return (
         <StepOne
-          foodTypes={foodTypes}
           foodTypeSelected={(foodSelected) => _setFoodType(foodSelected)}
         />
       );

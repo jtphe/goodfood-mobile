@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
 import { colors } from '@config/';
 import { roundToTwo } from '@helpers/roundToTwo';
 import i18n from '@i18n/i18n';
+import FastImage from 'react-native-fast-image';
 
 const QuantityStep = ({
   product,
@@ -17,7 +18,6 @@ const QuantityStep = ({
     if (type === 'add') {
       handleQuantity(quantity + 1);
       handlePrice(roundToTwo(totalPrice + product.price));
-      // checker par la suite si y'a assez en stock encore ou limité à 10 par ex
     } else {
       if (quantity === 1) {
         return null;
@@ -30,7 +30,10 @@ const QuantityStep = ({
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: product.image }} style={styles.productImage} />
+      <FastImage
+        source={{ uri: product?.image || product.pictureSrc }}
+        style={styles.productImage}
+      />
       <View style={styles.containerQuantity}>
         <TouchableOpacity
           style={styles.containerBtnQuantity}
@@ -51,7 +54,9 @@ const QuantityStep = ({
         </TouchableOpacity>
       </View>
       <Text style={styles.totalPrice}>
-        {i18n.t('orderPage.quantityPrice', { totalPrice })}
+        {i18n.t('orderPage.quantityPrice', {
+          totalPrice: totalPrice || product.price
+        })}
       </Text>
       <Button
         mode="contained"

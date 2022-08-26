@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import Category from '@components/Home/category';
+import foodTypes from '@utils/foodTypes';
 
-const StepOne = ({ foodTypes, foodTypeSelected }) => {
+const StepOne = ({ foodTypeSelected }) => {
   return (
     <View style={styles.container}>
       <FlatList

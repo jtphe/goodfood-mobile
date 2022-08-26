@@ -53,7 +53,7 @@ const RestaurantList = ({ restaurants, userFavoriteRestaurant }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Header />
       {currentFavoriteRestaurant === null ? (
         <View style={styles.containerNoRestaurant}>
@@ -166,6 +166,7 @@ const Header = () => {
 };
 
 const styles = StyleSheet.create({
+  container: { flex: 1 },
   restaurantsListContentContainer: { paddingBottom: 50 },
   containerBtnChoose: { flex: 1, paddingRight: 12 },
   restaurantName: { fontWeight: 'bold' },

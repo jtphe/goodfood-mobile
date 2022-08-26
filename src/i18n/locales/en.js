@@ -17,7 +17,8 @@ export default {
     list: 'Restaurants list',
     noRestaurant:
       "You don't have a restaurant yet! Choose a restaurant among the following",
-    restaurantChoice: 'Restaurant choice'
+    restaurantChoice: 'Restaurant choice',
+    noOrderLoaded: "You haven't placed an order yet..."
   },
   search: {
     title: 'OUR CARD',
@@ -30,7 +31,9 @@ export default {
     btnTakeaway: 'Takeaway',
     placeholderSearchFood: 'Search for your food...',
     peckishTitle: 'Peckish ? 🍔',
-    favoriteRestaurant: 'My favorite restaurant'
+    favoriteRestaurant: 'My favorite restaurant',
+    noProductFound: 'No products matching your search...',
+    productDetails: 'Product details'
   },
   login: {
     screenTitle: 'Login',
@@ -120,7 +123,13 @@ export default {
     cardExpiration: 'Exp.date(MM/YY)',
     cardCVV: 'CVV',
     orderPlaced: 'YOUR ORDER HAS BEEN PLACED!',
-    errorOrderPlaced: 'AN ERROR HAS APPEARED... PLEASE TRY AGAIN'
+    errorOrderPlaced: 'AN ERROR HAS APPEARED... PLEASE TRY AGAIN',
+    status: {
+      status: 'Status: ',
+      preparation: 'Preparation',
+      delivering: 'In progress',
+      delivered: 'Delivered'
+    }
   },
   accountPage: {
     screenTitle: 'Account',
@@ -134,6 +143,8 @@ export default {
     firstNamePlaceholder: 'Enter your first name',
     lastNamePlaceholder: 'Enter your last name',
     addressPlaceholder: 'Enter your postal address',
+    postalCodePlaceholder: 'Enter your postal code',
+    cityPlaceholder: 'Enter your city',
     personalInfoTitle: 'MY PERSONAL INFORMATION',
     connectionInfoTitle: 'MY CONNECTION INFORMATION',
     favoriteRestaurant: 'MY FAVORITE RESTAURANT',
@@ -148,7 +159,8 @@ export default {
     error1: 'Fields cannot be empty',
     error2: 'Passwords do not match',
     error3: 'New password requires at least 8 characters',
-    error4: 'Old password incorrect'
+    error4: 'Old password incorrect',
+    userUpdated: 'User updated !'
   },
   categories: {
     burger: 'Burger',

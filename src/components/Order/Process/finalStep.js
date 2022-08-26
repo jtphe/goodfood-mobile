@@ -1,6 +1,7 @@
 import i18n from '@i18n/i18n';
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import { colors } from '@config/';
 
@@ -24,7 +25,7 @@ const FinalStep = ({
           {i18n.t('orderPage.orderAddress')}
         </Text>
         <Text style={styles.orderAddressData}>
-          {isTakeawayOrder ? restaurant.address : userAddress}
+          {!isTakeawayOrder ? restaurant.address : userAddress}
         </Text>
       </View>
       <View style={styles.containerRecap}>
@@ -59,7 +60,7 @@ const Row = ({ product }) => {
 
   return (
     <View style={styles.rowContainer}>
-      <Image source={{ uri: product.image }} style={styles.productImage} />
+      <FastImage source={{ uri: product.image }} style={styles.productImage} />
       <View style={styles.containerQuantity}>
         <Text style={styles.quantity}>{quantityParser()}</Text>
       </View>

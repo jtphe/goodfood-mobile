@@ -58,8 +58,7 @@ const Search = ({ navigation, route, user }) => {
       dispatch(loadFoodType({ payload }));
       navigation.navigate(i18n.t('orderPage.orderProcessProductTitle'), {
         foodType: item,
-        user,
-        processType: 'product'
+        user
       });
     }
   };
