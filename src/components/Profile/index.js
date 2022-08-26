@@ -114,7 +114,7 @@ const Profile = ({ navigation, user }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {firstname === '' || lastname === '' ? (
+        {firstname !== '' || lastname !== '' ? (
           <Text style={styles.userName}>
             {firstname} {lastname}
           </Text>
@@ -247,10 +247,10 @@ const styles = StyleSheet.create({
   },
   userName: {
     flex: 1,
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
     alignSelf: 'center',
-    marginLeft: 24
+    marginRight: 12
   },
   containerPersonalInfosTitle: {
     flexDirection: 'row',
