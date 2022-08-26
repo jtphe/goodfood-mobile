@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import InputFields from '@components/Profile/inputFields';
 import DialogLogout from '@components/Profile/dialogLogout';
 import i18n from '@i18n/i18n';
@@ -37,6 +37,21 @@ const mapStateToProps = createSelector([getUser], (user) => {
 const Profile = ({ navigation, user }) => {
   const [visible, setVisible] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const firstname = useMemo(() => {
+    return user.firstname;
+  }, [user]);
+  const lastname = useMemo(() => {
+    return user.lastname;
+  }, [user]);
+  const address = useMemo(() => {
+    return user.address;
+  }, [user]);
+  const postalcode = useMemo(() => {
+    return user.postalcode;
+  }, [user]);
+  const city = useMemo(() => {
+    return user.city;
+  }, [user]);
   const dispatch = useDispatch();
 
   const _updateProfilePicture = async () => {
@@ -65,19 +80,6 @@ const Profile = ({ navigation, user }) => {
         name: imageSelected.fileName,
         type: imageSelected.type
       };
-      // const params = {
-      //   Bucket: 'STRING_VALUE' /* required */,
-      //   Key: 'STRING_VALUE' /* required */,
-      //   BypassGovernanceRetention: true || false,
-      //   ExpectedBucketOwner: 'STRING_VALUE',
-      //   MFA: 'STRING_VALUE',
-      //   RequestPayer: requester,
-      //   VersionId: 'STRING_VALUE'
-      // };
-      // s3.deleteObject(params, function (err, data) {
-      //   if (err) console.log(err, err.stack); // an error occurred
-      //   else console.log(data); // successful response
-      // });
       RNS3.put(file, awsConfig)
         .then((response) => {
           const payload = { pictureUrl: response.body.postResponse.location };
@@ -140,11 +142,11 @@ const Profile = ({ navigation, user }) => {
           </View>
           <View>
             <InputFields
-              firstname={user.firstname}
-              lastname={user.lastname}
-              address={user.address}
-              postalCode={user.postalcode}
-              city={user.city}
+              firstname={firstname}
+              lastname={lastname}
+              address={address}
+              postalCode={postalcode}
+              city={city}
             />
           </View>
         </View>

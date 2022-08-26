@@ -91,7 +91,7 @@ function* updateUser({ payload }) {
     const token = yield select(getToken);
     const user = yield select(getUser);
     const { firstName, lastName, address, postalCode, city } = payload;
-
+    console.log('payload', payload);
     const query = {
       method: 'put',
       url: `${Config.API_URL}users/${user.id}`,
@@ -99,11 +99,11 @@ function* updateUser({ payload }) {
         token
       },
       data: {
-        firstName: firstName || null,
-        lastName: lastName || null,
-        address: address || null,
-        postalCode: postalCode || null,
-        city: city || null
+        firstName: firstName !== undefined ? firstName : null,
+        lastName: lastName !== undefined ? lastName : null,
+        address: address !== undefined ? address : null,
+        postalCode: postalCode !== undefined ? postalCode : null,
+        city: city !== undefined ? city : null
       }
     };
     const res = yield call(fetchService.request, query);
