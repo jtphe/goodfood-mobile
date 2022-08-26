@@ -162,7 +162,8 @@ export default {
     error2: 'Les nouveaux mots de passe ne correspondent pas',
     error3: 'Le nouveau mot de passe doit contenir au moins 8 caractères',
     error4: "L'ancien mot de passe est incorrect",
-    userUpdated: 'Utilisateur mis à jour !'
+    userUpdated: 'Utilisateur mis à jour !',
+    myAccount: 'Mon compte'
   },
   categories: {
     burger: 'Burger',

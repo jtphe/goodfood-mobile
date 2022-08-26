@@ -114,9 +114,13 @@ const Profile = ({ navigation, user }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.userName}>
-          {user.firstname} {user.lastname}
-        </Text>
+        {firstname === '' || lastname === '' ? (
+          <Text style={styles.userName}>
+            {firstname} {lastname}
+          </Text>
+        ) : (
+          <Text style={styles.account}>{i18n.t('accountPage.myAccount')}</Text>
+        )}
         <TouchableOpacity onPress={() => _updateProfilePicture()}>
           {!isUploading ? (
             <FastImage
@@ -210,6 +214,12 @@ const Profile = ({ navigation, user }) => {
 };
 
 const styles = StyleSheet.create({
+  account: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginTop: 26,
+    color: colors.RED
+  },
   loader: {
     justifyContent: 'center',
     alignItems: 'center',

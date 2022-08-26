@@ -160,7 +160,8 @@ export default {
     error2: 'Passwords do not match',
     error3: 'New password requires at least 8 characters',
     error4: 'Old password incorrect',
-    userUpdated: 'User updated !'
+    userUpdated: 'User updated !',
+    myAccount: 'My account'
   },
   categories: {
     burger: 'Burger',
