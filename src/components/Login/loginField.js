@@ -15,6 +15,8 @@ import PropTypes from 'prop-types';
  * @param {Boolean} errorPassword - If the user enter a too short password
  */
 const LoginField = ({
+  email,
+  password,
   setEmail,
   setPassword,
   login,
@@ -33,6 +35,7 @@ const LoginField = ({
   return (
     <View>
       <TextInput
+        value={email}
         mode="outlined"
         label={i18n.t('login.email')}
         outlineColor={colors.YELLOW}
@@ -45,9 +48,11 @@ const LoginField = ({
         }}
         error={errorEmail}
         autoCapitalize="none"
+        keyboardType="email-address"
         returnKeyType="next"
       />
       <TextInput
+        value={password}
         mode="outlined"
         label={i18n.t('login.password')}
         outlineColor={colors.YELLOW}

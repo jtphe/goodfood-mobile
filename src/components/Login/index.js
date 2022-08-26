@@ -74,6 +74,8 @@ const Login = ({ navigation, isLoggedIn }) => {
         navigation
       };
       dispatch(signIn({ payload }));
+      setEmail('');
+      setPassword('');
     }
   };
 
@@ -116,6 +118,8 @@ const Login = ({ navigation, isLoggedIn }) => {
           <Text style={styles.welcomeText}>{i18n.t('login.welcome')}</Text>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <LoginField
+              email={email}
+              password={password}
               setEmail={(e) => setEmail(e)}
               setPassword={(pwd) => setPassword(pwd)}
               login={() => _login()}
