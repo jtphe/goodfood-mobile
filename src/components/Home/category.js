@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 const Category = ({ category, styleContainer, styleCategory, onPress }) => {
   const pictureSource = useMemo(() => {
@@ -8,7 +9,10 @@ const Category = ({ category, styleContainer, styleCategory, onPress }) => {
 
   return (
     <TouchableOpacity style={styleContainer} onPress={onPress}>
-      <Image source={pictureSource} style={[styleCategory, styles.category]} />
+      <FastImage
+        source={{ uri: pictureSource }}
+        style={[styleCategory, styles.category]}
+      />
     </TouchableOpacity>
   );
 };

@@ -10,6 +10,13 @@ export const M_ADD_COMMENT = 'M_ADD_COMMENT';
 export const U_DELETE_COMMENT = 'U_DELETE_COMMENT';
 export const M_DELETE_COMMENT = 'M_DELETE_COMMENT';
 export const M_RESET_CURRENT_RESTAURANT = 'M_RESET_CURRENT_RESTAURANT';
+export const U_LOAD_USER_RESTAURANT_PRODUCTS =
+  'U_LOAD_USER_RESTAURANT_PRODUCTS';
+export const M_SET_PRODUCTS = 'M_SET_PRODUCTS';
+
+export const loadUserRestaurantProducts = () => ({
+  type: U_LOAD_USER_RESTAURANT_PRODUCTS
+});
 
 export const resetCurrentRestaurant = () => ({
   type: M_RESET_CURRENT_RESTAURANT

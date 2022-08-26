@@ -32,7 +32,9 @@ export default {
     btnTakeaway: 'À emporter',
     placeholderSearchFood: 'Rechercher votre nourriture...',
     peckishTitle: 'Une petite faim ? 🍔',
-    favoriteRestaurant: 'Mon resto favoris'
+    favoriteRestaurant: 'Mon resto favoris',
+    noProductFound: 'Aucun produit correspondant à votre recherche...',
+    productDetails: "Détail d'un produit"
   },
   login: {
     screenTitle: 'Connexion',
@@ -122,7 +124,14 @@ export default {
     cardExpiration: 'Exp.date(MM/AA)',
     cardCVV: 'CVV',
     orderPlaced: 'VOTRE COMMANDE A BIEN ÉTÉ PASSÉE !',
-    errorOrderPlaced: 'UNE ERREUR EST APPARUE... VEUILLEZ RÉESSAYEZ'
+    errorOrderPlaced: 'UNE ERREUR EST APPARUE... VEUILLEZ RÉESSAYEZ',
+    noOrderLoaded: "Vous n'avez pas encore passé de commande...",
+    status: {
+      status: 'Statut: ',
+      preparation: 'Préparation',
+      delivering: 'En cours de livraison',
+      delivered: 'Livrée'
+    }
   },
   accountPage: {
     screenTitle: 'Compte',

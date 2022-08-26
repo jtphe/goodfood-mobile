@@ -4,8 +4,22 @@ import { colors } from '@config/';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Error from 'react-native-vector-icons/Entypo';
 import i18n from '@i18n/i18n';
+import * as Progress from 'react-native-progress';
 
-const OrderPlaced = ({ processStatus, closeModal }) => {
+const OrderPlaced = ({ processStatus, closeModal, orderIsCreating }) => {
+  if (orderIsCreating) {
+    return (
+      <View style={styles.container}>
+        <Progress.Circle
+          size={60}
+          indeterminate={true}
+          borderWidth={2}
+          color={colors.YELLOW}
+        />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity

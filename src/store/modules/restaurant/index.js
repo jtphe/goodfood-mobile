@@ -7,16 +7,24 @@ import {
   M_SET_CURRENT_RESTAURANT,
   M_ADD_COMMENT,
   M_DELETE_COMMENT,
-  M_RESET_CURRENT_RESTAURANT
+  M_RESET_CURRENT_RESTAURANT,
+  M_SET_PRODUCTS
 } from '@store/modules/restaurant/actions';
 
 const initialState = {
   restaurants: [],
-  currentRestaurant: null
+  currentRestaurant: null,
+  products: []
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case M_SET_PRODUCTS:
+      return update(state, {
+        products: {
+          $set: action.products
+        }
+      });
     case M_RESET_CURRENT_RESTAURANT:
       return update(state, {
         currentRestaurant: {

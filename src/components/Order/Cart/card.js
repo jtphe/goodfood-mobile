@@ -42,15 +42,6 @@ const Card = ({
     ) {
       setCurrentStep(2);
     }
-    // const payload = {
-    //   cardName,
-    //   cardNumber: parseInt(cardNumber, 10),
-    //   cardExpiration,
-    //   cardCVV: parseInt(cardCVV, 10),
-    //   cardType: value
-    // };
-    // console.log('payload :>> ', payload);
-    // dispatch(updateUser({ payload }));
   };
 
   return (

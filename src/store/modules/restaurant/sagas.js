@@ -8,10 +8,18 @@ import {
   U_ADD_COMMENT,
   M_ADD_COMMENT,
   U_DELETE_COMMENT,
-  M_DELETE_COMMENT
+  M_DELETE_COMMENT,
+  M_SET_PRODUCTS,
+  U_LOAD_USER_RESTAURANT_PRODUCTS
 } from '@store/modules/restaurant/actions';
-import { M_UPDATE_USER_FAVORITE_RESTAURANT } from '@store/modules/user/actions';
-import { getToken } from '@store/modules/user/selectors';
+import {
+  loadUserFavoriteRestaurant,
+  M_UPDATE_USER_FAVORITE_RESTAURANT
+} from '@store/modules/user/actions';
+import {
+  getToken,
+  getUserFavoriteRestaurant
+} from '@store/modules/user/selectors';
 import { getCurrentRestaurant } from '@store/modules/restaurant/selectors';
 import { showToast } from '@helpers/showToast';
 import Config from 'react-native-config';
@@ -126,10 +134,29 @@ function* deleteComment({ payload }) {
   }
 }
 
+function* loadUserRestaurantProducts() {
+  try {
+    const token = yield select(getToken);
+    const restaurant = yield select(getUserFavoriteRestaurant);
+
+    const query = {
+      method: 'get',
+      url: `${Config.API_URL}restaurants/${restaurant.id}/products`,
+      headers: { token }
+    };
+    const res = yield call(fetchService.request, query);
+
+    yield put({ type: M_SET_PRODUCTS, products: res });
+  } catch (e) {
+    console.log('Error while loading user restaurant products => ', e);
+  }
+}
+
 export default function* watchRestaurant() {
   yield takeLatest(U_LOAD_RESTAURANTS, loadRestaurants);
   yield takeLatest(U_LOAD_COMMENTS, loadComments);
   yield takeLatest(U_SET_FAVORITE_RESTAURANT, setFavoriteRestaurant);
   yield takeLatest(U_ADD_COMMENT, addComment);
   yield takeLatest(U_DELETE_COMMENT, deleteComment);
+  yield takeLatest(U_LOAD_USER_RESTAURANT_PRODUCTS, loadUserRestaurantProducts);
 }

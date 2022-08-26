@@ -5,6 +5,7 @@ import DialogLogout from '@components/Profile/dialogLogout';
 import i18n from '@i18n/i18n';
 import FastImage from 'react-native-fast-image';
 import CartBanner from '@shared/cartBanner';
+import S3 from 'aws-sdk/clients/s3';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { RNS3 } from 'react-native-aws3';
 import { logout } from '@store/modules/app/actions';
@@ -65,6 +66,19 @@ const Profile = ({ navigation, user }) => {
         name: imageSelected.fileName,
         type: imageSelected.type
       };
+      // const params = {
+      //   Bucket: 'STRING_VALUE' /* required */,
+      //   Key: 'STRING_VALUE' /* required */,
+      //   BypassGovernanceRetention: true || false,
+      //   ExpectedBucketOwner: 'STRING_VALUE',
+      //   MFA: 'STRING_VALUE',
+      //   RequestPayer: requester,
+      //   VersionId: 'STRING_VALUE'
+      // };
+      // s3.deleteObject(params, function (err, data) {
+      //   if (err) console.log(err, err.stack); // an error occurred
+      //   else console.log(data); // successful response
+      // });
       RNS3.put(file, awsConfig)
         .then((response) => {
           const payload = { pictureUrl: response.body.postResponse.location };

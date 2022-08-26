@@ -34,7 +34,8 @@ const Summary = ({
   const dispatch = useDispatch();
 
   const _payOrder = () => {
-    if (userAddressParsed.length > 0 && isCardValid) {
+    // ajouter isCardValid dans le if
+    if (userAddressParsed.length > 0) {
       setCurrentStep(5);
       dispatch(createOrder());
     }

@@ -13,7 +13,8 @@ import {
   getMenuList,
   getProductList,
   getCartTotalPrice,
-  getProcessStatus
+  getProcessStatus,
+  getOrderIsCreating
 } from '@store/modules/order/selectors';
 import {
   removeLastItemCart,
@@ -48,7 +49,8 @@ const mapStateToProps = createSelector(
     getUserPostalCode,
     getUserCity,
     getCurrentRestaurant,
-    getProcessStatus
+    getProcessStatus,
+    getOrderIsCreating
   ],
   (
     menuList,
@@ -58,7 +60,8 @@ const mapStateToProps = createSelector(
     userPostalCode,
     userCity,
     currentRestaurant,
-    processStatus
+    processStatus,
+    orderIsCreating
   ) => {
     return {
       menuList,
@@ -68,7 +71,8 @@ const mapStateToProps = createSelector(
       userPostalCode,
       userCity,
       currentRestaurant,
-      processStatus
+      processStatus,
+      orderIsCreating
     };
   }
 );
@@ -81,7 +85,8 @@ const Cart = ({
   userPostalCode,
   userCity,
   currentRestaurant,
-  processStatus
+  processStatus,
+  orderIsCreating
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [cardName, setCardName] = useState('');
@@ -187,6 +192,7 @@ const Cart = ({
       <OrderPlaced
         processStatus={processStatus}
         closeModal={() => _closeModal()}
+        orderIsCreating={orderIsCreating}
       />
     );
   }

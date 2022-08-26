@@ -18,14 +18,14 @@ const mapStateToProps = createSelector([getCurrentFoods], (currentFoods) => {
 
 const OrderProcessProduct = ({
   route: {
-    params: { foodType }
+    params: { foodType, step, food }
   },
   currentFoods
 }) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [product, setProduct] = useState(null);
+  const [currentStep, setCurrentStep] = useState(step || 1);
+  const [product, setProduct] = useState(food || null);
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(food?.price || 0);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -96,7 +96,7 @@ const OrderProcessProduct = ({
 
   return (
     <View style={styles.container}>
-      <Header foodType={foodType} />
+      <Header foodType={foodType || food} />
       <Text style={styles.subtitle}>{_renderRightSubtitle()}</Text>
       <View>{_renderRightContent()}</View>
     </View>

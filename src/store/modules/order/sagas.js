@@ -9,7 +9,10 @@ import {
   M_RESET_ORDER,
   U_LOAD_USER_ORDERS,
   M_SET_USER_ORDERS,
-  M_ADD_ORDER_TO_ORDERS
+  M_ADD_ORDER_TO_ORDERS,
+  U_LOAD_ORDER,
+  M_SET_ORDER,
+  M_SET_ORDER_IS_CREATING
 } from '@store/modules/order/actions';
 import {
   getToken,
@@ -72,6 +75,7 @@ function* loadFoodType({ payload }) {
 function* createOrder() {
   try {
     const token = yield select(getToken);
+    const user = yield select(getUser);
     const menuList = yield select(getMenuList);
     const productList = yield select(getProductList);
     const restaurant = yield select(getUserFavoriteRestaurant);
@@ -80,6 +84,9 @@ function* createOrder() {
     const restaurantId = currentRestaurant
       ? currentRestaurant.id
       : restaurant.id;
+    const isHomeDelivery = !currentRestaurant;
+
+    yield put({ type: M_SET_ORDER_IS_CREATING, value: true });
 
     const query = {
       method: 'post',
@@ -88,21 +95,26 @@ function* createOrder() {
         token
       },
       data: {
+        address: !isHomeDelivery ? currentRestaurant.address : user.address,
+        postalCode: !isHomeDelivery
+          ? currentRestaurant.postalcode
+          : user.postalcode,
+        city: !isHomeDelivery ? currentRestaurant.city : user.city,
         products: productList,
         menus: menuList,
         price,
-        type: currentRestaurant ? 2 : 1,
+        type: isHomeDelivery ? 1 : 2,
         payment: 'Paid'
       }
     };
-    const orderCreated = yield call(fetchService.request, query);
-    console.log('orderCreated', orderCreated);
-    // A voir la condition pour faire les mutations
 
-    if (orderCreated.message === 'Order Created') {
+    const orderCreated = yield call(fetchService.request, query);
+
+    if (orderCreated) {
       yield put({ type: M_SET_ORDER_PROCESS_STATUS, created: true });
       yield put({ type: M_RESET_ORDER });
       yield put({ type: M_ADD_ORDER_TO_ORDERS, orderCreated });
+      yield put({ type: M_SET_ORDER_IS_CREATING, value: false });
     }
   } catch (e) {
     yield put({ type: M_SET_ORDER_PROCESS_STATUS, created: false });
@@ -117,7 +129,7 @@ function* loadUserOrders() {
 
     const query = {
       method: 'get',
-      url: `${Config.API_URL}user/${user.id}/orders`,
+      url: `${Config.API_URL}users/${user.id}/orders`,
       headers: {
         token
       }
@@ -129,9 +141,27 @@ function* loadUserOrders() {
   }
 }
 
+function* loadOrder({ payload }) {
+  try {
+    const token = yield select(getToken);
+    const query = {
+      method: 'get',
+      url: `${Config.API_URL}orders/${payload.orderId}`,
+      headers: {
+        token
+      }
+    };
+    const order = yield call(fetchService.request, query);
+    yield put({ type: M_SET_ORDER, order });
+  } catch (e) {
+    console.log('Error while loading order => ', e);
+  }
+}
+
 export default function* watchOrder() {
   yield takeLatest(U_LOAD_USER_ORDERS, loadUserOrders);
   yield takeLatest(U_LOAD_CURRENT_FOOD, loadCurrentFood);
   yield takeLatest(U_LOAD_FOOD_TYPE, loadFoodType);
   yield takeLatest(U_CREATE_ORDER, createOrder);
+  yield takeLatest(U_LOAD_ORDER, loadOrder);
 }

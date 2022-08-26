@@ -1,19 +1,79 @@
-import React, { useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '@config/';
+import { connect, useDispatch } from 'react-redux';
+import { createSelector } from 'reselect';
+import {
+  getOrderLoaded,
+  getOrderIsLoading
+} from '@store/modules/order/selectors';
+import { loadOrder } from '@store/modules/order/actions';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import i18n from '@i18n/i18n';
 import Items from '@components/Order/items';
 import moment from 'moment';
+import * as Progress from 'react-native-progress';
 
-const OrderDetails = ({ navigation, route }) => {
-  const order = useMemo(() => {
-    return route.params.order;
-  }, [route.params.order]);
+const mapStateToProps = createSelector(
+  [getOrderLoaded, getOrderIsLoading],
+  (orderLoaded, orderIsLoading) => {
+    return { order: orderLoaded, orderIsLoading };
+  }
+);
+
+const OrderDetails = ({ navigation, route, order, orderIsLoading }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const payload = {
+      orderId: route.params.orderId
+    };
+    dispatch(loadOrder({ payload }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const orderDateParser = () => {
-    return moment.unix(order.createdAt).format('D MMMM YYYY');
+    return moment(order.createdAt).format('D MMMM YYYY');
   };
+
+  const orderAddressParsed = () => {
+    return `${order.address}, ${order.postalCode} ${order.city}`;
+  };
+
+  const _returnStatusColor = () => {
+    switch (order.statut) {
+      case 0:
+        return { color: colors.YELLOW };
+      case 1:
+        return { color: colors.LIGHT_GREEN };
+      case 2:
+        return { color: colors.GREEN };
+    }
+  };
+
+  const _returnStatusText = () => {
+    switch (order.statut) {
+      case 0:
+        return i18n.t('orderPage.status.preparation');
+      case 1:
+        return i18n.t('orderPage.status.delivering');
+      case 2:
+        return i18n.t('orderPage.status.delivered');
+    }
+  };
+
+  if (orderIsLoading) {
+    return (
+      <View style={styles.containerLoader}>
+        <Progress.Circle
+          size={60}
+          indeterminate={true}
+          borderWidth={2}
+          color={colors.YELLOW}
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -35,14 +95,20 @@ const OrderDetails = ({ navigation, route }) => {
           <Text style={styles.orderAddressTitle}>
             {i18n.t('orderPage.orderAddress')}
           </Text>
-          <Text style={styles.orderAddressData}>{order.address}</Text>
+          <Text style={styles.orderAddressData}>{orderAddressParsed()}</Text>
         </View>
-        <Items orderItems={order?.orderItems} />
+        <View style={styles.containerStatus}>
+          <Text style={styles.statut}>{i18n.t('orderPage.status.status')}</Text>
+          <Text style={[styles.statut, _returnStatusColor()]}>
+            {_returnStatusText()}
+          </Text>
+        </View>
+        <Items products={order.products} menus={order.menus} />
         <View style={styles.divider} />
         <View style={styles.containerTotal}>
           <Text style={styles.totalText}>{i18n.t('orderPage.total')}</Text>
           <Text style={styles.totalText}>
-            {i18n.t('orderPage.totalPrice', { totalPrice: order.totalPrice })}
+            {i18n.t('orderPage.totalPrice', { totalPrice: order.price })}
           </Text>
         </View>
         <View style={styles.orderDateContainer}>
@@ -56,6 +122,9 @@ const OrderDetails = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
+  containerStatus: { flexDirection: 'row' },
+  statut: { fontSize: 16, fontWeight: 'bold' },
+  containerLoader: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   orderDateText: { color: colors.YELLOW, fontSize: 14 },
   orderDateContainer: {
     flex: 1,
@@ -104,4 +173,4 @@ const styles = StyleSheet.create({
   orderAddressData: { opacity: 0.5, fontSize: 16 }
 });
 
-export default OrderDetails;
+export default connect(mapStateToProps)(OrderDetails);
