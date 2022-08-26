@@ -5,7 +5,6 @@ import DialogLogout from '@components/Profile/dialogLogout';
 import i18n from '@i18n/i18n';
 import FastImage from 'react-native-fast-image';
 import CartBanner from '@shared/cartBanner';
-import S3 from 'aws-sdk/clients/s3';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { RNS3 } from 'react-native-aws3';
 import { logout } from '@store/modules/app/actions';
