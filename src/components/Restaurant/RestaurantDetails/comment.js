@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { colors } from '@config/';
 import StarRating from 'react-native-star-rating';
 import Icon from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 
-const Comment = ({ comment, deleteComment }) => {
+const Comment = ({ comment, deleteComment, user }) => {
+  const canDeleteComment = useMemo(() => {
+    return comment.user.id === user.id;
+  }, [user, comment]);
+
   const link = 'https://s3.eu-west-3.amazonaws.com/atolia-assets/avatar.png';
   return (
     <View style={styles.container}>
@@ -34,17 +38,19 @@ const Comment = ({ comment, deleteComment }) => {
             ) : null}
           </View>
         </View>
-        <Pressable
-          style={styles.pressable}
-          onPress={() => deleteComment(comment.id)}
-        >
-          <Icon
-            name="close"
-            size={19}
-            color={colors.RED}
-            style={styles.iconClose}
-          />
-        </Pressable>
+        {canDeleteComment ? (
+          <Pressable
+            style={styles.pressable}
+            onPress={() => deleteComment(comment.id)}
+          >
+            <Icon
+              name="close"
+              size={19}
+              color={colors.RED}
+              style={styles.iconClose}
+            />
+          </Pressable>
+        ) : null}
       </View>
     </View>
   );

@@ -9,7 +9,10 @@ import {
   deleteComment
 } from '@store/modules/restaurant/actions';
 import { getCurrentRestaurant } from '@store/modules/restaurant/selectors';
-import { getUserFavoriteRestaurant } from '@store/modules/user/selectors';
+import {
+  getUserFavoriteRestaurant,
+  getUser
+} from '@store/modules/user/selectors';
 import { createSelector } from 'reselect';
 import {
   Menu,
@@ -26,16 +29,17 @@ import vibrate from '@helpers/vibrate';
 import StarRating from 'react-native-star-rating';
 
 const mapStateToProps = createSelector(
-  [getCurrentRestaurant, getUserFavoriteRestaurant],
-  (currentRestaurant, favoriteRestaurant) => {
-    return { currentRestaurant, favoriteRestaurant };
+  [getCurrentRestaurant, getUserFavoriteRestaurant, getUser],
+  (currentRestaurant, favoriteRestaurant, user) => {
+    return { currentRestaurant, favoriteRestaurant, user };
   }
 );
 
 const RestaurantDetails = ({
   navigation,
   currentRestaurant,
-  favoriteRestaurant
+  favoriteRestaurant,
+  user
 }) => {
   const dispatch = useDispatch();
   const ref = useRef(null);
@@ -171,6 +175,7 @@ const RestaurantDetails = ({
             <Comment
               comment={item}
               deleteComment={(id) => _deleteComment(id)}
+              user={user}
             />
           )}
           contentContainerStyle={styles.contentContainerStyle}

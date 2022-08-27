@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { colors } from '@config/';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
@@ -25,60 +33,66 @@ const AddComment = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable style={styles.iconClose} onPress={() => navigation.goBack()}>
-          <Icon name="close" size={26} />
-        </Pressable>
-        <Text style={styles.titleHeader}>
-          {i18n.t('restaurant.addComment').toUpperCase()}
-        </Text>
-      </View>
-      <View style={styles.containerPage}>
-        <Text style={styles.title}>{i18n.t('restaurant.addRating')}</Text>
-        <StarRating
-          maxStars={5}
-          rating={starCount}
-          emptyStar="star-border"
-          emptyStarColor={colors.YELLOW}
-          fullStar="star"
-          fullStarColor={colors.YELLOW}
-          iconSet="MaterialIcons"
-          starSize={35}
-          containerStyle={styles.containerStars}
-          selectedStar={(rating) => setStartCount(rating)}
-        />
-        <Text style={styles.title}>{i18n.t('restaurant.addComment')}</Text>
-        <TextInput
-          style={styles.input}
-          multiline
-          onChangeText={(c) => setComment(c)}
-          value={comment}
-          placeholder={i18n.t('restaurant.addCommentPlaceholder')}
-        />
-
-        <View style={styles.footer}>
-          <Button
-            mode="outlined"
-            color={colors.RED}
-            borderColor={colors.RED}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Pressable
+            style={styles.iconClose}
             onPress={() => navigation.goBack()}
-            contentStyle={styles.btnContentStyle}
-            style={styles.btnCancel}
           >
-            {i18n.t('button.cancel')}
-          </Button>
-          <Button
-            mode="contained"
-            color={colors.GREEN}
-            onPress={() => _addComment()}
-            contentStyle={styles.btnContentStyle}
-          >
-            {i18n.t('button.add')}
-          </Button>
+            <Icon name="close" size={26} />
+          </Pressable>
+          <Text style={styles.titleHeader}>
+            {i18n.t('restaurant.addComment').toUpperCase()}
+          </Text>
+        </View>
+        <View style={styles.containerPage}>
+          <Text style={styles.title}>{i18n.t('restaurant.addRating')}</Text>
+          <StarRating
+            maxStars={5}
+            rating={starCount}
+            emptyStar="star-border"
+            emptyStarColor={colors.YELLOW}
+            fullStar="star"
+            fullStarColor={colors.YELLOW}
+            iconSet="MaterialIcons"
+            starSize={35}
+            containerStyle={styles.containerStars}
+            selectedStar={(rating) => setStartCount(rating)}
+          />
+          <Text style={styles.title}>{i18n.t('restaurant.addComment')}</Text>
+          <TextInput
+            style={styles.input}
+            multiline
+            onChangeText={(c) => setComment(c)}
+            value={comment}
+            placeholder={i18n.t('restaurant.addCommentPlaceholder')}
+            onEndEditing={() => Keyboard.dismiss()}
+          />
+
+          <View style={styles.footer}>
+            <Button
+              mode="outlined"
+              color={colors.RED}
+              borderColor={colors.RED}
+              onPress={() => navigation.goBack()}
+              contentStyle={styles.btnContentStyle}
+              style={styles.btnCancel}
+            >
+              {i18n.t('button.cancel')}
+            </Button>
+            <Button
+              mode="contained"
+              color={colors.GREEN}
+              onPress={() => _addComment()}
+              contentStyle={styles.btnContentStyle}
+            >
+              {i18n.t('button.add')}
+            </Button>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -90,7 +104,10 @@ const styles = StyleSheet.create({
   },
   btnCancel: { borderColor: colors.RED },
   btnContentStyle: { height: 45 },
-  containerPage: { paddingHorizontal: 24, marginTop: 18 },
+  containerPage: {
+    paddingHorizontal: 24,
+    marginTop: 18
+  },
   title: { fontSize: 16, fontWeight: '500', marginBottom: 12 },
   containerStars: {
     width: 150,

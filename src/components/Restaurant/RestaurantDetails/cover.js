@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Menu from 'react-native-vector-icons/MaterialCommunityIcons';
 import FastImage from 'react-native-fast-image';
-import { View, StyleSheet, Pressable, Text } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { colors } from '@config/';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
