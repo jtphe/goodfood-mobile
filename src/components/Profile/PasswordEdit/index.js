@@ -17,9 +17,6 @@ const PasswordEdit = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const _updatePassword = () => {
-    console.log('currentPassword', currentPassword);
-    console.log('newPassword', newPassword);
-    console.log('confirmNewPassword', confirmNewPassword);
     if (
       currentPassword !== '' &&
       newPassword !== '' &&
@@ -31,7 +28,7 @@ const PasswordEdit = ({ navigation }) => {
             oldPassword: currentPassword,
             newPassword
           };
-          dispatch(updateUserPassword(payload));
+          dispatch(updateUserPassword({ payload }));
           setNewPassword('');
           setCurrentPassword('');
           setConfirmNewPassword('');
