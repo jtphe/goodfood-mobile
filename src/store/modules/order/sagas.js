@@ -135,6 +135,7 @@ function* loadUserOrders() {
       }
     };
     const orders = yield call(fetchService.request, query);
+    console.log('orders :>> ', orders);
     yield put({ type: M_SET_USER_ORDERS, orders });
   } catch (e) {
     console.log('Error while loading user orders => ', e);
@@ -152,6 +153,7 @@ function* loadOrder({ payload }) {
       }
     };
     const order = yield call(fetchService.request, query);
+    console.log('order :>> ', order);
     yield put({ type: M_SET_ORDER, order });
   } catch (e) {
     console.log('Error while loading order => ', e);

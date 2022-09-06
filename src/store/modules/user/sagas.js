@@ -127,21 +127,23 @@ function* updateUser({ payload }) {
 function* updateUserPassword({ payload }) {
   try {
     const token = yield select(getToken);
-    const user = yield select(getUser);
     const { oldPassword, newPassword } = payload;
-
     const query = {
       method: 'put',
-      url: `${Config.API_URL}users/password`,
+      url: `${Config.API_URL}changepassword`,
       headers: {
         token
       },
       data: {
-        id: user.id,
         oldPassword,
         newPassword
       }
     };
+
+    const res = yield call(fetchService.request, query);
+    if (res.status === 200) {
+      showToast(i18n.t('accountPage.userUpdated'), true);
+    }
   } catch (e) {
     console.log('Error while updating user password => ', e);
   }

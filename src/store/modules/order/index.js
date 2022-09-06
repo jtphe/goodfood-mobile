@@ -56,7 +56,7 @@ export default function reducer(state = initialState, action) {
     case M_ADD_ORDER_TO_ORDERS:
       return update(state, {
         orders: {
-          $push: [action.orderCreated]
+          $unshift: [action.orderCreated]
         }
       });
     case M_SET_USER_ORDERS:
