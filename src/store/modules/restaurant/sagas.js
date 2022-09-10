@@ -12,10 +12,7 @@ import {
   M_SET_PRODUCTS,
   U_LOAD_USER_RESTAURANT_PRODUCTS
 } from '@store/modules/restaurant/actions';
-import {
-  loadUserFavoriteRestaurant,
-  M_UPDATE_USER_FAVORITE_RESTAURANT
-} from '@store/modules/user/actions';
+import { M_UPDATE_USER_FAVORITE_RESTAURANT } from '@store/modules/user/actions';
 import {
   getToken,
   getUserFavoriteRestaurant
@@ -141,7 +138,7 @@ function* loadUserRestaurantProducts() {
 
     const query = {
       method: 'get',
-      url: `${Config.API_URL}restaurants/${restaurant.id}/products`,
+      url: `${Config.API_URL}restaurants/${restaurant?.id}/products`,
       headers: { token }
     };
     const res = yield call(fetchService.request, query);
