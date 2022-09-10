@@ -1,8 +1,6 @@
 import { Alert, Linking, PermissionsAndroid } from 'react-native';
 import { check, PERMISSIONS, request, RESULTS } from 'react-native-permissions';
 import i18n from '@i18n/i18n';
-// import FileViewer from 'react-native-file-viewer';
-// import RNFS from 'react-native-fs';
 
 export const requestIOSCameraPermission = async () => {
   check(PERMISSIONS.IOS.CAMERA).then((result) => {
