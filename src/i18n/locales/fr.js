@@ -84,7 +84,7 @@ export default {
     see: 'Voir',
     total: 'Total',
     totalPrice: '{{totalPrice}}€',
-    itemMenu: '1 x {{itemType}}',
+    itemMenu: '- {{itemType}}',
     itemCustom: '{{quantity}} x {{productName}}',
     orderDate: 'Commande passé le {{date}}',
     orderProcessTitle: 'Process commande',
@@ -130,7 +130,8 @@ export default {
       status: 'Statut: ',
       preparation: 'Préparation',
       delivering: 'En cours de livraison',
-      delivered: 'Livrée'
+      delivered: 'Livrée',
+      readyToTakeAway: 'Prêt à être emporté'
     }
   },
   accountPage: {
