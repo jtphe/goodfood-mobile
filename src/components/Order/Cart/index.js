@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  FlatList
+  FlatList,
+  ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '@config/';
@@ -112,7 +113,7 @@ const Cart = ({
     return (
       <View style={styles.container}>
         <Header />
-        <View>
+        <ScrollView>
           <FlatList
             data={menuList}
             keyExtractor={(item) => item.id.toString()}
@@ -135,7 +136,7 @@ const Cart = ({
               />
             )}
           />
-        </View>
+        </ScrollView>
         <View style={styles.footer}>
           <View style={styles.rowSubtotal}>
             <Text style={styles.subTotalText}>
@@ -325,11 +326,8 @@ const styles = StyleSheet.create({
   subTotalText: { fontWeight: 'bold', fontSize: 16, flex: 1 },
   rowSubtotal: { flexDirection: 'row' },
   footer: {
-    width: '100%',
-    position: 'absolute',
     borderTopWidth: 1,
     borderTopColor: colors.GREY,
-    bottom: 0,
     marginBottom: 50,
     paddingHorizontal: 12,
     paddingTop: 12

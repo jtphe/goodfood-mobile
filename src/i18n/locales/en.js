@@ -75,7 +75,7 @@ export default {
     oldOrdersTitle: 'Old orders',
     detailsTitle: 'Order details',
     orderNumber: 'Order number #{{number}}',
-    orderAddress: 'Delivery address :',
+    orderAddress: 'Delivery address: ',
     menuTitle: 'MENUS',
     foodTitle: 'FOODS',
     snackTitle: 'SNACKS',
@@ -83,7 +83,7 @@ export default {
     see: 'See',
     total: 'Total',
     totalPrice: '{{totalPrice}}€',
-    itemMenu: '1 x {{itemType}}',
+    itemMenu: '- {{itemType}}',
     itemCustom: '{{quantity}} x {{productName}}',
     orderDate: 'Ordered on {{date}}',
     orderProcessTitle: 'Order process',
@@ -128,7 +128,8 @@ export default {
       status: 'Status: ',
       preparation: 'Preparation',
       delivering: 'In progress',
-      delivered: 'Delivered'
+      delivered: 'Delivered',
+      readyToTakeAway: 'Ready to be taken away'
     }
   },
   accountPage: {

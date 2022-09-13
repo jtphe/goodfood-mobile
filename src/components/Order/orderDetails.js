@@ -58,7 +58,11 @@ const OrderDetails = ({ navigation, route, order, orderIsLoading }) => {
       case 1:
         return i18n.t('orderPage.status.delivering');
       case 2:
-        return i18n.t('orderPage.status.delivered');
+        if (order.type === 1) {
+          return i18n.t('orderPage.status.delivered');
+        } else {
+          return i18n.t('orderPage.status.readyToTakeAway');
+        }
     }
   };
 
