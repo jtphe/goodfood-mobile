@@ -50,6 +50,9 @@ function* signIn({ payload }) {
       data: {
         email: payload.email,
         password: payload.password
+      },
+      headers: {
+        device: 'mobile'
       }
     };
     const res = yield call(fetchService.request, query);
