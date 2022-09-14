@@ -169,15 +169,42 @@ export default function reducer(state = initialState, action) {
         }
       });
     }
-    case M_ADD_PRODUCT_TO_CART:
-      return update(state, {
-        productList: {
-          $push: [action.payload]
-        },
-        cartTotalPrice: {
-          $set: roundToTwo(state.cartTotalPrice + action.payload.totalPrice)
-        }
-      });
+    case M_ADD_PRODUCT_TO_CART: {
+      const isAlreadyAdded = state.productList.findIndex(
+        (product) => product.id === action.payload.id
+      );
+
+      if (isAlreadyAdded !== -1) {
+        return update(state, {
+          productList: {
+            [isAlreadyAdded]: {
+              quantity: {
+                $set:
+                  state.productList[isAlreadyAdded].quantity +
+                  action.payload.quantity
+              },
+              totalPrice: {
+                $set:
+                  state.productList[isAlreadyAdded].totalPrice +
+                  action.payload.totalPrice
+              }
+            }
+          },
+          cartTotalPrice: {
+            $set: roundToTwo(state.cartTotalPrice + action.payload.totalPrice)
+          }
+        });
+      } else {
+        return update(state, {
+          productList: {
+            $push: [action.payload]
+          },
+          cartTotalPrice: {
+            $set: roundToTwo(state.cartTotalPrice + action.payload.totalPrice)
+          }
+        });
+      }
+    }
     case M_ADD_MENU_TO_CART: {
       const menu = { ...action.payload.menu };
       menu.id = state.menuList.length + 1;
