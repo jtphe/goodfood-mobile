@@ -28,7 +28,7 @@
     "react-native-bootsplash": "3.2.3",
     "react-native-config": "^1.4.5",
     "react-native-dropdown-picker": "^5.4.2",
-    "react-native-fast-image": "^8.5.11",
+    "react-native-fast-image": "8.6.1",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-haptic-feedback": "^1.13.1",
     "react-native-image-crop-picker": "^0.37.3",

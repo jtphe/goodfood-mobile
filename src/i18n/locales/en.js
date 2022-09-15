@@ -77,7 +77,7 @@ export default {
     orderNumber: 'Order number #{{number}}',
     orderAddress: 'Delivery address: ',
     menuTitle: 'MENUS',
-    foodTitle: 'FOODS',
+    foodTitle: 'PRODUCTS',
     snackTitle: 'SNACKS',
     drinkTitle: 'DRINKS',
     see: 'See',

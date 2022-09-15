@@ -78,7 +78,7 @@ export default {
     orderNumber: 'Commande #{{number}}',
     orderAddress: 'Adresse de la livraison: ',
     menuTitle: 'MENUS',
-    foodTitle: 'PLATS',
+    foodTitle: 'PRODUITS',
     snackTitle: 'SNACKS',
     drinkTitle: 'BOISSONS',
     see: 'Voir',

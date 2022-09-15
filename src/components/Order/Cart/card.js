@@ -60,9 +60,11 @@ const Card = ({
       <TextInput
         placeholder={i18n.t('orderPage.cardName')}
         style={styles.input}
+        placeholderTextColor={colors.DARK_GREY}
         onChangeText={(txt) => {
           setCardName(txt);
         }}
+        returnKeyType="done"
         autoCapitalize="none"
       />
       <DropDownPicker
@@ -106,11 +108,13 @@ const Card = ({
       <TextInput
         placeholder={i18n.t('orderPage.cardNumber')}
         style={styles.input}
+        placeholderTextColor={colors.DARK_GREY}
         keyboardType="numeric"
         maxLength={16}
         onChangeText={(txt) => {
           setCardNumber(txt);
         }}
+        returnKeyType="done"
         autoCapitalize="none"
       />
       <View style={styles.rowExpCVV}>
@@ -126,18 +130,22 @@ const Card = ({
           }}
           autoCapitalize="none"
           maxLength={5}
+          placeholderTextColor={colors.DARK_GREY}
           keyboardType="numeric"
+          returnKeyType="done"
           value={cardExpiration}
         />
         <TextInput
           placeholder={i18n.t('orderPage.cardCVV')}
           style={[styles.input, styles.expCVV]}
           maxLength={3}
+          placeholderTextColor={colors.DARK_GREY}
           keyboardType="numeric"
           onChangeText={(txt) => {
             setCardCVV(txt);
           }}
           autoCapitalize="none"
+          returnKeyType="done"
         />
       </View>
       <View style={styles.footer}>
@@ -195,7 +203,6 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: 'white',
-    color: colors.DARK_GREY,
     paddingBottom: 6,
     marginBottom: 24,
     borderBottomWidth: 1,

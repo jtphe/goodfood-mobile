@@ -18,6 +18,8 @@ const FinalStep = ({
   const _renderPrice = () => {
     return `${totalPrice}€`;
   };
+
+  console.log('isTakeawayOrder', isTakeawayOrder);
   return (
     <>
       <View style={styles.containerOrderAddress}>
@@ -25,7 +27,7 @@ const FinalStep = ({
           {i18n.t('orderPage.orderAddress')}
         </Text>
         <Text style={styles.orderAddressData}>
-          {!isTakeawayOrder ? restaurant.address : userAddress}
+          {isTakeawayOrder ? restaurant.address : userAddress}
         </Text>
       </View>
       <View style={styles.containerRecap}>
