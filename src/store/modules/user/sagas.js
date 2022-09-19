@@ -56,7 +56,6 @@ function* signIn({ payload }) {
       }
     };
     const res = yield call(fetchService.request, query);
-
     yield put({ type: M_SET_USER, res });
     payload.navigation.navigate('Root');
   } catch (e) {
@@ -102,8 +101,8 @@ function* updateUser({ payload }) {
         token
       },
       data: {
-        firstName: firstName !== undefined ? firstName : null,
-        lastName: lastName !== undefined ? lastName : null,
+        firstname: firstName !== undefined ? firstName : null,
+        lastname: lastName !== undefined ? lastName : null,
         address: address !== undefined ? address : null,
         postalCode: postalCode !== undefined ? postalCode : null,
         city: city !== undefined ? city : null

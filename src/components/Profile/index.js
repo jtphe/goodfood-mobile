@@ -114,7 +114,7 @@ const Profile = ({ navigation, user }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {firstname !== '' || lastname !== '' ? (
+        {firstname !== null || lastname !== null ? (
           <Text style={styles.userName}>
             {firstname} {lastname}
           </Text>
